@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Tiny5&display=swap");
+/* General Layout */
+/* General Layout */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    display: inline;
+}
+
+.titulo-logo{
+    display: inline;
+}
+
+/* Main Title */
+.titulo {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Container Grid Layout */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Individual Card Styling */
+.containerMain {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.containerMain:hover {
+  transform: scale(1.05);
+}
+
+/* Styles for Each Card Element */
+.containerMain .titulo {
+  font-size: 1.5rem;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+.containerMain .simbolo {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.containerMain .precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.containerMain .NumerosVerdes {
+  color: green;
+  font-size: 1.2rem;
+}
+
+.containerMain .NumerosRojos {
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .containerMain {
+    padding: 15px;
+  }
+
+  .containerMain .titulo {
+    font-size: 1.3rem;
+  }
+
+  .containerMain .simbolo {
+    font-size: 1rem;
+  }
+
+  .containerMain .precio {
+    font-size: 1.3rem;
+  }
+
+  .containerMain .NumerosVerdes,
+  .containerMain .NumerosRojos {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 1.2rem;
+  }
+
+  .containerMain {
+    padding: 10px;
+  }
+
+  .containerMain .titulo {
+    font-size: 1.1rem;
+  }
+
+  .containerMain .simbolo {
+    font-size: 0.9rem;
+  }
+
+  .containerMain .precio {
+    font-size: 1.1rem;
+  }
+
+  .containerMain .NumerosVerdes,
+  .containerMain .NumerosRojos {
+    font-size: 0.9rem;
+  }
+}
