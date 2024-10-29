@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cuadricula from "./cuadricula";
-import "./App.css";
+import Cuadricula from "./Cuadricula";
+import "./css/App.css";
+
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <>
-      <h1>Lista de Criptomonedas</h1>
+      <h1 className="titulo">Lista de Criptomonedas</h1>
       <div className="container">
         {criptos.map(
           ({ id, name, symbol, priceUsd, changePercent24Hr, rank }) => (
@@ -35,7 +36,7 @@ function App() {
               name={name}
               symbol={symbol}
               priceUsd={priceUsd}
-              change={Number(changePercent24Hr).toFixed(2)}
+              change={Number(changePercent24Hr).toFixed(3)}
             />
           )
         )}
@@ -45,5 +46,3 @@ function App() {
 }
 
 export default App;
-
-//Crear una cuadricula con las criptos moneda y ademas hacer que el li sea un componente para hacer la lista
