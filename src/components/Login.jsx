@@ -40,7 +40,7 @@ const Login = () => {
     <>
       <div className="Login-container">
         <div className="title-logo-container">
-          <img className="logo-login" src="../public/logo.svg" alt="Logo" />
+          <img className="logo-login" src="/logo.svg" alt="Logo" />
           <h1 className="tittle-login">{VITE_NAME}</h1>
         </div>
         <h2 className="sub-tittle-login">Iniciar Sesion</h2>
