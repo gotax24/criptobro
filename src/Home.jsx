@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./home.css"
 
-const Home = () => {
+const home = () => {
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
 
   return (
@@ -24,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default home;

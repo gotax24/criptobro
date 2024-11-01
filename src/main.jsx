@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Pagina404 from "./components/404.jsx";
 import App from "./components/App.jsx";
-import Home from "./Home.jsx";
+import Home from "./home.jsx";
 import Cuadricula from "./components/Cuadricaula.jsx";
 import CriptoPage from "./components/CriptoPage.jsx";
 import { UserContextProvider } from "./context/UserContext.jsx";
