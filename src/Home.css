@@ -1,0 +1,59 @@
+/* Contenedor general de la página principal */
+.title-home {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.p-home {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  text-align: justify;
+  padding: 0 1rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.h3-home {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Estilo para el botón de enlace */
+.link-home {
+  display: block;
+  text-align: center;
+  background-color: #056bb5;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 250px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.link-home:hover {
+  background-color: #3399ff;
+}
+
+.link-home:active {
+  background-color: #003d66;
+}
