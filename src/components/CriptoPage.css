@@ -1,0 +1,81 @@
+/* Contenedor principal para el componente CriptoPage */
+.container-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 100%;
+  padding: 2rem;
+}
+
+/* Información de la criptomoneda */
+.info {
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.name-info {
+  font-size: 1.8rem;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.codigo-info {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.p-info,
+.info-p {
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.number {
+  color: #56b6c2;
+  font-weight: bold;
+}
+
+/* Tabla histórica */
+.div-history {
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "IBM Plex Mono", monospace;
+  color: white;
+}
+
+.history-table th,
+.history-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-table th {
+  color: #aaa;
+  font-weight: 700;
+}
+
+.history-table td {
+  color: #ccc;
+}
+
+.history-table-cuerpo-fila:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

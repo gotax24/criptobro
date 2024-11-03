@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import useData from "../hooks/useData";
 import CriptoInfo from "./CriptoInfo/CriptoInfo";
-import CriptoHistory from "./CriptoInfo/CriptoHistory";
+//import CriptoHistory from "./CriptoInfo/CriptoHistory";
 import Cargando from "./Cargando";
+import "./CriptoPage.css"
+import CriptoGrafica from "./CriptoGrafica";
 
 const CriptoPage = () => {
   const params = useParams();
@@ -18,7 +20,7 @@ const CriptoPage = () => {
     <>
       <div className="container-main">
         {criptos && <CriptoInfo criptos={criptos} />}
-        {history && <CriptoHistory history={history} />}
+        {history && <CriptoGrafica history={history}/>}
       </div>
     </>
   );
