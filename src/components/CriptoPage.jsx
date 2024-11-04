@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useData from "../hooks/useData";
 import CriptoInfo from "./CriptoInfo";
 import Cargando from "./Cargando";
-import "./CriptoPage.css"
+import "../css/CriptoPage.css"
 import CriptoGrafica from "./CriptoGrafica";
 
 const CriptoPage = () => {

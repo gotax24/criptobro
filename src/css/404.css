@@ -1,0 +1,62 @@
+/* Contenedor general para centrar el contenido de la página 404 */
+.pagina-404-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  background-color: rgb(8, 34, 63);
+  padding: 2rem;
+  gap: 1rem;
+}
+
+/* Estilo del título principal */
+.h1-404 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilo del subtítulo */
+.h2-404 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  max-width: 600px;
+}
+
+/* Imagen del 404 */
+.img-404 {
+  width: 250px;
+  max-width: 100%;
+  margin: 1rem 0;
+}
+
+/* Párrafo de la página 404 */
+.p-404 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+/* Link de regreso al inicio */
+.Link-404 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  color: #56b6c2;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+.Link-404:hover {
+  background-color: #56b6c2;
+  color: white;
+}

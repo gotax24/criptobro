@@ -1,7 +1,7 @@
 import Elemento from "./Elemento";
 import useData from "../hooks/useData";
 import Cargando from "./Cargando";
-import "./Cuadricula.css"
+import "../css/Cuadricula.css"
 
 
 function Cuadricula() {

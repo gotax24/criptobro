@@ -1,4 +1,4 @@
-import "../asset/spinner.css";
+import "../css/spinner.css";
 
 const Cargando = () => {
   return (

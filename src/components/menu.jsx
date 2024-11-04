@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import "./menu.css"
+import "../css/menu.css"
 
 const Menu = () => {
   const usuario = useContext(UserContext);
@@ -30,7 +30,7 @@ const Menu = () => {
           <NavLink to="/criptomonedas">Lista de criptos</NavLink>
         </li>
         <li className="item-nav">
-          <NavLink>Perfil de {usuario.name}</NavLink>
+          <NavLink to="/Perfil">Perfil de {usuario.name}</NavLink>
         </li>
         <li className="item-nav">
           <a onClick={cerrarSesion} href="#!">

@@ -1,0 +1,50 @@
+/* Estilos generales del footer */
+footer.credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: rgb(8, 34, 63);
+  color: #ccc;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Sección de iconos de redes sociales */
+.social-network-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para los links de redes sociales */
+.link-networks {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estilo para los iconos de redes */
+.img-footer {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+.link-networks:hover .img-footer {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Sección de copyright */
+.copyright {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 1rem;
+}
+
+/* Hover en general para los links */
+.link-networks:hover {
+  color: #56b6c2;
+}
