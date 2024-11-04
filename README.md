@@ -1,6 +1,3 @@
-Aquí tienes un ejemplo de `README.md` para tu proyecto:
-
-```markdown
 # CriptoBro
 
 **CriptoBro** es una aplicación web que proporciona información detallada sobre el mundo de las criptomonedas. Los usuarios pueden explorar las criptomonedas más populares, ver sus precios históricos y obtener detalles en tiempo real. La aplicación está desarrollada con React y utiliza una API para obtener datos actualizados del mercado de criptomonedas.
