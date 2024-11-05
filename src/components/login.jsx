@@ -91,9 +91,14 @@ const Login = () => {
         </form>
         {error && <span className="error">Error: {error}</span>}
         <p className="disclaimer">
-          Este login esta hecho con una api gratuita para practicar login con un
-          backend real, si quieres ingresar debes poner
-          <strong> Email: eve.holt@reqres.in y Contraseña: cityslicka</strong>
+          Este formulario utiliza una API gratuita para simular un inicio de
+          sesión en un servidor real. Puedes probar el sistema utilizando estos
+          datos de prueba:
+          <br />
+          <strong>Email:</strong> eve.holt@reqres.in <br />
+          <strong>Contraseña:</strong> cityslicka <br />
+          Introduce estos datos en los campos correspondientes para experimentar
+          el proceso de inicio de sesión.
         </p>
       </div>
     </>
