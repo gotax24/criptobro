@@ -16,7 +16,7 @@ const UserContextProvider = ({children}) => {
             setUsuario(data.data.data)
         })
         .catch(e => console.error(e))
-    }, [])
+    }, [randomNumber])
 
     return (
         <UserContext.Provider value={usuario}>
