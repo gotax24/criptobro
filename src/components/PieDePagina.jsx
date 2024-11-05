@@ -1,4 +1,7 @@
-import "../css/PieDePagina.css"
+import "../css/PieDePagina.css";
+import githubLogo from "../asset/github.svg"
+import emailLogo from "../asset/email.svg"
+import linkendlinLogo from "../asset/likendlin.svg"
 
 const PieDePagina = () => {
   return (
@@ -11,7 +14,7 @@ const PieDePagina = () => {
           className="link-networks"
         >
           <img
-            src="src/asset/github.svg"
+            src={githubLogo}
             className="img-footer"
             alt="logo de github"
           />
@@ -23,7 +26,7 @@ const PieDePagina = () => {
           className="link-networks"
         >
           <img
-            src="src/asset/likendlin.svg"
+            src={linkendlinLogo}
             className="img-footer"
             alt="logo de likendlin"
           />
@@ -34,7 +37,11 @@ const PieDePagina = () => {
           rel="noopener noreferrer"
           className="link-networks"
         >
-          <img src="src/asset/email.svg" className="img-footer" alt="logo de email" />
+          <img
+            src={emailLogo}
+            className="img-footer"
+            alt="logo de email"
+          />
         </a>
       </address>
       <div className="copyright">Creator: Ing. Ernesto Bracho 2024 &#169;</div>
