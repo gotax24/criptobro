@@ -1,0 +1,46 @@
+/* Perfil Component */
+.container-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.img-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #5689ef;
+  margin-bottom: 1.5rem;
+}
+
+.name-perfil {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fafafa;
+  margin: 0;
+  text-align: center;
+}
+
+.correo-perfil {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0.5rem 0 1rem 0;
+  text-align: center;
+}
+
+.advertencia {
+  font-size: 0.9rem;
+  color: rgb(205, 71, 71);
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.4;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
