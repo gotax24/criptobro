@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useData = (url) => {
+const useData = (url,whatSign) => {
   const API_URL = import.meta.env.VITE_API_URL;
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const [data, setData] = useState();
   const [cargando, setCargando] = useState(false);
 
   useEffect(() => {
     setCargando(true);
 
+    const axiosUrl = whatSign ? `${API_URL}${url}?apiKey=${API_KEY}` : `${API_URL}${url}&apiKey=${API_KEY}`;
+
     axios
-      .get(`${API_URL}${url}`)
+      .get(axiosUrl)
       .then((data) => {
         setData(data.data.data);
         setCargando(false);
@@ -19,7 +22,7 @@ const useData = (url) => {
         setCargando(false);
         console.error(e);
       });
-  }, [API_URL, url]);
+  }, [API_URL, url, API_KEY, whatSign]);
 
   return [data,cargando];
 };
