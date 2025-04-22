@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const useData = (url,whatSign) => {
-  const API_URL = import.meta.env.VITE_API_URL;
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_URL = import.meta.env.API_URL;
+  const API_KEY = import.meta.env.API_KEY;
   const [data, setData] = useState();
   const [cargando, setCargando] = useState(false);
 
