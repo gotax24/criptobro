@@ -5,7 +5,7 @@ import "../css/Cuadricula.css"
 
 
 function Cuadricula() {
-  const [criptos, cargandoCriptos] = useData(`assets`, true);
+  const [criptos, cargandoCriptos] = useData("assets", true);
 
   if (cargandoCriptos) return <Cargando/>
 

@@ -1,30 +1,38 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useData = (url,whatSign) => {
-  const API_URL = import.meta.env.API_URL;
-  const API_KEY = import.meta.env.API_KEY;
+const useData = (endpoint, whatSign) => {
   const [data, setData] = useState();
   const [cargando, setCargando] = useState(false);
+  const [error, setError] = useState(null);
+  const API_URL = "http://localhost:3001/api/coincap";
 
   useEffect(() => {
+    if (!endpoint) return;
+
     setCargando(true);
 
-    const axiosUrl = whatSign ? `${API_URL}${url}?apiKey=${API_KEY}` : `${API_URL}${url}&apiKey=${API_KEY}`;
+    // Extraemos el id y el tipo a partir del endpoint
+    const [base, secondPart] = endpoint.split("/");
+    const id = base === "assets" ? secondPart?.split("?")[0] : null;
+
+    const type = endpoint.includes("history") ? "history" : "";
 
     axios
-      .get(axiosUrl)
-      .then((data) => {
-        setData(data.data.data);
+      .get(`${API_URL}?id=${id || ""}&type=${type}`)
+      .then((response) => {
+        setData(response.data.data);
         setCargando(false);
+        setError(null);
       })
-      .catch((e) => {
+      .catch((error) => {
         setCargando(false);
-        console.error(e);
+        console.error("Error al obtener datos del backend:", error);
+        setError("Error al obtener datos del backend.");
       });
-  }, [API_URL, url, API_KEY, whatSign]);
+  }, [endpoint, whatSign]);
 
-  return [data,cargando];
+  return [data, cargando, error];
 };
 
 export default useData;
