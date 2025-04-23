@@ -1,13 +1,12 @@
 import Elemento from "./Elemento";
 import useData from "../hooks/useData";
 import Cargando from "./Cargando";
-import "../css/Cuadricula.css"
-
+import "../css/Cuadricula.css";
 
 function Cuadricula() {
-  const [criptos, cargandoCriptos] = useData("assets", true);
+  const [criptos, cargandoCriptos, errorCripto] = useData("assets", true);
 
-  if (cargandoCriptos) return <Cargando/>
+  if (cargandoCriptos) return <Cargando />;
 
   return (
     <>
@@ -27,6 +26,11 @@ function Cuadricula() {
               />
             )
           )}
+        {errorCripto && (
+          <p className="error-message">
+            {errorCripto?.message || "Ocurrió un error al cargar los datos."}
+          </p>
+        )}
       </div>
     </>
   );

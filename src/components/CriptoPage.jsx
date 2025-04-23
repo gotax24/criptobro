@@ -8,8 +8,11 @@ import CriptoGrafica from "./CriptoGrafica";
 const CriptoPage = () => {
   const params = useParams();
 
-  const [criptos, cargandoCripto] = useData(`assets/${params.id}`, true);
-  const [history, cargandoHistory] = useData(
+  const [criptos, cargandoCripto, errorCripto] = useData(
+    `assets/${params.id}`,
+    true
+  );
+  const [history, cargandoHistory, errorHistory] = useData(
     `assets/${params.id}/history?interval=d1`,
     false
   );
@@ -21,6 +24,13 @@ const CriptoPage = () => {
       <div className="container-main">
         {criptos && <CriptoInfo criptos={criptos} />}
         {history && <CriptoGrafica history={history} />}
+        {(errorCripto || errorHistory) && (
+          <p>
+            {errorCripto?.message ||
+              errorHistory?.message ||
+              "Ocurrió un error al cargar los datos."}
+          </p>
+        )}
       </div>
     </>
   );
