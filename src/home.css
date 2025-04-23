@@ -1,28 +1,39 @@
-/* Contenedor general de la página principal */
+/* Estilos para página principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
 .title-home {
   font-size: 2rem;
   color: white;
   text-align: center;
-  margin-top: 2rem;
+  margin: 2rem 0 1rem;
+  padding: 0 1rem;
   font-family: "Poppins", sans-serif;
+  word-wrap: break-word; /* Evita desbordamiento de texto */
 }
 
 .sub-title {
   font-size: 1.5rem;
   color: white;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem 0;
+  padding: 0 1rem;
   font-family: "Poppins", sans-serif;
+  word-wrap: break-word;
 }
 
 .p-home {
   font-size: 1rem;
   line-height: 1.6;
   color: white;
-  max-width: 600px;
+  max-width: 800px;
   margin: 1.5rem auto;
-  text-align: justify;
-  padding: 0 1rem;
+  text-align: left; /* Cambiado a left para mejor legibilidad */
+  padding: 0 1.5rem;
   font-family: "IBM Plex Mono", monospace;
 }
 
@@ -30,7 +41,8 @@
   font-size: 1.2rem;
   color: white;
   text-align: center;
-  margin-top: 2rem;
+  margin: 2rem 0 1rem;
+  padding: 0 1rem;
   font-family: "Poppins", sans-serif;
 }
 
@@ -56,4 +68,97 @@
 
 .link-home:active {
   background-color: #003d66;
+}
+
+/* Media queries */
+@media screen and (max-width: 992px) {
+  .title-home {
+    font-size: 1.8rem;
+  }
+
+  .p-home {
+    max-width: 700px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title-home {
+    font-size: 1.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .sub-title {
+    font-size: 1.3rem;
+  }
+
+  .p-home {
+    padding: 0 2rem;
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .h3-home {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+
+  .link-home {
+    max-width: 220px;
+    padding: 0.7rem 1.25rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title-home {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .sub-title {
+    font-size: 1.15rem;
+  }
+
+  .p-home {
+    font-size: 0.9rem;
+    padding: 0 1.25rem;
+    text-align: left;
+    margin: 1rem auto;
+  }
+
+  .h3-home {
+    font-size: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .link-home {
+    max-width: 200px;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    margin: 1.25rem auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .title-home {
+    font-size: 1.35rem;
+  }
+
+  .sub-title {
+    font-size: 1.05rem;
+  }
+
+  .p-home {
+    font-size: 0.85rem;
+    padding: 0 1rem;
+  }
+
+  .h3-home {
+    font-size: 0.95rem;
+  }
+
+  .link-home {
+    max-width: 180px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
 }

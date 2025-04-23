@@ -1,37 +1,41 @@
-/* Contenedor del Login centrado en la página */
+/* Login container */
 .Login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-/* Flex para logo y título */
+/* Logo y título */
 .title-logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Espacio entre logo y título */
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
 .logo-login {
-  width: 100px; /* Tamaño acorde al diseño */
+  width: 100px;
   height: auto;
 }
 
 .tittle-login {
   font-size: 2rem;
   font-family: "Poppins", sans-serif;
+  margin: 0;
 }
 
 /* Subtítulo */
 .sub-tittle-login {
   margin-bottom: 2rem;
   font-size: 1.5rem;
+  text-align: center;
 }
 
-/* Estilos para el formulario */
+/* Formulario */
 .form-login {
   display: flex;
   flex-direction: column;
@@ -40,7 +44,7 @@
   gap: 1rem;
 }
 
-/* Campos del formulario */
+/* Campos */
 .input-login {
   width: 100%;
   padding: 0.75rem;
@@ -48,6 +52,7 @@
   color: rgb(8, 34, 63);
   border-radius: 8px;
   border: none;
+  box-sizing: border-box;
 }
 
 .button-login {
@@ -59,6 +64,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .button-login:hover {
@@ -75,5 +81,72 @@
   color: #ff4d4d;
   text-align: center;
   margin-top: 2rem;
-  width: 50rem;
+  width: 100%;
+  max-width: 50rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .tittle-login {
+    font-size: 1.75rem;
+  }
+
+  .sub-tittle-login {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo-login {
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title-logo-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .tittle-login {
+    font-size: 1.5rem;
+  }
+
+  .sub-tittle-login {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .logo-login {
+    width: 70px;
+  }
+
+  .form-login {
+    gap: 0.75rem;
+  }
+
+  .input-login,
+  .button-login {
+    padding: 0.7rem;
+  }
+
+  .disclaimer {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .tittle-login {
+    font-size: 1.25rem;
+  }
+
+  .sub-tittle-login {
+    font-size: 1rem;
+  }
+
+  .logo-login {
+    width: 60px;
+  }
 }

@@ -6,6 +6,7 @@
   gap: 2rem;
   max-width: 100%;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 /* Información de la criptomoneda */
@@ -78,4 +79,91 @@
 
 .history-table-cuerpo-fila:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container-main {
+    flex-direction: column; /* de fila a columna */
+    align-items: stretch; /* que ocupen el ancho completo */
+    padding: 1rem;
+  }
+
+  .info,
+  .div-history {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Para evitar desbordes horizontales del gráfico */
+  .div-history {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container-main {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .info {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .div-history {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .name-info {
+    font-size: 1.5rem;
+  }
+
+  .codigo-info {
+    font-size: 1rem;
+  }
+
+  .p-info,
+  .info-p {
+    font-size: 0.95rem;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .info {
+    padding: 1rem;
+  }
+
+  .div-history {
+    padding: 1rem;
+  }
+
+  .name-info {
+    font-size: 1.3rem;
+  }
+
+  .codigo-info {
+    font-size: 0.95rem;
+  }
+
+  .p-info,
+  .info-p {
+    font-size: 0.9rem;
+  }
+
+  .history-table th,
+  .history-table td {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
 }

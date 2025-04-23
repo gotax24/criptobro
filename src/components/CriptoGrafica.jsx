@@ -54,7 +54,7 @@ const CriptoChart = ({ history }) => {
   };
 
   return (
-    <div style={{ height: "650px", width: "100%" }}>
+    <div style={{ height: "650px", width: "100%", minWidth: "350px" }}>
       <Line data={data} options={options} />
     </div>
   );

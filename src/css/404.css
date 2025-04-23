@@ -8,7 +8,8 @@
   color: white;
   text-align: center;
   background-color: rgb(8, 34, 63);
-  padding: 2rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
   gap: 1rem;
 }
 
@@ -59,4 +60,52 @@
 .Link-404:hover {
   background-color: #56b6c2;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .h1-404 {
+    font-size: 2rem;
+  }
+
+  .h2-404 {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .img-404 {
+    width: 200px;
+  }
+
+  .p-404 {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+
+  .Link-404 {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1-404 {
+    font-size: 1.6rem;
+  }
+
+  .h2-404 {
+    font-size: 0.9rem;
+  }
+
+  .img-404 {
+    width: 150px;
+  }
+
+  .p-404 {
+    font-size: 0.9rem;
+  }
+
+  .Link-404 {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.9rem;
+  }
 }

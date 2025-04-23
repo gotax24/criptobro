@@ -10,6 +10,8 @@ footer.credits {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-family: "IBM Plex Mono", monospace;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Sección de iconos de redes sociales */
@@ -17,12 +19,15 @@ footer.credits {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Estilos para los links de redes sociales */
 .link-networks {
   display: inline-block;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  margin: 0.25rem;
 }
 
 /* Estilo para los iconos de redes */
@@ -42,9 +47,65 @@ footer.credits {
   font-size: 0.9rem;
   color: #888;
   margin-top: 1rem;
+  padding: 0 1rem;
+  word-wrap: break-word;
 }
 
 /* Hover en general para los links */
 .link-networks:hover {
   color: #56b6c2;
+}
+
+/* Media queries para hacer el footer responsive */
+@media screen and (max-width: 768px) {
+  footer.credits {
+    padding: 1.5rem;
+  }
+
+  .social-network-icons {
+    gap: 1.25rem;
+  }
+
+  .img-footer {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  footer.credits {
+    padding: 1.25rem 1rem;
+  }
+
+  .social-network-icons {
+    gap: 1rem;
+  }
+
+  .img-footer {
+    width: 24px;
+    height: 24px;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  footer.credits {
+    padding: 1rem 0.75rem;
+  }
+
+  .social-network-icons {
+    gap: 0.75rem;
+  }
+
+  .link-networks {
+    margin: 0.15rem;
+  }
+
+  .img-footer {
+    width: 22px;
+    height: 22px;
+  }
 }

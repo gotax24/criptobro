@@ -1,4 +1,4 @@
-/* Estilo general del menú */
+/* Estilos para el menú principal */
 .main-menu {
   display: flex;
   align-items: center;
@@ -6,9 +6,16 @@
   padding: 1rem 2rem;
   border-bottom: 1px solid white;
   background-color: rgb(8, 34, 63);
+  position: relative;
 }
 
-/* Estilo para logo y título en la izquierda */
+/* Logo y título */
+.logo-title-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .logo-menu {
   width: 40px;
   height: auto;
@@ -19,19 +26,16 @@
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
   color: white;
+  margin: 0;
 }
 
-/* Contenedor de logo y título */
-.logo-title-container {
-  display: flex;
-  align-items: center;
-}
-
-/* Estilo para la navegación a la derecha */
+/* Navegación */
 .nav-menu ul {
   display: flex;
   gap: 1.5rem;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .item-nav a {
@@ -40,6 +44,9 @@
   font-size: 1rem;
   transition: color 0.3s ease;
   font-family: "IBM Plex Mono", monospace;
+  padding: 0.5rem;
+  display: block;
+  white-space: nowrap;
 }
 
 .item-nav a:hover {
@@ -48,4 +55,97 @@
 
 .item-nav a:active {
   color: #3399ff;
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Animación para hamburguesa */
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Media queries */
+@media screen and (max-width: 868px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgb(8, 34, 63);
+    width: 250px;
+    height: auto;
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .item-nav {
+    width: 100%;
+  }
+
+  .item-nav a {
+    padding: 0.5rem 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-menu {
+    padding: 0.75rem 1rem;
+  }
+
+  .tittle-menu {
+    font-size: 1.2rem;
+  }
+
+  .logo-menu {
+    width: 30px;
+  }
 }

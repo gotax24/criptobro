@@ -1,56 +1,85 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-  color: white;
-  font-family: "IBM Plex Mono";
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul {
-  padding: 0;
+/* Estilos globales para toda la aplicación */
+* {
   margin: 0;
-  font-weight: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Poppins";
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: rgb(8, 34, 63);
-  min-height: 98vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(8, 34, 63);
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
+  line-height: 1.6;
 }
 
-h1 {
-  margin-bottom: 2rem;
+/* Variables CSS globales */
+:root {
+  --primary-color: rgb(8, 34, 63);
+  --secondary-color: #056bb5;
+  --accent-color: #3399ff;
+  --text-color: white;
+  --error-color: #ff4d4d;
+  --success-color: #4CAF50;
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "IBM Plex Mono", monospace;
 }
 
-h2 {
-  margin-bottom: 1rem;
+/* Contenedor general de páginas */
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
+
+/* Fix para problemas comunes */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Corrige problemas de texto que se desborda */
+h1, h2, h3, h4, h5, h6, p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Para preservar el espacio del contenido y evitar saltos abruptos de diseño */
+.content-wrapper {
+  min-height: calc(100vh - 200px); /* Ajustar según altura del header/footer */
+}
+
+/* Utilidades de flex comunes */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Espaciado consistente */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 2rem; }
