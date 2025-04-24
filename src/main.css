@@ -24,7 +24,7 @@ body {
   --accent-color: #3399ff;
   --text-color: white;
   --error-color: #ff4d4d;
-  --success-color: #4CAF50;
+  --success-color: #4caf50;
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "IBM Plex Mono", monospace;
 }
@@ -45,7 +45,13 @@ img {
 }
 
 /* Corrige problemas de texto que se desborda */
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -77,9 +83,21 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /* Espaciado consistente */
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-4 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 2rem; }
+.mt-1 {
+  margin-top: 0.5rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}

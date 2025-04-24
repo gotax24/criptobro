@@ -105,18 +105,20 @@
     position: absolute;
     top: 100%;
     right: 0;
+    left: 100%; /* 👈 oculto completamente fuera de pantalla */
     background-color: rgb(8, 34, 63);
     width: 250px;
     height: auto;
     padding: 1rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: left 0.3s ease;
     box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 100;
   }
 
   .nav-menu.active {
-    transform: translateX(0);
+    left: calc(
+      100% - 250px
+    ) ; /* 👈 o simplemente left: 0 si quieres que se superponga */
   }
 
   .nav-menu ul {

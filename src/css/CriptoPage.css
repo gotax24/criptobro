@@ -1,21 +1,129 @@
 /* Contenedor principal para el componente CriptoPage */
 .container-main {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  padding: 1rem 2rem;
   gap: 2rem;
-  max-width: 100%;
-  padding: 2rem;
-  box-sizing: border-box;
+  margin-bottom: 6rem; /* Increased bottom margin to make room for footer */
 }
 
-/* Información de la criptomoneda */
-.info {
-  width: 300px;
+/* Filtros superiores */
+.filtros-superiores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background-color: #1c2b3a;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.filtro-tiempo,
+.filtro-fechas {
+  flex: 1;
+  min-width: 250px;
+}
+
+.fechas-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.fecha-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fecha-separator {
+  color: #56b6c2;
+  font-weight: bold;
+  margin: 0 0.5rem;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.filtros-superiores label,
+.filtros-superiores select,
+.filtros-superiores input {
+  color: white;
+  font-size: 1rem;
+}
+
+.select-time,
+input[type="date"] {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: "IBM Plex Mono", monospace;
+  transition: border 0.2s ease;
+  outline: none;
+}
+
+input[type="date"] {
+  width: 100%;
+}
+
+.select-time:focus,
+input[type="date"]:focus {
+  border-color: #56b6c2;
+}
+
+/* Información y gráfica */
+.info-y-grafica {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* Ensure this doesn't grow to push footer out of view */
+  min-height: 0;
+}
+
+.info-cripto {
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.05);
   padding: 1.5rem;
   border-radius: 8px;
   color: white;
+}
+
+.grafica-cripto {
+  width: 100%;
+  height: 650px; /* Reduced height to ensure footer visibility */
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  position: relative; /* Ensure proper stacking context */
+  overflow: hidden; /* Prevent content from spilling outside */
+}
+
+/* Make sure the graph container doesn't overlay footer */
+.grafica-cripto svg,
+.grafica-cripto canvas,
+.grafica-cripto > div {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible;
+  margin-bottom: 2rem; /* Add space at the bottom inside the graph */
+}
+
+/* Ensure legend items stay within the graph container */
+.grafica-cripto .recharts-legend-wrapper {
+  bottom: 2rem !important;
+}
+
+/* Ensure axis labels don't overflow */
+.grafica-cripto .recharts-cartesian-axis-tick-value {
+  text-anchor: middle;
+}
+
+/* Información de la criptomoneda */
+.info {
+  width: 100%;
   font-family: "IBM Plex Mono", monospace;
   font-size: 1rem;
   display: flex;
@@ -46,79 +154,58 @@
   font-weight: bold;
 }
 
-/* Tabla histórica */
-.div-history {
-  flex-grow: 1;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: "IBM Plex Mono", monospace;
+.label-time {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
   color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
-.history-table th,
-.history-table td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.option-time {
+  background-color: rgb(8, 34, 63);
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
 }
 
-.history-table th {
-  color: #aaa;
-  font-weight: 700;
+.error-container {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: rgba(255, 99, 71, 0.2);
+  border-radius: 8px;
+  color: #ff6347;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
 }
 
-.history-table td {
-  color: #ccc;
+/* Clear fix to remove custom footer appearing in graph */
+/* This will ensure the credits don't show up in the graph */
+.grafica-cripto a,
+.grafica-cripto .social-network-icons,
+.grafica-cripto img[src*="github"],
+.grafica-cripto img[src*="linkedin"],
+.grafica-cripto img[src*="mail"] {
+  display: none !important;
 }
 
-.history-table-cuerpo-fila:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+/* Hide creator text inside the graph */
+.grafica-cripto text:has(tspan:contains("Creator:")),
+.grafica-cripto text:last-child {
+  display: none !important;
 }
 
+/* Media queries */
 @media (max-width: 768px) {
   .container-main {
-    flex-direction: column; /* de fila a columna */
-    align-items: stretch; /* que ocupen el ancho completo */
     padding: 1rem;
+    margin-bottom: 5rem; /* Adjusted margin for smaller screens */
   }
 
-  .info,
-  .div-history {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Para evitar desbordes horizontales del gráfico */
-  .div-history {
-    overflow-x: auto;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container-main {
+  .filtros-superiores {
     flex-direction: column;
-    align-items: center;
-    padding: 1.5rem;
   }
 
-  .info {
-    width: 100%;
-    max-width: 600px;
-  }
-
-  .div-history {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
   .name-info {
     font-size: 1.5rem;
   }
@@ -132,20 +219,38 @@
     font-size: 0.95rem;
   }
 
-  .history-table th,
-  .history-table td {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.95rem;
+  .fecha-input {
+    width: 100%;
+  }
+
+  .fechas-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fecha-separator {
+    align-self: center;
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+
+  .grafica-cripto {
+    height: 380px; /* Reduced height for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
-  .info {
+  .container-main {
+    margin-bottom: 4rem; /* Further reduced margin for smallest screens */
+  }
+
+  .info-cripto,
+  .grafica-cripto {
     padding: 1rem;
   }
 
-  .div-history {
-    padding: 1rem;
+  .grafica-cripto {
+    height: 320px; /* Further reduced height for smallest screens */
   }
 
   .name-info {
@@ -161,8 +266,8 @@
     font-size: 0.9rem;
   }
 
-  .history-table th,
-  .history-table td {
+  .select-time,
+  input[type="date"] {
     font-size: 0.85rem;
     padding: 0.4rem 0.6rem;
   }

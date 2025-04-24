@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import "../css/menu.css";
 
@@ -17,6 +17,11 @@ const Menu = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
+  
 
   return (
     <header className="main-menu">
@@ -66,5 +71,5 @@ const Menu = () => {
     </header>
   );
 };
-
+ 
 export default Menu;
