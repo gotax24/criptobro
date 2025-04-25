@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import useData from "../hooks/useData";
 import CriptoInfo from "./CriptoInfo";
 import Cargando from "./Cargando";
@@ -11,11 +11,58 @@ const CriptoPage = () => {
   const [time, setTime] = useState("");
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
+  const [errorDate, setErrorDate] = useState(null);
+
+  const limits = useMemo(
+    () => ({
+      m1: 1, // máximo 1 día
+      m5: 2,
+      m15: 3,
+      h1: 7,
+      h6: 30,
+      d1: 365,
+    }),
+    []
+  );
+
+  const label = useMemo(
+    () => [
+      { value: "", label: "Selecciona" },
+      { value: "m1", label: "1 Minuto" },
+      { value: "m5", label: "5 Minutos" },
+      { value: "m15", label: "15 Minutos" },
+      { value: "m30", label: "30 Minutos" },
+      { value: "h1", label: "1 Hora" },
+      { value: "h2", label: "2 Horas" },
+      { value: "h6", label: "6 Horas" },
+      { value: "h12", label: "12 Horas" },
+      { value: "d1", label: "1 Dia" },
+    ],
+    []
+  );
 
   const [criptos, cargandoCripto, errorCripto] = useData(
     `assets/${params.id}`,
     true
   );
+
+  useEffect(() => {
+    if (dateStart && dateEnd && time && limits[time]) {
+      const dateLimit =
+        (new Date(dateEnd) - new Date(dateStart)) / (1000 * 60 * 60 * 24);
+      if (dateLimit > limits[time]) {
+        setErrorDate(
+          `El rango de fechas no puede ser mayor a ${
+            limits[time]
+          } días si deseas ver el intervalo de ${
+            label.find((limit) => limit.value === time).label
+          }`
+        );
+      } else {
+        setErrorDate(null); // limpiar error si todo está bien
+      }
+    }
+  }, [dateStart, dateEnd, time, limits, label]);
 
   let url = `assets/${params.id}/history?interval=${time || "d1"}`;
 
@@ -90,8 +137,10 @@ const CriptoPage = () => {
                   type="date"
                   value={dateStart || ""}
                   onChange={handleDateStartChange}
+                  max={new Date().toISOString().split("T")[0]}
                 />
               </div>
+              
               <span className="fecha-separator">→</span>
               <div className="fecha-input">
                 <span>Hasta:</span>
@@ -99,6 +148,7 @@ const CriptoPage = () => {
                   type="date"
                   value={dateEnd || ""}
                   onChange={handleDateEndChange}
+                  max={new Date().toISOString().split("T")[0]}
                 />
               </div>
             </div>
@@ -116,13 +166,18 @@ const CriptoPage = () => {
         </div>
       </div>
 
-      {(errorCripto || errorHistory) && (
-        <div className="error-container">
-          {errorCripto?.message ||
-            errorHistory?.message ||
-            "Ocurrió un error al cargar los datos."}
-        </div>
-      )}
+      <div className="error-container-main">
+        {errorDate && <p className="error">{errorDate}</p>}
+        {(errorCripto || errorHistory) && (
+          <div className="error-container">
+            <p className="error">
+              {errorCripto?.message ||
+                errorHistory?.message ||
+                "Ocurrió un error al cargar los datos."}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
