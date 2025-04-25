@@ -5,16 +5,16 @@ const useData = (url, whatSign) => {
   const [data, setData] = useState();
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState(null);
-  
+
   const API_URL = import.meta.env.VITE_API_URL;
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     setCargando(true);
     setError(null);
-    
+
     const sign = whatSign ? "?" : "&";
-    
+
     axios
       .get(`${API_URL}${url}${sign}apiKey=${API_KEY}`)
       .then((response) => {
@@ -24,8 +24,14 @@ const useData = (url, whatSign) => {
       })
       .catch((error) => {
         setCargando(false);
-        console.error("Error al obtener datos del backend:", error);
-        setError(error);
+        if (error.response?.status === 403) {
+          setError(
+            "La API rechazó la solicitud. Intenta con un rango de fechas mayor."
+          );
+        } else {
+          setError("Error al obtener datos");
+          console.error("Error al obtener datos del backend:", error);
+        }
       });
   }, [url, whatSign, API_KEY, API_URL]);
 
