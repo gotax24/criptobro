@@ -71,4 +71,4 @@ Las contribuciones son bienvenidas. Por favor, abre un issue para discutir cambi
 
 Este proyecto está bajo la Licencia MIT.
 
-© 2024 **CriptoBro** - Desarrollado por Ernesto Bracho
+© 2026 **CriptoBro** - Desarrollado por Ernesto Bracho
