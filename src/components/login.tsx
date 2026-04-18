@@ -1,36 +1,49 @@
 import { useState } from "react";
-import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import "../css/login.css";
+
+interface UserCredentials {
+  email: string;
+  password: string;
+}
+
+interface LoginResponse {
+  token: string;
+}
+
+interface LoginError {
+  error: string;
+}
 
 const Login = () => {
   const navigation = useNavigate();
+  const [user, setUser] = useState<string | null>(null);
+  const [cargando, setCargando] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
-
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [cargando, setCargando] = useState(false);
-  const [error, setError] = useState(false);
-
-  const submit = (e) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCargando(true);
     setError(null);
+
     axios
-      .post(`https://reqres.in/api/login`, user)
+      .post<LoginResponse>(`https://reqres.in/api/login`, user)
       .then((data) => {
         setCargando(false);
         localStorage.setItem("tokenCriptoBro", data.data.token);
         navigation("/");
       })
-      .catch((e) => {
+      .catch((e: unknown) => {
         setCargando(false);
         console.error(e);
-        setError(e.response.data.error);
+
+        if (axios.isAxiosError<LoginError>(e)) {
+          setError(e.response?.data?.error || "Error de autenticacion");
+        } else {
+          setError("Ocurrio un error inesperado");
+        }
       });
   };
 
@@ -41,7 +54,7 @@ const Login = () => {
       <div className="Login-container">
         <div className="title-logo-container">
           <img className="logo-login" src="/logo.svg" alt="Logo" />
-          <h1 className="tittle-login">{VITE_NAME}</h1>
+          <h1 className="tittle-login">CriptoBro</h1>
         </div>
         <h2 className="sub-tittle-login">Iniciar Sesion</h2>
         <form className="form-login" onSubmit={submit}>
