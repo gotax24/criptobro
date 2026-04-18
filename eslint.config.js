@@ -31,7 +31,7 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
-      "react-compiler/react-compiler": "error", // 👈 5. Te pondrá la pantalla roja si haces algo que rompa la optimización
+      "react-compiler/react-compiler": "error",
     },
   },
 );

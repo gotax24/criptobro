@@ -22,7 +22,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler // Filler para el relleno bajo la línea
+  Filler
 );
 
 const CriptoChart = ({ history }) => {
