@@ -1,7 +1,6 @@
 import FormatNumber from "../helpers/FormatNumber";
 import CambioEmoji from "../helpers/CambioEmoji";
 import RedAndGreen from "../helpers/RedAndGreen";
-import PropTypes from "prop-types";
 
 const CriptoInfo = ({ criptos }) => {
   return (
@@ -50,8 +49,5 @@ const CriptoInfo = ({ criptos }) => {
   );
 };
 
-CriptoInfo.propTypes = {
-  criptos: PropTypes.object,
-};
 
 export default CriptoInfo;

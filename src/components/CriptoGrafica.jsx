@@ -11,7 +11,6 @@ import {
   Filler,
 } from "chart.js";
 import dayjs from "dayjs";
-import PropTypes from "prop-types";
 
 // Registra los elementos, escalas y plugins necesarios
 ChartJS.register(
@@ -58,15 +57,6 @@ const CriptoChart = ({ history }) => {
       <Line data={data} options={options} />
     </div>
   );
-};
-
-CriptoChart.propTypes = {
-  history: PropTypes.arrayOf(
-    PropTypes.shape({
-      time: PropTypes.number.isRequired,
-      priceUsd: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
 export default CriptoChart;

@@ -1,0 +1,5 @@
+# Delay new package versions by 48h to avoid malicious releases
+minimumReleaseAge: 2880
+
+packages:
+  - "."

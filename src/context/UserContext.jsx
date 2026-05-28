@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react"
-import PropTypes from "prop-types"
 import axios from "axios"
 
 const UserContext = createContext()
@@ -23,10 +22,6 @@ const UserContextProvider = ({children}) => {
             {children}
         </UserContext.Provider>
     )
-}
-
-UserContextProvider.propTypes = {
-    children: PropTypes.node
 }
 
 export {UserContext, UserContextProvider}

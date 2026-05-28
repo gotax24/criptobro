@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import RedAndGreen from "../helpers/RedAndGreen";
 import CambioEmoji from "../helpers/CambioEmoji";
@@ -18,15 +17,6 @@ const Elemento = ({ id, symbol, name, priceUsd, change, rank }) => {
       </div>
     </Link>
   );
-};
-
-Elemento.propTypes = {
-  id: PropTypes.string,
-  rank: PropTypes.string,
-  symbol: PropTypes.string,
-  name: PropTypes.string,
-  priceUsd: PropTypes.string,
-  change: PropTypes.string,
 };
 
 export default Elemento;
