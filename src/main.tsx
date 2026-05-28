@@ -1,13 +1,13 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Pagina404 from "./components/404.jsx";
-import Home from "./home.jsx";
-import App from "./components/App.jsx";
-import Cuadricula from "./components/Cuadricaula.jsx";
-import CriptoPage from "./components/CriptoPage.jsx";
-import { UserContextProvider } from "./context/UserContext.jsx";
-import Perfil from "./components/Perfil.jsx";
-import Login from "./components/login.jsx";
+import Pagina404 from "./components/404.tsx";
+import Home from "./home.tsx";
+import App from "./components/App.tsx";
+import Cuadricula from "./components/Cuadricaula.tsx";
+import CriptoPage from "./components/CriptoPage.tsx";
+import { UserContextProvider } from "./context/UserContext.tsx";
+import Perfil from "./components/Perfil.tsx";
+import Login from "./components/login.tsx";
 import "./main.css"
 
 createRoot(document.getElementById("root")).render(

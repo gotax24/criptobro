@@ -1,7 +1,7 @@
-import "../css/PieDePagina.css";
 import githubLogo from "../asset/github.svg";
 import emailLogo from "../asset/email.svg";
 import linkendlinLogo from "../asset/likendlin.svg";
+import "../css/PieDePagina.css";
 
 const PieDePagina = () => {
   return (
