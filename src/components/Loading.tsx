@@ -1,6 +1,6 @@
 import "../css/spinner.css";
 
-const Cargando = () => {
+const Loading = () => {
   return (
     <div className="spinner-container">
       <div className="loadingio-spinner-eclipse-2by998twmg8">
@@ -13,4 +13,4 @@ const Cargando = () => {
   );
 };
 
-export default Cargando
+export default Loading;

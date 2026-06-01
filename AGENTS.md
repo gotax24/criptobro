@@ -1,6 +1,6 @@
 # CriptoBro — AGENTS.md
 
-##Stack
+## Stack
 
 - React 19 + Vite 8 + TypeScript 5.9 (with `noEmit`, typecheck as pre-build step)
 - React Router 7, Axios, Chart.js (react-chartjs-2), react-hook-form 7
@@ -9,7 +9,7 @@
 - React Compiler enabled via `babel-plugin-react-compiler` in `vite.config.js`
 - ESLint 9 flat config with `tseslint`, `react-compiler/react-compiler: error`, and `react-hooks/set-state-in-effect` rules
 
-##Commands
+## Commands
 
 | Command        | Notes                                               |
 | -------------- | --------------------------------------------------- |
@@ -20,7 +20,7 @@
 
 There are **no tests**. No test framework is installed.
 
-##Environment
+## Environment
 
 ```bash
 VITE_API_URL=https://rest.coincap.io/v3/

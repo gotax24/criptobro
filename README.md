@@ -30,23 +30,27 @@
 ## Instalación y Configuración
 
 1. **Clona el repositorio**:
+
    ```bash
    git clone https://github.com/tu_usuario/criptoBro.git
    cd criptoBro
    ```
 
 2. **Instala las dependencias**:
+
    ```bash
    yarn install
    ```
 
 3. **Configura las variables de entorno**:
    Crea un archivo `.env` en la raíz del proyecto y define el nombre de la página:
+
    ```env
    VITE_NAME_PAGE="CriptoBro"
    ```
 
 4. **Inicia el servidor de desarrollo**:
+
    ```bash
    yarn dev
    ```
@@ -62,7 +66,7 @@
 - **Explora Criptomonedas**: Navega a la lista de criptomonedas para ver las 100 principales.
 - **Detalles**: Haz clic en cualquier criptomoneda para ver información detallada y su historial de precios.
 - **Navegación**: Usa el menú superior para moverte entre las diferentes secciones de la aplicación.
-  
+
 ## Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue para discutir cambios importantes o propuestas antes de hacer un pull request.

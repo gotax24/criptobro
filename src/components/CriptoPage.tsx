@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import useData from "../hooks/useData";
 import CriptoInfo from "./CriptoInfo";
-import Cargando from "./Cargando";
+import Cargando from "./Loading";
 import "../css/CriptoPage.css";
-import CriptoGrafica from "./CriptoGrafica";
+import CriptoGrafica from "./CriptoGraph";
 
 const CriptoPage = () => {
   const params = useParams();

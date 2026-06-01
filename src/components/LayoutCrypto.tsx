@@ -1,9 +1,9 @@
-import Elemento from "./Elemento";
+import Elemento from "./Element";
 import useData from "../hooks/useData";
-import Cargando from "./Cargando";
+import Cargando from "./Loading";
 import "../css/Cuadricula.css";
 
-function Cuadricula() {
+function LayoutCrypto() {
   const [criptos, cargandoCriptos, errorCripto] = useData("assets", true);
 
   if (cargandoCriptos) return <Cargando />;

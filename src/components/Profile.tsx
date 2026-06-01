@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import "../css/perfil.css";
 
-const Perfil = () => {
+const Profile = () => {
   const usuario = useContext(UserContext);
 
   return (
@@ -26,4 +26,4 @@ const Perfil = () => {
   );
 };
 
-export default Perfil;
+export default Profile;

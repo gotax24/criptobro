@@ -1,5 +1,5 @@
 import FormatNumber from "../helpers/FormatNumber";
-import CambioEmoji from "../helpers/CambioEmoji";
+import CambioEmoji from "../helpers/ChangeEmoji";
 import RedAndGreen from "../helpers/RedAndGreen";
 
 const CriptoInfo = ({ criptos }) => {

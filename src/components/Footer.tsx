@@ -3,7 +3,7 @@ import emailLogo from "../asset/email.svg";
 import linkendlinLogo from "../asset/likendlin.svg";
 import "../css/PieDePagina.css";
 
-const PieDePagina = () => {
+const Footer = () => {
   return (
     <footer className="credits">
       <address className="social-network-icons">
@@ -41,4 +41,4 @@ const PieDePagina = () => {
   );
 };
 
-export default PieDePagina;
+export default Footer;

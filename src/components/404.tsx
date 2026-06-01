@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import personaPerdida from "../asset/404.svg";
 import "../css/404.css";
 
-const Pagina404 = () => {
+const Page404 = () => {
   return (
     <>
       <div className="pagina-404-container">
@@ -22,4 +22,4 @@ const Pagina404 = () => {
   );
 };
 
-export default Pagina404;
+export default Page404;
