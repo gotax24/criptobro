@@ -538,6 +538,54 @@
         font-size: 1.1rem;
         margin-right: 0.4rem;
       }
+
+      /* Checkboxes interactivos */
+      .task-checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #3b4a6b;
+        border-radius: 5px;
+        background: #0a0e1a;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: all 0.2s;
+        position: relative;
+      }
+      .task-checkbox:hover {
+        border-color: #60a5fa;
+        box-shadow: 0 0 8px rgba(96, 165, 250, 0.3);
+      }
+      .task-checkbox:checked {
+        background: #059669;
+        border-color: #059669;
+      }
+      .task-checkbox:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .card.completed-task {
+        border-color: #1e5f3a !important;
+        opacity: 0.7;
+      }
+      .card.completed-task .code-block {
+        opacity: 0.4;
+      }
+      .card.completed-task .alert {
+        opacity: 0.4;
+      }
+      .sidebar-check {
+        color: #6ee7b7;
+        margin-right: 0.3rem;
+        font-size: 0.8rem;
+      }
     </style>
   </head>
   <body>
@@ -560,35 +608,35 @@
 
       <h2>🚀 Fase 0</h2>
       <a href="#fase0">Setup inicial</a>
-      <a href="#fase0-1">0.1 — Instalar deps</a>
-      <a href="#fase0-2">0.2 — Variables de entorno</a>
-      <a href="#fase0-3">0.3 — Cliente Axios</a>
+      <a href="#fase0-1" data-sidebar-task="0.1"><span class="sidebar-check" style="display:none">✓</span>0.1 — Instalar deps</a>
+      <a href="#fase0-2" data-sidebar-task="0.2"><span class="sidebar-check" style="display:none">✓</span>0.2 — Variables de entorno</a>
+      <a href="#fase0-3" data-sidebar-task="0.3"><span class="sidebar-check" style="display:none">✓</span>0.3 — Cliente Axios</a>
 
       <h2>📦 Fase 1</h2>
       <a href="#fase1">Tipos + Estado global</a>
-      <a href="#fase1-1">1.1 — src/types/</a>
-      <a href="#fase1-2">1.2 — authStore (Zustand)</a>
-      <a href="#fase1-3">1.3 — main.tsx</a>
+      <a href="#fase1-1" data-sidebar-task="1.1"><span class="sidebar-check" style="display:none">✓</span>1.1 — src/types/</a>
+      <a href="#fase1-2" data-sidebar-task="1.2"><span class="sidebar-check" style="display:none">✓</span>1.2 — authStore (Zustand)</a>
+      <a href="#fase1-3" data-sidebar-task="1.3"><span class="sidebar-check" style="display:none">✓</span>1.3 — main.tsx</a>
 
       <h2>⚡ Fase 2</h2>
       <a href="#fase2">TanStack Query</a>
-      <a href="#fase2-1">2.1 — useCoins</a>
-      <a href="#fase2-2">2.2 — useCoinDetail</a>
-      <a href="#fase2-3">2.3 — useCoinHistory</a>
-      <a href="#fase2-4">2.4 — useLogin</a>
+      <a href="#fase2-1" data-sidebar-task="2.1"><span class="sidebar-check" style="display:none">✓</span>2.1 — useCoins</a>
+      <a href="#fase2-2" data-sidebar-task="2.2"><span class="sidebar-check" style="display:none">✓</span>2.2 — useCoinDetail</a>
+      <a href="#fase2-3" data-sidebar-task="2.3"><span class="sidebar-check" style="display:none">✓</span>2.3 — useCoinHistory</a>
+      <a href="#fase2-4" data-sidebar-task="2.4"><span class="sidebar-check" style="display:none">✓</span>2.4 — useLogin</a>
 
       <h2>🔁 Fase 3</h2>
-      <a href="#fase3">Rutas + App.tsx</a>
+      <a href="#fase3" data-sidebar-task="3"><span class="sidebar-check" style="display:none">✓</span>Rutas + App.tsx</a>
 
       <h2>🎨 Fase 4</h2>
       <a href="#fase4">Componentes → TSX</a>
-      <a href="#fase4-1">4.1 — LayoutCrypto</a>
-      <a href="#fase4-2">4.2 — Element</a>
-      <a href="#fase4-3">4.3 — CriptoPage</a>
-      <a href="#fase4-4">4.4 — CriptoInfo</a>
-      <a href="#fase4-5">4.5 — CriptoGraph</a>
-      <a href="#fase4-6">4.6 — Menu + Profile</a>
-      <a href="#fase4-7">4.7 — Login</a>
+      <a href="#fase4-1" data-sidebar-task="4.1"><span class="sidebar-check" style="display:none">✓</span>4.1 — LayoutCrypto</a>
+      <a href="#fase4-2" data-sidebar-task="4.2"><span class="sidebar-check" style="display:none">✓</span>4.2 — Element</a>
+      <a href="#fase4-3" data-sidebar-task="4.3"><span class="sidebar-check" style="display:none">✓</span>4.3 — CriptoPage</a>
+      <a href="#fase4-4" data-sidebar-task="4.4"><span class="sidebar-check" style="display:none">✓</span>4.4 — CriptoInfo</a>
+      <a href="#fase4-5" data-sidebar-task="4.5"><span class="sidebar-check" style="display:none">✓</span>4.5 — CriptoGraph</a>
+      <a href="#fase4-6" data-sidebar-task="4.6"><span class="sidebar-check" style="display:none">✓</span>4.6 — Menu + Profile</a>
+      <a href="#fase4-7" data-sidebar-task="4.7"><span class="sidebar-check" style="display:none">✓</span>4.7 — Login</a>
 
       <h2>🧹 Fase 5</h2>
       <a href="#fase5">Limpieza y verificación</a>
@@ -606,10 +654,10 @@
           Explicación línea por línea de cada paso.
         </p>
         <div class="progress-bar" style="margin-top: 1.5rem; max-width: 400px">
-          <div class="progress-fill" style="width: 0%"></div>
+          <div class="progress-fill" style="width: 12%"></div>
         </div>
-        <p style="font-size: 0.8rem; color: #5b6b9a; margin-top: 0.5rem">
-          Progreso: <strong style="color: #e2e8f0">0%</strong>
+        <p class="progress-text" style="font-size: 0.8rem; color: #5b6b9a; margin-top: 0.5rem">
+          Progreso: <strong style="color: #e2e8f0">12%</strong> — Deps instaladas + archivos renombrados (.jsx → .tsx)
         </p>
       </header>
 
@@ -718,6 +766,16 @@
             </table>
           </div>
         </div>
+
+        <div class="card" style="border-color: #1e5f3a;">
+          <h3>✅ Avance actual (12%)</h3>
+          <ul>
+            <li><code>@tanstack/react-query</code> y <code>zustand</code> instalados en <code>package.json</code></li>
+            <li>Todos los archivos <code>.jsx</code> / <code>.js</code> renombrados a <code>.tsx</code> / <code>.ts</code></li>
+            <li><code>src/helpers/</code> (FormatNumber, ChangeEmoji, RedAndGreen) ya existen como <code>.ts</code></li>
+          </ul>
+          <p style="margin-top: 0.75rem;"><strong>Siguiente paso:</strong> Crear <code>.env</code> con variables de CoinGecko + crear <code>src/lib/axios.ts</code> (Fase 0.2 y 0.3).</p>
+        </div>
       </div>
 
       <!-- ====== FASE 0 ====== -->
@@ -734,9 +792,10 @@
         </p>
 
         <!-- 0.1 -->
-        <div class="card" id="fase0-1">
+        <div class="card" id="fase0-1" data-weight="5">
           <h3>
-            <span class="status-dot status-pending"></span> 0.1 — Instalar
+            <input type="checkbox" class="task-checkbox" data-task="0.1" checked>
+            <span class="status-dot status-done"></span> 0.1 — Instalar
             dependencias
           </h3>
           <p>Vamos a instalar los 3 pilares del nuevo stack:</p>
@@ -764,8 +823,9 @@
         </div>
 
         <!-- 0.2 -->
-        <div class="card" id="fase0-2">
+        <div class="card" id="fase0-2" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.2">
             <span class="status-dot status-pending"></span> 0.2 — Variables de
             entorno (.env)
           </h3>
@@ -804,8 +864,9 @@
         </div>
 
         <!-- 0.3 -->
-        <div class="card" id="fase0-3">
+        <div class="card" id="fase0-3" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.3">
             <span class="status-dot status-pending"></span> 0.3 — Cliente Axios
             (<code>src/lib/axios.ts</code>)
           </h3>
@@ -868,8 +929,9 @@
         </p>
 
         <!-- 1.1 -->
-        <div class="card" id="fase1-1">
+        <div class="card" id="fase1-1" data-weight="4">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="1.1">
             <span class="status-dot status-pending"></span> 1.1 — Tipos
             (<code>src/types/index.ts</code>)
           </h3>
@@ -951,8 +1013,9 @@
         </div>
 
         <!-- 1.2 -->
-        <div class="card" id="fase1-2">
+        <div class="card" id="fase1-2" data-weight="4">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="1.2">
             <span class="status-dot status-pending"></span> 1.2 — authStore
             (<code>src/stores/authStore.ts</code>)
           </h3>
@@ -1026,8 +1089,9 @@
         </div>
 
         <!-- 1.3 -->
-        <div class="card" id="fase1-3">
+        <div class="card" id="fase1-3" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="1.3">
             <span class="status-dot status-pending"></span> 1.3 — main.tsx
             (reescribir)
           </h3>
@@ -1127,8 +1191,9 @@
         </p>
 
         <!-- 2.1 -->
-        <div class="card" id="fase2-1">
+        <div class="card" id="fase2-1" data-weight="4">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="2.1">
             <span class="status-dot status-pending"></span> 2.1 —
             <code>src/api/coins.ts</code> (lista)
           </h3>
@@ -1193,8 +1258,9 @@
         </div>
 
         <!-- 2.2 -->
-        <div class="card" id="fase2-2">
+        <div class="card" id="fase2-2" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="2.2">
             <span class="status-dot status-pending"></span> 2.2 —
             <code>src/api/coinDetail.ts</code> (detalle individual)
           </h3>
@@ -1274,8 +1340,9 @@
         </div>
 
         <!-- 2.3 -->
-        <div class="card" id="fase2-3">
+        <div class="card" id="fase2-3" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="2.3">
             <span class="status-dot status-pending"></span> 2.3 —
             <code>src/api/coinHistory.ts</code> (histórico de precios)
           </h3>
@@ -1367,8 +1434,9 @@
         </div>
 
         <!-- 2.4 -->
-        <div class="card" id="fase2-4">
+        <div class="card" id="fase2-4" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="2.4">
             <span class="status-dot status-pending"></span> 2.4 —
             <code>src/api/auth.ts</code> (login mutation)
           </h3>
@@ -1467,8 +1535,9 @@
           protegido.
         </p>
 
-        <div class="card">
+        <div class="card" data-weight="4">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="3">
             <span class="status-dot status-pending"></span> App.tsx —
             reescritura completa
           </h3>
@@ -1574,8 +1643,9 @@
         </p>
 
         <!-- 4.1 -->
-        <div class="card" id="fase4-1">
+        <div class="card" id="fase4-1" data-weight="4">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.1">
             <span class="status-dot status-pending"></span> 4.1 —
             LayoutCrypto.tsx (antes Cuadricula)
           </h3>
@@ -1654,8 +1724,9 @@
         </div>
 
         <!-- 4.2 -->
-        <div class="card" id="fase4-2">
+        <div class="card" id="fase4-2" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.2">
             <span class="status-dot status-pending"></span> 4.2 — Element.tsx
             (props tipadas)
           </h3>
@@ -1736,8 +1807,9 @@
         </div>
 
         <!-- 4.3 -->
-        <div class="card" id="fase4-3">
+        <div class="card" id="fase4-3" data-weight="5">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.3">
             <span class="status-dot status-pending"></span> 4.3 — CriptoPage.tsx
             (reemplazar useData)
           </h3>
@@ -1837,8 +1909,9 @@
         </div>
 
         <!-- 4.4 -->
-        <div class="card" id="fase4-4">
+        <div class="card" id="fase4-4" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.4">
             <span class="status-dot status-pending"></span> 4.4 — CriptoInfo.tsx
             (props tipadas)
           </h3>
@@ -1876,8 +1949,9 @@
         </div>
 
         <!-- 4.5 -->
-        <div class="card" id="fase4-5">
+        <div class="card" id="fase4-5" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.5">
             <span class="status-dot status-pending"></span> 4.5 —
             CriptoGraph.tsx
           </h3>
@@ -1914,8 +1988,9 @@
         </div>
 
         <!-- 4.6 -->
-        <div class="card" id="fase4-6">
+        <div class="card" id="fase4-6" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.6">
             <span class="status-dot status-pending"></span> 4.6 — Menu.tsx +
             Profile.tsx (conectar authStore)
           </h3>
@@ -1959,8 +2034,9 @@
         </div>
 
         <!-- 4.7 -->
-        <div class="card" id="fase4-7">
+        <div class="card" id="fase4-7" data-weight="3">
           <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.7">
             <span class="status-dot status-pending"></span> 4.7 — Login.tsx
             (corregir errores TS + usar mutation)
           </h3>
@@ -2255,5 +2331,103 @@
         </p>
       </footer>
     </main>
+
+    <script>
+      (function () {
+        const STORAGE_KEY = "criptobro-plan-progress";
+        const progressFill = document.querySelector(".progress-fill");
+        const progressText = document.querySelector(".progress-text");
+        const checkboxes = document.querySelectorAll(".task-checkbox");
+
+        function loadState() {
+          try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+          } catch {
+            return {};
+          }
+        }
+
+        function saveState(state) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function updateProgress() {
+          let total = 0;
+          let done = 0;
+
+          checkboxes.forEach(function (cb) {
+            const card = cb.closest(".card");
+            const weight = parseInt(card.getAttribute("data-weight")) || 1;
+            total += weight;
+            if (cb.checked) done += weight;
+          });
+
+          const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+          progressFill.style.width = pct + "%";
+
+          const descriptions = [];
+          if (pct === 0) descriptions.push("Sin comenzar");
+          else if (pct < 25) descriptions.push("Deps instaladas + archivos renombrados");
+          else if (pct < 50) descriptions.push("Capa de datos construida");
+          else if (pct < 75) descriptions.push("Componentes convirtiendo a TSX");
+          else if (pct < 100) descriptions.push("Casi listo — limpieza final");
+          else descriptions.push("Refactor completo");
+
+          progressText.innerHTML =
+            'Progreso: <strong style="color: #e2e8f0">' + pct + "%</strong> — " + descriptions[0];
+
+          document.querySelectorAll("[data-sidebar-task]").forEach(function (link) {
+            const task = link.getAttribute("data-sidebar-task");
+            const cb = document.querySelector('.task-checkbox[data-task="' + task + '"]');
+            const check = link.querySelector(".sidebar-check");
+            if (cb && check) {
+              check.style.display = cb.checked ? "inline" : "none";
+            }
+          });
+        }
+
+        function updateCardAppearance(card, checked) {
+          if (checked) {
+            card.classList.add("completed-task");
+            const dot = card.querySelector(".status-dot");
+            if (dot) {
+              dot.classList.remove("status-pending", "status-progress");
+              dot.classList.add("status-done");
+            }
+          } else {
+            card.classList.remove("completed-task");
+            const dot = card.querySelector(".status-dot");
+            if (dot) {
+              dot.classList.remove("status-done");
+              dot.classList.add("status-pending");
+            }
+          }
+        }
+
+        const state = loadState();
+        checkboxes.forEach(function (cb) {
+          const task = cb.getAttribute("data-task");
+          if (state[task]) {
+            cb.checked = true;
+          }
+          const card = cb.closest(".card");
+          updateCardAppearance(card, cb.checked);
+
+          cb.addEventListener("change", function () {
+            const s = loadState();
+            if (cb.checked) {
+              s[task] = true;
+            } else {
+              delete s[task];
+            }
+            saveState(s);
+            updateCardAppearance(card, cb.checked);
+            updateProgress();
+          });
+        });
+
+        updateProgress();
+      })();
+    </script>
   </body>
 </html>
