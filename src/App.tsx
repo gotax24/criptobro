@@ -1,33 +1,35 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Pagina404 from "./components/404.tsx";
-import Home from "./Home.tsx";
-import AppLayout from "./components/AppLayout.tsx";
-import Cuadricula from "./components/LayoutCrypto.tsx";
-import CriptoPage from "./components/CriptoPage.tsx";
-import { UserContextProvider } from "./context/UserContext.tsx";
-import Perfil from "./components/Profile.tsx";
-import Login from "./components/Login.tsx";
-import "./App.css";
+import { Navigate, Route, Routes } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
+import Home from "./Home";
+import Profile from "./components/Profile";
+import LayoutCrypto from "./components/LayoutCrypto";
+import CriptoPage from "./components/CriptoPage";
+import Login from "./components/Login";
+import Page404 from "./components/404";
+import { useAuthStore } from "./stores/authStore";
 
-const App = () => {
-  return (
-    <UserContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route index element={<Home />} />
-            <Route path="perfil" element={<Perfil />} />
-          </Route>
-          <Route path="/criptomonedas" element={<App />}>
-            <Route index element={<Cuadricula />} />
-            <Route path=":id" element={<CriptoPage />}></Route>
-          </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<Pagina404 />} />
-        </Routes>
-      </BrowserRouter>
-    </UserContextProvider>
-  );
+const Protected = ({ children }: { children: React.ReactNode }) => {
+  const token = useAuthStore((s) => s.token);
+  return token ? <>{children}</> : <Navigate to="/login" />;
 };
+
+const App = () => (
+  <Routes>
+    <Route path="/login" element={<Login />} />
+    <Route
+      element={
+        <Protected>
+          <AppLayout />
+        </Protected>
+      }
+    >
+      <Route path="/" element={<Home />} />
+      <Route path="/perfil" element={<Profile />} />
+      <Route path="/criptomonedas" element={<LayoutCrypto />} />
+      <Route path="/criptomonedas/:id" element={<CriptoPage />} />
+    </Route>
+    <Route path="*" element={<Page404 />} />
+  </Routes>
+);
 
 export default App;

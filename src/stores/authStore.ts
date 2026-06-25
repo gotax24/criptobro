@@ -10,7 +10,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  token: localStorage.getItem("tokenCriptroBro"),
+  token: localStorage.getItem("tokenCriptoBro"),
   setSession: (user, token) => {
     localStorage.setItem("tokenCriptoBro", token);
     set({ user, token });
