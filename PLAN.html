@@ -192,6 +192,22 @@
         background: #5f4a1e;
         color: #fcd34d;
       }
+      .tag-security {
+        background: #5f1e1e;
+        color: #fca5a5;
+      }
+      .tag-perf {
+        background: #5f3a1e;
+        color: #fcd34d;
+      }
+      .tag-a11y {
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+      .tag-silent {
+        background: #3a1e5f;
+        color: #d8b4fe;
+      }
 
       /* Phase header */
       .phase {
@@ -337,7 +353,6 @@
         background: #0f1525;
       }
 
-      /* Conversion table */
       .conv-table td:first-child {
         font-family: "JetBrains Mono", monospace;
       }
@@ -345,7 +360,6 @@
         font-family: "JetBrains Mono", monospace;
       }
 
-      /* Comparison */
       .comparison {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -372,7 +386,6 @@
         color: #6ee7b7;
       }
 
-      /* Progress */
       .progress-bar {
         width: 100%;
         height: 8px;
@@ -387,7 +400,6 @@
         background: linear-gradient(90deg, #3b82f6, #8b5cf6);
       }
 
-      /* Footer */
       .footer {
         margin-top: 4rem;
         padding-top: 2rem;
@@ -397,7 +409,6 @@
         font-size: 0.85rem;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
         .sidebar {
           display: none;
@@ -414,7 +425,6 @@
         }
       }
 
-      /* Section numbers */
       .section-num {
         display: inline-flex;
         align-items: center;
@@ -477,7 +487,6 @@
         color: #e2e8f0;
       }
 
-      /* Map table */
       .map-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -539,7 +548,6 @@
         margin-right: 0.4rem;
       }
 
-      /* Checkboxes interactivos */
       .task-checkbox {
         appearance: none;
         -webkit-appearance: none;
@@ -586,6 +594,33 @@
         margin-right: 0.3rem;
         font-size: 0.8rem;
       }
+
+      .findings-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+      .finding-card {
+        background: #0a0e1a;
+        border: 1px solid #1e2a45;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .finding-card h4 {
+        font-size: 0.9rem;
+        margin: 0 0 0.75rem 0;
+        color: #f1f5f9;
+      }
+      .finding-card ul {
+        padding-left: 1.2rem;
+        margin: 0;
+      }
+      .finding-card li {
+        font-size: 0.82rem;
+        margin-bottom: 0.4rem;
+        color: #94a3b8;
+      }
     </style>
   </head>
   <body>
@@ -603,178 +638,360 @@
         📋 CriptoBro
       </h2>
       <p style="font-size: 0.75rem; color: #5b6b9a; margin-bottom: 1.5rem">
-        Plan de Refactor
+        Plan de Refactor v2
       </p>
 
-      <h2>🚀 Fase 0</h2>
-      <a href="#fase0">Setup inicial</a>
-      <a href="#fase0-1" data-sidebar-task="0.1"><span class="sidebar-check" style="display:none">✓</span>0.1 — Instalar deps</a>
-      <a href="#fase0-2" data-sidebar-task="0.2"><span class="sidebar-check" style="display:none">✓</span>0.2 — Variables de entorno</a>
-      <a href="#fase0-3" data-sidebar-task="0.3"><span class="sidebar-check" style="display:none">✓</span>0.3 — Cliente Axios</a>
+      <h2>🔍 Hallazgos</h2>
+      <a href="#hallazgos">Problemas detectados</a>
 
-      <h2>📦 Fase 1</h2>
-      <a href="#fase1">Tipos + Estado global</a>
-      <a href="#fase1-1" data-sidebar-task="1.1"><span class="sidebar-check" style="display:none">✓</span>1.1 — src/types/</a>
-      <a href="#fase1-2" data-sidebar-task="1.2"><span class="sidebar-check" style="display:none">✓</span>1.2 — authStore (Zustand)</a>
-      <a href="#fase1-3" data-sidebar-task="1.3"><span class="sidebar-check" style="display:none">✓</span>1.3 — main.tsx</a>
+      <h2>🔧 Fase 0</h2>
+      <a href="#fase0">Fixes urgentes</a>
+      <a href="#fase0-1" data-sidebar-task="0.1"
+        ><span class="sidebar-check" style="display: none">✓</span>0.1
+        index.html</a
+      >
+      <a href="#fase0-2" data-sidebar-task="0.2"
+        ><span class="sidebar-check" style="display: none">✓</span>0.2 Footer
+        imports</a
+      >
+      <a href="#fase0-3" data-sidebar-task="0.3"
+        ><span class="sidebar-check" style="display: none">✓</span>0.3 404
+        imports</a
+      >
+      <a href="#fase0-4" data-sidebar-task="0.4"
+        ><span class="sidebar-check" style="display: none">✓</span>0.4 Home
+        casing</a
+      >
+      <a href="#fase0-5" data-sidebar-task="0.5"
+        ><span class="sidebar-check" style="display: none">✓</span>0.5
+        LayoutCrypto export</a
+      >
+      <a href="#fase0-6" data-sidebar-task="0.6"
+        ><span class="sidebar-check" style="display: none">✓</span>0.6
+        coinDetail typo</a
+      >
+      <a href="#fase0-7" data-sidebar-task="0.7"
+        ><span class="sidebar-check" style="display: none">✓</span>0.7 .env
+        vars</a
+      >
+      <a href="#fase0-8" data-sidebar-task="0.8"
+        ><span class="sidebar-check" style="display: none">✓</span>0.8
+        ImportMetaEnv</a
+      >
 
-      <h2>⚡ Fase 2</h2>
-      <a href="#fase2">TanStack Query</a>
-      <a href="#fase2-1" data-sidebar-task="2.1"><span class="sidebar-check" style="display:none">✓</span>2.1 — useCoins</a>
-      <a href="#fase2-2" data-sidebar-task="2.2"><span class="sidebar-check" style="display:none">✓</span>2.2 — useCoinDetail</a>
-      <a href="#fase2-3" data-sidebar-task="2.3"><span class="sidebar-check" style="display:none">✓</span>2.3 — useCoinHistory</a>
-      <a href="#fase2-4" data-sidebar-task="2.4"><span class="sidebar-check" style="display:none">✓</span>2.4 — useLogin</a>
+      <h2>📡 Fase 1</h2>
+      <a href="#fase1">Infra Supabase + CoinGecko</a>
+      <a href="#fase1-1" data-sidebar-task="1.1"
+        ><span class="sidebar-check" style="display: none">✓</span>1.1 Instalar
+        Supabase</a
+      >
+      <a href="#fase1-2" data-sidebar-task="1.2"
+        ><span class="sidebar-check" style="display: none">✓</span>1.2
+        Configurar Supabase</a
+      >
+      <a href="#fase1-3" data-sidebar-task="1.3"
+        ><span class="sidebar-check" style="display: none">✓</span>1.3 SQL
+        tablas</a
+      >
+      <a href="#fase1-4" data-sidebar-task="1.4"
+        ><span class="sidebar-check" style="display: none">✓</span>1.4
+        supabaseClient + types</a
+      >
 
-      <h2>🔁 Fase 3</h2>
-      <a href="#fase3" data-sidebar-task="3"><span class="sidebar-check" style="display:none">✓</span>Rutas + App.tsx</a>
+      <h2>🔐 Fase 2</h2>
+      <a href="#fase2">Auth con Supabase + Zustand</a>
+      <a href="#fase2-1" data-sidebar-task="2.1"
+        ><span class="sidebar-check" style="display: none">✓</span>2.1 authStore
+        Supabase</a
+      >
+      <a href="#fase2-2" data-sidebar-task="2.2"
+        ><span class="sidebar-check" style="display: none">✓</span>2.2
+        api/auth</a
+      >
+      <a href="#fase2-3" data-sidebar-task="2.3"
+        ><span class="sidebar-check" style="display: none">✓</span>2.3
+        Login.tsx</a
+      >
+      <a href="#fase2-4" data-sidebar-task="2.4"
+        ><span class="sidebar-check" style="display: none">✓</span>2.4 Eliminar
+        reqres</a
+      >
+
+      <h2>📊 Fase 3</h2>
+      <a href="#fase3">CoinGecko + Favoritos API</a>
+      <a href="#fase3-1" data-sidebar-task="3.1"
+        ><span class="sidebar-check" style="display: none">✓</span>3.1
+        useCoins</a
+      >
+      <a href="#fase3-2" data-sidebar-task="3.2"
+        ><span class="sidebar-check" style="display: none">✓</span>3.2
+        useCoinDetail</a
+      >
+      <a href="#fase3-3" data-sidebar-task="3.3"
+        ><span class="sidebar-check" style="display: none">✓</span>3.3
+        useCoinHistory</a
+      >
+      <a href="#fase3-4" data-sidebar-task="3.4"
+        ><span class="sidebar-check" style="display: none">✓</span>3.4
+        useFavorites</a
+      >
+      <a href="#fase3-5" data-sidebar-task="3.5"
+        ><span class="sidebar-check" style="display: none">✓</span>3.5 Conectar
+        componentes</a
+      >
 
       <h2>🎨 Fase 4</h2>
-      <a href="#fase4">Componentes → TSX</a>
-      <a href="#fase4-1" data-sidebar-task="4.1"><span class="sidebar-check" style="display:none">✓</span>4.1 — LayoutCrypto</a>
-      <a href="#fase4-2" data-sidebar-task="4.2"><span class="sidebar-check" style="display:none">✓</span>4.2 — Element</a>
-      <a href="#fase4-3" data-sidebar-task="4.3"><span class="sidebar-check" style="display:none">✓</span>4.3 — CriptoPage</a>
-      <a href="#fase4-4" data-sidebar-task="4.4"><span class="sidebar-check" style="display:none">✓</span>4.4 — CriptoInfo</a>
-      <a href="#fase4-5" data-sidebar-task="4.5"><span class="sidebar-check" style="display:none">✓</span>4.5 — CriptoGraph</a>
-      <a href="#fase4-6" data-sidebar-task="4.6"><span class="sidebar-check" style="display:none">✓</span>4.6 — Menu + Profile</a>
-      <a href="#fase4-7" data-sidebar-task="4.7"><span class="sidebar-check" style="display:none">✓</span>4.7 — Login</a>
+      <a href="#fase4">Componentes TSX + fixes</a>
+      <a href="#fase4-1" data-sidebar-task="4.1"
+        ><span class="sidebar-check" style="display: none">✓</span>4.1
+        Loading</a
+      >
+      <a href="#fase4-2" data-sidebar-task="4.2"
+        ><span class="sidebar-check" style="display: none">✓</span>4.2
+        Element</a
+      >
+      <a href="#fase4-3" data-sidebar-task="4.3"
+        ><span class="sidebar-check" style="display: none">✓</span>4.3 404</a
+      >
+      <a href="#fase4-4" data-sidebar-task="4.4"
+        ><span class="sidebar-check" style="display: none">✓</span>4.4
+        LayoutCrypto</a
+      >
+      <a href="#fase4-5" data-sidebar-task="4.5"
+        ><span class="sidebar-check" style="display: none">✓</span>4.5
+        CriptoInfo</a
+      >
+      <a href="#fase4-6" data-sidebar-task="4.6"
+        ><span class="sidebar-check" style="display: none">✓</span>4.6
+        CriptoGraph</a
+      >
+      <a href="#fase4-7" data-sidebar-task="4.7"
+        ><span class="sidebar-check" style="display: none">✓</span>4.7
+        CriptoPage</a
+      >
+      <a href="#fase4-8" data-sidebar-task="4.8"
+        ><span class="sidebar-check" style="display: none">✓</span>4.8 Menu</a
+      >
+      <a href="#fase4-9" data-sidebar-task="4.9"
+        ><span class="sidebar-check" style="display: none">✓</span>4.9
+        Profile</a
+      >
+      <a href="#fase4-10" data-sidebar-task="4.10"
+        ><span class="sidebar-check" style="display: none">✓</span>4.10
+        Footer</a
+      >
+      <a href="#fase4-11" data-sidebar-task="4.11"
+        ><span class="sidebar-check" style="display: none">✓</span>4.11 App</a
+      >
+      <a href="#fase4-12" data-sidebar-task="4.12"
+        ><span class="sidebar-check" style="display: none">✓</span>4.12 Home</a
+      >
 
-      <h2>🧹 Fase 5</h2>
-      <a href="#fase5">Limpieza y verificación</a>
+      <h2>⭐ Fase 5</h2>
+      <a href="#fase5">Favoritos + ruta</a>
+      <a href="#fase5-1" data-sidebar-task="5.1"
+        ><span class="sidebar-check" style="display: none">✓</span>5.1
+        Favorites.tsx</a
+      >
+      <a href="#fase5-2" data-sidebar-task="5.2"
+        ><span class="sidebar-check" style="display: none">✓</span>5.2 Ruta
+        /favoritos</a
+      >
+      <a href="#fase5-3" data-sidebar-task="5.3"
+        ><span class="sidebar-check" style="display: none">✓</span>5.3 Link en
+        Menu</a
+      >
+      <a href="#fase5-4" data-sidebar-task="5.4"
+        ><span class="sidebar-check" style="display: none">✓</span>5.4 Botón
+        favorito</a
+      >
+
+      <h2>🌗 Fase 6</h2>
+      <a href="#fase6">Dark/Light con Context</a>
+      <a href="#fase6-1" data-sidebar-task="6.1"
+        ><span class="sidebar-check" style="display: none">✓</span>6.1
+        ThemeContext</a
+      >
+      <a href="#fase6-2" data-sidebar-task="6.2"
+        ><span class="sidebar-check" style="display: none">✓</span>6.2
+        Anti-flash script</a
+      >
+      <a href="#fase6-3" data-sidebar-task="6.3"
+        ><span class="sidebar-check" style="display: none">✓</span>6.3 Variables
+        CSS</a
+      >
+      <a href="#fase6-4" data-sidebar-task="6.4"
+        ><span class="sidebar-check" style="display: none">✓</span>6.4 Refactor
+        CSS</a
+      >
+      <a href="#fase6-5" data-sidebar-task="6.5"
+        ><span class="sidebar-check" style="display: none">✓</span>6.5
+        Integración</a
+      >
+
+      <h2>✅ Fase 7</h2>
+      <a href="#fase7">Limpieza y verificación</a>
     </nav>
 
     <main class="main">
       <!-- HEADER -->
       <header class="header">
-        <div class="badge">Refactor JSX → TSX</div>
+        <div class="badge">Refactor JSX → TSX v2</div>
         <h1>Plan de Refactor: CriptoBro</h1>
         <p>
-          De <strong>CoinCap + reqres.in + Context + useData</strong> a
-          <strong>CoinGecko + Supabase + Zustand + TanStack Query</strong
-          >.<br />
+          <strong>CoinGecko</strong> (criptos) +
+          <strong>Supabase</strong> (OAuth Google/Facebook/GitHub + email) +
+          <strong>Zustand</strong> (auth) +
+          <strong>TanStack Query</strong> (datos) +
+          <strong>React Context</strong> (tema oscuro/claro).<br />
           Explicación línea por línea de cada paso.
         </p>
         <div class="progress-bar" style="margin-top: 1.5rem; max-width: 400px">
-          <div class="progress-fill" style="width: 12%"></div>
+          <div class="progress-fill" style="width: 0%"></div>
         </div>
-        <p class="progress-text" style="font-size: 0.8rem; color: #5b6b9a; margin-top: 0.5rem">
-          Progreso: <strong style="color: #e2e8f0">12%</strong> — Deps instaladas + archivos renombrados (.jsx → .tsx)
+        <p
+          class="progress-text"
+          style="font-size: 0.8rem; color: #5b6b9a; margin-top: 0.5rem"
+        >
+          Progreso: <strong style="color: #e2e8f0">0%</strong> — Marca las
+          tareas completadas
         </p>
       </header>
 
-      <!-- SITUACIÓN ACTUAL -->
-      <div class="phase">
+      <!-- HALLAZGOS -->
+      <div class="phase" id="hallazgos">
         <div class="phase-title">
-          <span class="phase-number" style="background: #374151; color: #e2e8f0"
+          <span class="phase-number" style="background: #5f1e1e; color: #fca5a5"
             >!</span
           >
-          Situación actual — problemas detectados
+          Hallazgos del código actual
         </div>
         <p class="phase-desc">
-          Errores que existen ahora mismo en el código y que vamos a corregir.
+          29 problemas encontrados en el código actual, agrupados por categoría.
         </p>
 
         <div class="card">
-          <h3>🐛 Bug: bucle infinito en App.tsx</h3>
-          <p>
-            Línea 21:
-            <code
-              >&lt;Route path="/criptomonedas" element={&lt;App /&gt;}&gt;</code
-            >
-          </p>
-          <p>
-            <strong>Problema:</strong> Estás renderizando
-            <code>&lt;App /&gt;</code> dentro de sus propias rutas. Cada vez que
-            entras a <code>/criptomonedas</code>, React renderiza
-            <code>App</code> otra vez, que monta otro
-            <code>BrowserRouter</code> con otro <code>Routes</code>, y se vuelve
-            infinito.
-          </p>
-          <p>
-            <strong>Solución:</strong> Separar el layout (menú + footer) de las
-            rutas. <code>&lt;App /&gt;</code> solo define rutas;
-            <code>&lt;AppLayout /&gt;</code> solo tiene
-            <code>Menu + Outlet + Footer</code>.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>🐛 Bug: export mal nombrado en LayoutCrypto</h3>
-          <p>
-            Línea 37: <code>export default Cuadricula;</code> pero la función se
-            llama <code>LayoutCrypto</code>.<br />
-            Cuando importes en otro lado como
-            <code>import LayoutCrypto from "./LayoutCrypto"</code>, el default
-            export será <code>undefined</code> en runtime.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>📋 Estado actual de los archivos</h3>
-          <div class="table-wrap">
-            <table>
-              <tr>
-                <th>Archivo</th>
-                <th>Problema</th>
-              </tr>
-              <tr>
-                <td>App.tsx</td>
-                <td>Bucle de render en /criptomonedas</td>
-              </tr>
-              <tr>
-                <td>LayoutCrypto.tsx</td>
-                <td>export default Cuadricula (nombre incorrecto)</td>
-              </tr>
-              <tr>
-                <td>CriptoPage.tsx</td>
-                <td>Usa useData → será reemplazado</td>
-              </tr>
-              <tr>
-                <td>useData.ts</td>
-                <td>
-                  useState sin tipos, setState en useEffect (linter error)
-                </td>
-              </tr>
-              <tr>
-                <td>UserContext.tsx</td>
-                <td>
-                  Math.random() en render (purity), sin tipos, será eliminado
-                </td>
-              </tr>
-              <tr>
-                <td>Menu.tsx</td>
-                <td>useContext(UserContext) sin tipo</td>
-              </tr>
-              <tr>
-                <td>Profile.tsx</td>
-                <td>useContext(UserContext) sin tipo</td>
-              </tr>
-              <tr>
-                <td>Login.tsx</td>
-                <td>
-                  useState&lt;string | null&gt; pero se hace spread como objeto
-                  → TS error
-                </td>
-              </tr>
-              <tr>
-                <td>Footer.tsx</td>
-                <td>Renombrado, por revisar</td>
-              </tr>
-              <tr>
-                <td>404.tsx</td>
-                <td>Funciona correctamente (ya revisado)</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <div class="card" style="border-color: #1e5f3a;">
-          <h3>✅ Avance actual (12%)</h3>
+          <h3>🔴 Build-breaking (no compila)</h3>
           <ul>
-            <li><code>@tanstack/react-query</code> y <code>zustand</code> instalados en <code>package.json</code></li>
-            <li>Todos los archivos <code>.jsx</code> / <code>.js</code> renombrados a <code>.tsx</code> / <code>.ts</code></li>
-            <li><code>src/helpers/</code> (FormatNumber, ChangeEmoji, RedAndGreen) ya existen como <code>.ts</code></li>
+            <li>
+              <code>index.html</code> apunta a <code>/src/main.jsx</code> (debe
+              ser <code>.tsx</code>)
+            </li>
+            <li>
+              <code>Footer.tsx</code> y <code>404.tsx</code> importan de
+              <code>../asset/</code> (singular); el directorio es
+              <code>../assets/</code>
+            </li>
+            <li>
+              <code>Home.tsx</code> importa <code>./home.css</code> pero el
+              archivo es <code>Home.css</code> (case-sensitive en Linux)
+            </li>
+            <li>
+              <code>LayoutCrypto.tsx</code>:
+              <code>export default Cuadricula</code> (función se llama
+              <code>LayoutCrypto</code>)
+            </li>
+            <li><code>coinDetail.ts</code>: typo <code>/coins/makets</code></li>
+            <li>Múltiples <code>any</code> implícitos en props y parámetros</li>
           </ul>
-          <p style="margin-top: 0.75rem;"><strong>Siguiente paso:</strong> Crear <code>.env</code> con variables de CoinGecko + crear <code>src/lib/axios.ts</code> (Fase 0.2 y 0.3).</p>
+        </div>
+
+        <div class="card">
+          <h3>🔴 Bugs silenciosos (compilan pero fallan en runtime)</h3>
+          <ul>
+            <li>
+              <code>UserContextProvider</code> nunca se monta →
+              <code>Menu</code> y <code>Profile</code> crashean al usar
+              <code>useContext</code>
+            </li>
+            <li>
+              <code>Login</code> bypassa <code>authStore</code>: escribe
+              <code>localStorage</code> directo → store queda
+              <code>null</code> → <code>&lt;Protected&gt;</code> redirige justo
+              después de login
+            </li>
+            <li>
+              <code>Menu</code> logout bypassa <code>authStore.logout()</code>
+            </li>
+            <li>
+              <code>Menu</code> link <code>to="/Perfil"</code> vs ruta
+              <code>path="/perfil"</code> (case-sensitive → 404)
+            </li>
+            <li>
+              <code>.env</code> sin <code>VITE_API_URL</code>,
+              <code>VITE_API_KEY</code>, <code>VITE_NAME_PAGE</code>
+            </li>
+            <li>
+              Dos capas de datos paralelas: CoinGecko tipado (muerto) + CoinCap
+              sin tipos (vivo, roto)
+            </li>
+            <li>
+              <code>CriptoInfo</code> muestra <code>NaN</code> con
+              <code>maxSupply: null</code>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🟣 React Compiler / purity</h3>
+          <ul>
+            <li>
+              <code>UserContext</code>: <code>Math.random()</code> en render
+            </li>
+            <li>
+              <code>useData</code>: <code>setCargando(true)</code> sincrónico en
+              <code>useEffect</code>
+            </li>
+            <li>
+              <code>CriptoPage</code>: <code>setErrorDate</code> sincrónico en
+              <code>useEffect</code>
+            </li>
+            <li><code>Login</code>: lee <code>localStorage</code> en render</li>
+          </ul>
+        </div>
+
+        <div class="findings-grid">
+          <div class="finding-card">
+            <h4>🟠 Rendimiento</h4>
+            <ul>
+              <li>
+                <code>CriptoGraph</code> recrea <code>data</code>/<code
+                  >options</code
+                >
+                cada render
+              </li>
+              <li><code>CriptoPage</code> recrea arrays inline en JSX</li>
+              <li><code>Element</code> sin <code>React.memo</code></li>
+              <li>
+                Google Fonts vía <code>@import</code> en
+                <code>App.css</code> (render-blocking)
+              </li>
+            </ul>
+          </div>
+          <div class="finding-card">
+            <h4>🔵 Accesibilidad</h4>
+            <ul>
+              <li>
+                Hamburguesa del menú: <code>&lt;div onClick&gt;</code> (no
+                botón)
+              </li>
+              <li>
+                Logout: <code>&lt;a href="#!"&gt;</code> (debe ser
+                <code>&lt;button&gt;</code>)
+              </li>
+              <li>
+                Login: <code>htmlFor="email"</code> sin
+                <code>id="email"</code> en input
+              </li>
+              <li><code>CriptoGraph</code> sin <code>role="img"</code></li>
+              <li><code>Loading</code> sin <code>role="status"</code></li>
+              <li>
+                <code>index.html</code>: <code>lang="en"</code> (contenido en
+                español)
+              </li>
+              <li>Múltiples <code>&lt;h1&gt;</code> en <code>Element</code></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -784,133 +1001,100 @@
           <span class="phase-number" style="background: #1e3a5f; color: #93c5fd"
             >0</span
           >
-          Setup inicial
+          Fixes urgentes del build
         </div>
         <p class="phase-desc">
-          Instalar las nuevas dependencias, configurar variables de entorno y
-          crear el cliente HTTP.
+          Cambios pequeños que permiten que <code>pnpm dev</code> arranque y que
+          luego <code>pnpm build</code> pueda llegar a 0 errores.
         </p>
 
-        <!-- 0.1 -->
-        <div class="card" id="fase0-1" data-weight="5">
+        <div class="card" id="fase0-1" data-weight="1">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="0.1" checked>
-            <span class="status-dot status-done"></span> 0.1 — Instalar
-            dependencias
-          </h3>
-          <p>Vamos a instalar los 3 pilares del nuevo stack:</p>
-          <div class="code-block">
-            <span class="comment"
-              ># Zustand — estado global (reemplaza UserContext)</span
-            ><br />
-            <span class="comment"
-              ># TanStack Query — caché de API (reemplaza useData)</span
-            ><br />
-            <span class="comment"
-              ># Supabase — para futuro login OAuth (Google, Facebook)</span
-            ><br /><br />
-            pnpm add @tanstack/react-query zustand @supabase/supabase-js
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📦</span>
-            <div>
-              <strong>pnpm add</strong> instala en
-              <code>dependencies</code> (producción, no dev).<br />
-              <code>@tanstack/react-query</code> ≠ <code>react-query</code>. El
-              paquete cambió de nombre en v5.
-            </div>
-          </div>
-        </div>
-
-        <!-- 0.2 -->
-        <div class="card" id="fase0-2" data-weight="3">
-          <h3>
-            <input type="checkbox" class="task-checkbox" data-task="0.2">
-            <span class="status-dot status-pending"></span> 0.2 — Variables de
-            entorno (.env)
+            <input type="checkbox" class="task-checkbox" data-task="0.1" />
+            <span class="status-dot status-pending"></span> 0.1 —
+            <code>index.html</code>
           </h3>
           <p>
-            CoinGecko <strong>sí requiere API key</strong> (Demo gratuita). Se
-            obtiene en
-            <a
-              href="https://www.coingecko.com/en/api/pricing"
-              target="_blank"
-              style="color: #60a5fa"
-              >coingecko.com/en/api/pricing</a
-            >
-            → Developer Dashboard → + Add New Key.
+            <code>src/main.jsx</code> → <code>src/main.tsx</code>;
+            <code>lang="es"</code>; meta description; mover Google Fonts a
+            <code>&lt;link rel="preconnect"&gt;</code>.
           </p>
-          <div class="code-block">
-            <span class="comment"># CoinGecko Demo API</span><br />
-            VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3<br />
-            VITE_COINGECKO_API_KEY=<span class="string">tu_demo_key_aqui</span>
-          </div>
-          <div class="alert alert-warning">
-            <span class="icon">⚠️</span>
-            <div>
-              <strong>Borra las variables viejas</strong> del .env:
-              <code>VITE_API_URL</code>, <code>VITE_API_KEY</code>,
-              <code>VITE_URL_lOGIN</code>, <code>VITE_API_KEY_LOGIN</code>. Ya
-              no se usan.
-            </div>
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">🔐</span>
-            <div>
-              En producción la API key no debería ir en frontend, pero para este
-              proyecto de práctica es aceptable.
-            </div>
-          </div>
         </div>
 
-        <!-- 0.3 -->
-        <div class="card" id="fase0-3" data-weight="3">
+        <div class="card" id="fase0-2" data-weight="1">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="0.3">
-            <span class="status-dot status-pending"></span> 0.3 — Cliente Axios
-            (<code>src/lib/axios.ts</code>)
+            <input type="checkbox" class="task-checkbox" data-task="0.2" />
+            <span class="status-dot status-pending"></span> 0.2 —
+            <code>Footer.tsx</code> imports
+          </h3>
+          <p><code>../asset/*</code> → <code>../assets/*</code> (3 imports).</p>
+        </div>
+
+        <div class="card" id="fase0-3" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.3" />
+            <span class="status-dot status-pending"></span> 0.3 —
+            <code>404.tsx</code> import
+          </h3>
+          <p><code>../asset/404.svg</code> → <code>../assets/404.svg</code>.</p>
+        </div>
+
+        <div class="card" id="fase0-4" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.4" />
+            <span class="status-dot status-pending"></span> 0.4 —
+            <code>Home.tsx</code> casing
           </h3>
           <p>
-            Una instancia de Axios preconfigurada con la URL base y el API key
-            en el header. Así todos los hooks de TanStack Query usan la misma
-            configuración.
+            <code>import "./home.css"</code> → <code>"./Home.css"</code>;
+            renombrar componente <code>home</code> → <code>Home</code>.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> axios
-            <span class="keyword">from</span>
-            <span class="string">"axios"</span>;<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">coingeckoApi</span> = axios.<span class="func"
-              >create</span
-            >({<br />
-            &nbsp;&nbsp;baseURL: <span class="keyword">import</span>.meta.<span
-              class="const"
-              >env</span
-            >.<span class="const">VITE_COINGECKO_API_URL</span>,<br />
-            &nbsp;&nbsp;headers: {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string"
-              >"x-cg-demo-api-key"</span
-            >: <span class="keyword">import</span>.meta.<span class="const"
-              >env</span
-            >.<span class="const">VITE_COINGECKO_API_KEY</span>,<br />
-            &nbsp;&nbsp;},<br />
-            });
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code>axios.create({...})</code> crea una instancia nueva de Axios
-              con valores por defecto. Cada request que hagas con
-              <code>coingeckoApi.get(...)</code> usará <code>baseURL</code> +
-              header automáticamente.<br />
-              <code>import.meta.env.VITE_*</code> es la forma de leer variables
-              de entorno en Vite. Sin esto, las variables no existen en
-              runtime.<br />
-              La key se manda por header (<code>x-cg-demo-api-key</code>) y no
-              por query string, que es la forma recomendada por CoinGecko.
-            </div>
-          </div>
+        </div>
+
+        <div class="card" id="fase0-5" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.5" />
+            <span class="status-dot status-pending"></span> 0.5 —
+            <code>LayoutCrypto</code> export
+          </h3>
+          <p>
+            <code>export default Cuadricula</code> →
+            <code>export default LayoutCrypto</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase0-6" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.6" />
+            <span class="status-dot status-pending"></span> 0.6 —
+            <code>coinDetail.ts</code> typo
+          </h3>
+          <p><code>/coins/makets</code> → <code>/coins/markets</code>.</p>
+        </div>
+
+        <div class="card" id="fase0-7" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.7" />
+            <span class="status-dot status-pending"></span> 0.7 — Variables
+            <code>.env</code>
+          </h3>
+          <p>
+            Añadir <code>VITE_NAME_PAGE</code>,
+            <code>VITE_COINGECKO_API_URL</code>,
+            <code>VITE_COINGECKO_API_KEY</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase0-8" data-weight="1">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="0.8" />
+            <span class="status-dot status-pending"></span> 0.8 —
+            <code>ImportMetaEnv</code>
+          </h3>
+          <p>
+            Declarar en <code>src/vite-env.d.ts</code> todas las
+            <code>VITE_*</code> (CoinGecko + Supabase).
+          </p>
         </div>
       </div>
 
@@ -920,1318 +1104,636 @@
           <span class="phase-number" style="background: #065f46; color: #6ee7b7"
             >1</span
           >
-          Tipos + Estado global
+          Infraestructura: Supabase + CoinGecko
         </div>
         <p class="phase-desc">
-          Crear la carpeta <code>src/types/</code> con las interfaces
-          compartidas, el store de Zustand para auth, y reescribir
-          <code>main.tsx</code> como punto de entrada.
+          Instalar Supabase, configurar el dashboard, crear las tablas SQL y los
+          archivos base.
         </p>
 
-        <!-- 1.1 -->
-        <div class="card" id="fase1-1" data-weight="4">
+        <div class="card" id="fase1-1" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="1.1">
-            <span class="status-dot status-pending"></span> 1.1 — Tipos
-            (<code>src/types/index.ts</code>)
+            <input type="checkbox" class="task-checkbox" data-task="1.1" />
+            <span class="status-dot status-pending"></span> 1.1 — Instalar
+            <code>@supabase/supabase-js</code>
           </h3>
-          <p>
-            Un archivo con todas las interfaces que usaremos en toda la app.
-            TypeScript las resuelve automáticamente sin necesidad de importar
-            (porque <code>index.ts</code> es un barrel, pero aquí sí
-            importaremos porque queda explícito).
-          </p>
-          <div class="code-block">
-            <span class="keyword">export interface</span>
-            <span class="type">Coin</span> {<br />
-            &nbsp;&nbsp;id: string;&nbsp;&nbsp;<span class="comment"
-              >// "bitcoin"</span
-            ><br />
-            &nbsp;&nbsp;symbol: string;&nbsp;&nbsp;<span class="comment"
-              >// "btc"</span
-            ><br />
-            &nbsp;&nbsp;name: string;&nbsp;&nbsp;<span class="comment"
-              >// "Bitcoin"</span
-            ><br />
-            &nbsp;&nbsp;image: string;&nbsp;&nbsp;<span class="comment"
-              >// URL del logo</span
-            ><br />
-            &nbsp;&nbsp;current_price: number;<br />
-            &nbsp;&nbsp;market_cap: number;<br />
-            &nbsp;&nbsp;market_cap_rank: number;<br />
-            &nbsp;&nbsp;total_volume: number;<br />
-            &nbsp;&nbsp;high_24h: <span class="type">number</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;low_24h: <span class="type">number</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;price_change_percentage_24h:
-            <span class="type">number</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;circulating_supply: number;<br />
-            &nbsp;&nbsp;total_supply: <span class="type">number</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;max_supply: <span class="type">number</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;last_updated: string;<br />
-            }<br /><br />
-            <span class="keyword">export interface</span>
-            <span class="type">CoinHistoryPoint</span> {<br />
-            &nbsp;&nbsp;timestamp:
-            <span class="type">number</span>;&nbsp;&nbsp;<span class="comment"
-              >// UNIX ms</span
-            ><br />
-            &nbsp;&nbsp;price: <span class="type">number</span>;<br />
-            }<br /><br />
-            <span class="keyword">export interface</span>
-            <span class="type">AuthUser</span> {<br />
-            &nbsp;&nbsp;id: string;<br />
-            &nbsp;&nbsp;email: string;<br />
-            &nbsp;&nbsp;name: string;<br />
-            &nbsp;&nbsp;avatar_url: string;<br />
-            }<br /><br />
-            <span class="keyword">export interface</span>
-            <span class="type">LoginCredentials</span> {<br />
-            &nbsp;&nbsp;email: string;<br />
-            &nbsp;&nbsp;password: string;<br />
-            }
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>¿Por qué estos tipos?</strong> Son los campos que devuelve
-              CoinGecko exactamente. Cada <code>| null</code> significa que
-              "puede venir null desde la API". TypeScript te obliga a manejar
-              ese caso — no puedes asumir que siempre hay un valor.<br />
-              <strong
-                >¿Por qué no tipamos el histórico con
-                <code>[number, number][]</code>?</strong
-              >
-              Porque <code>CoinHistoryPoint</code> es más semántico: en vez de
-              <code>data[0][0]</code> escribes <code>point.timestamp</code>.
-            </div>
-          </div>
+          <div class="code-block">pnpm add @supabase/supabase-js</div>
+          <p>(TanStack Query y Zustand ya están instalados.)</p>
         </div>
 
-        <!-- 1.2 -->
-        <div class="card" id="fase1-2" data-weight="4">
+        <div class="card" id="fase1-2" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="1.2">
-            <span class="status-dot status-pending"></span> 1.2 — authStore
-            (<code>src/stores/authStore.ts</code>)
+            <input type="checkbox" class="task-checkbox" data-task="1.2" />
+            <span class="status-dot status-pending"></span> 1.2 — Configurar
+            Supabase (dashboard)
           </h3>
-          <p>
-            Store de Zustand que reemplaza a <code>UserContext</code>. Maneja
-            token y sesión de usuario, preparado para swap a Supabase después.
-          </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { create }
-            <span class="keyword">from</span>
-            <span class="string">"zustand"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">AuthUser</span> }
-            <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br /><br />
-            <span class="keyword">interface</span>
-            <span class="type">AuthState</span> {<br />
-            &nbsp;&nbsp;user: <span class="type">AuthUser</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;token: <span class="type">string</span> |
-            <span class="keyword">null</span>;<br />
-            &nbsp;&nbsp;<span class="func">setSession</span>: (user:
-            <span class="type">AuthUser</span>, token: string) =&gt;
-            <span class="keyword">void</span>;<br />
-            &nbsp;&nbsp;<span class="func">logout</span>: () =&gt;
-            <span class="keyword">void</span>;<br />
-            }<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">useAuthStore</span> =
-            <span class="func">create</span>&lt;<span class="type"
-              >AuthState</span
-            >&gt;((set) =&gt; ({<br />
-            &nbsp;&nbsp;user: null,<br />
-            &nbsp;&nbsp;token: localStorage.<span class="func">getItem</span
-            >(<span class="string">"tokenCriptoBro"</span>),<br />
-            &nbsp;&nbsp;<span class="func">setSession</span>: (user, token)
-            =&gt; {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;localStorage.<span class="func"
-              >setItem</span
-            >(<span class="string">"tokenCriptoBro"</span>, token);<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;set({ user, token });<br />
-            &nbsp;&nbsp;},<br />
-            &nbsp;&nbsp;<span class="func">logout</span>: () =&gt; {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;localStorage.<span class="func"
-              >removeItem</span
-            >(<span class="string">"tokenCriptoBro"</span>);<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;set({ user: null, token: null });<br />
-            &nbsp;&nbsp;},<br />
-            }));
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code>create&lt;AuthState&gt;((set) =&gt; ({}))</code> — Zustand
-              usa <code>create</code> con un callback que recibe
-              <code>set</code> para actualizar estado. El genérico
-              <code>&lt;AuthState&gt;</code> tipa el store.<br />
-              <code>token: localStorage.getItem(...)</code> — al crearse el
-              store, lee el token guardado (si existe). Así al recargar la
-              página, el usuario no pierde la sesión.<br />
-              <code>set({ user, token })</code> — Zustand reemplaza (merge
-              superficial) el estado con el objeto que le pases. Equivalente a
-              <code>useState</code> pero global.<br />
-              <strong>¿Por qué Zustand y no Context?</strong> Porque Zustand no
-              provoca re-renders en componentes que no escuchan ese slice de
-              estado. Context rerenderiza a todos los hijos aunque no usen el
-              valor.
-            </div>
-          </div>
+          <ol>
+            <li>Crear proyecto en supabase.com</li>
+            <li>
+              Authentication → Providers → habilitar
+              <strong>Google, Facebook, GitHub</strong> y <strong>Email</strong>
+            </li>
+            <li>
+              URL Configuration → Site URL <code>http://localhost:5173</code>,
+              Redirect URLs <code>http://localhost:5173/**</code>
+            </li>
+            <li>
+              Copiar al <code>.env</code>:
+              <div class="code-block">
+                VITE_SUPABASE_URL=https://xxxx.supabase.co<br />
+                VITE_SUPABASE_ANON_KEY=sb_publishable_xxxx
+              </div>
+            </li>
+          </ol>
         </div>
 
-        <!-- 1.3 -->
         <div class="card" id="fase1-3" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="1.3">
-            <span class="status-dot status-pending"></span> 1.3 — main.tsx
-            (reescribir)
+            <input type="checkbox" class="task-checkbox" data-task="1.3" />
+            <span class="status-dot status-pending"></span> 1.3 — SQL: tablas
+            <code>profiles</code> y <code>favorites</code>
           </h3>
-          <p>
-            El entry point. Aquí montamos <code>QueryClientProvider</code> y
-            <code>BrowserRouter</code> para que toda la app tenga acceso a
-            TanStack Query y React Router.
-          </p>
+          <p>Ejecutar en SQL Editor del dashboard de Supabase:</p>
           <div class="code-block">
-            <span class="keyword">import</span> { StrictMode }
-            <span class="keyword">from</span>
-            <span class="string">"react"</span>;<br />
-            <span class="keyword">import</span> { createRoot }
-            <span class="keyword">from</span>
-            <span class="string">"react-dom/client"</span>;<br />
-            <span class="keyword">import</span> { QueryClient,
-            QueryClientProvider } <span class="keyword">from</span>
-            <span class="string">"@tanstack/react-query"</span>;<br />
-            <span class="keyword">import</span> { BrowserRouter }
-            <span class="keyword">from</span>
-            <span class="string">"react-router-dom"</span>;<br />
-            <span class="keyword">import</span> App
-            <span class="keyword">from</span>
-            <span class="string">"./App"</span>;<br />
-            <span class="keyword">import</span>
-            <span class="string">"./App.css"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">queryClient</span> =
-            <span class="keyword">new</span>
-            <span class="type">QueryClient</span>({<br />
-            &nbsp;&nbsp;defaultOptions: {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;queries: {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staleTime:
-            <span class="number">60_000</span>,&nbsp;&nbsp;<span class="comment"
-              >// 1 min antes de refetch</span
-            ><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refetchOnWindowFocus:
-            <span class="keyword">false</span>,&nbsp;&nbsp;<span class="comment"
-              >// no recargar al volver a la pestaña</span
-            ><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;},<br />
-            &nbsp;&nbsp;},<br />
-            });<br /><br />
-            <span class="func">createRoot</span>(document.<span class="func"
-              >getElementById</span
-            >(<span class="string">"root"</span>)!).<span class="func"
-              >render</span
-            >(<br />
-            &nbsp;&nbsp;&lt;StrictMode&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;QueryClientProvider
-            client={queryClient}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;BrowserRouter&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;App /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/BrowserRouter&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/QueryClientProvider&gt;<br />
-            &nbsp;&nbsp;&lt;/StrictMode&gt;,<br />
-            });
+            <span class="keyword">create table</span> public.profiles (<br />
+            &nbsp;&nbsp;id uuid
+            <span class="keyword">primary key references</span> auth.users
+            <span class="keyword">on delete cascade</span>,<br />
+            &nbsp;&nbsp;full_name text,<br />
+            &nbsp;&nbsp;avatar_url text,<br />
+            &nbsp;&nbsp;updated_at timestamptz
+            <span class="keyword">default</span> now()<br />
+            );<br /><br />
+            <span class="keyword">create table</span> public.favorites (<br />
+            &nbsp;&nbsp;id uuid
+            <span class="keyword">primary key default</span>
+            gen_random_uuid(),<br />
+            &nbsp;&nbsp;user_id uuid
+            <span class="keyword">not null references</span> auth.users
+            <span class="keyword">on delete cascade</span>,<br />
+            &nbsp;&nbsp;coin_id text
+            <span class="keyword">not null</span>,<br />
+            &nbsp;&nbsp;coin_name text
+            <span class="keyword">not null</span>,<br />
+            &nbsp;&nbsp;coin_symbol text
+            <span class="keyword">not null</span>,<br />
+            &nbsp;&nbsp;created_at timestamptz
+            <span class="keyword">default</span> now(),<br />
+            &nbsp;&nbsp;<span class="keyword">unique</span> (user_id,
+            coin_id)<br />
+            );
           </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code
-                >new QueryClient({defaultOptions: {queries: {staleTime,
-                refetchOnWindowFocus}}})</code
-              >
-              — configura las queries globales.
-              <code>staleTime: 60_000</code> significa: "los datos se consideran
-              frescos durante 1 minuto". Si un componente pide los mismos datos
-              dentro del minuto, TanStack Query devuelve la caché sin hacer
-              fetch.<br />
-              <code>document.getElementById("root")!</code> — el
-              <code>!</code> le dice a TS: "confía en mí, esto no es null". Sin
-              el <code>!</code>, TS se quejaría porque
-              <code>getElementById</code> puede retornar null.<br />
-              <strong>¿Por qué movemos BrowserRouter a main.tsx?</strong> Porque
-              <code>App.tsx</code> solo debe tener rutas, no providers. Así
-              <code>AppLayout</code> puede usar
-              <code>&lt;Outlet /&gt;</code> sin problemas.
-            </div>
+          <p>
+            Activar RLS y crear las 6 policies (3 para cada tabla). El trigger
+            <code>handle_new_user</code> crea un perfil automáticamente al
+            registrarse.
+          </p>
+        </div>
+
+        <div class="card" id="fase1-4" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="1.4" />
+            <span class="status-dot status-pending"></span> 1.4 —
+            <code>supabaseClient.ts</code> y tipos
+          </h3>
+          <div class="code-block">
+            <span class="keyword">import</span> { createClient }
+            <span class="keyword">from</span>
+            <span class="string">"@supabase/supabase-js"</span>;<br /><br />
+            <span class="keyword">export const</span>
+            <span class="const">supabase</span> = createClient(<br />
+            &nbsp;&nbsp;import.meta.env.<span class="const"
+              >VITE_SUPABASE_URL</span
+            >,<br />
+            &nbsp;&nbsp;import.meta.env.<span class="const"
+              >VITE_SUPABASE_ANON_KEY</span
+            >,<br />
+            &nbsp;&nbsp;{ auth: { persistSession:
+            <span class="keyword">true</span>, autoRefreshToken:
+            <span class="keyword">true</span> } }<br />
+            );
           </div>
+          <p>
+            Actualizar <code>src/types/index.ts</code> con <code>Profile</code>,
+            <code>Favorite</code>.
+          </p>
         </div>
       </div>
 
       <!-- ====== FASE 2 ====== -->
       <div class="phase" id="fase2">
         <div class="phase-title">
-          <span class="phase-number" style="background: #5f4a1e; color: #fcd34d"
+          <span class="phase-number" style="background: #5f2d5f; color: #d8b4fe"
             >2</span
           >
-          TanStack Query — hooks de CoinGecko
+          Auth con Supabase + Zustand
         </div>
         <p class="phase-desc">
-          Tres hooks (KISS: uno por endpoint) + un hook de login. Cachean
-          automáticamente, manejan carga/error, y eliminan la necesidad de
-          <code>useData.js</code>.
+          Reemplazar <code>reqres.in</code> y <code>UserContext</code> por
+          Supabase Auth + store Zustand reactivo.
         </p>
 
-        <!-- 2.1 -->
         <div class="card" id="fase2-1" data-weight="4">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="2.1">
+            <input type="checkbox" class="task-checkbox" data-task="2.1" />
             <span class="status-dot status-pending"></span> 2.1 —
-            <code>src/api/coins.ts</code> (lista)
+            <code>authStore</code> reactivo a Supabase
           </h3>
-          <p>Hook para obtener las 100 criptos principales.</p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useQuery }
-            <span class="keyword">from</span>
-            <span class="string">"@tanstack/react-query"</span>;<br />
-            <span class="keyword">import</span> { coingeckoApi }
-            <span class="keyword">from</span>
-            <span class="string">"../lib/axios"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">Coin</span> } <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">fetchCoins</span> =
-            <span class="keyword">async</span> ():
-            <span class="type">Promise</span>&lt;<span class="type">Coin</span
-            >[]&gt; =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data } =
-            <span class="keyword">await</span> coingeckoApi.<span class="func"
-              >get</span
-            >&lt;<span class="type">Coin</span>[]&gt;(<span class="string"
-              >"/coins/markets"</span
-            >, {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;params: {
-            <span class="const">vs_currency</span>:
-            <span class="string">"usd"</span>, <span class="const">order</span>:
-            <span class="string">"market_cap_desc"</span>,
-            <span class="const">per_page</span>:
-            <span class="number">100</span> },<br />
-            &nbsp;&nbsp;});<br />
-            &nbsp;&nbsp;<span class="keyword">return</span> data;<br />
-            };<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">useCoins</span> = () =&gt;<br />
-            &nbsp;&nbsp;<span class="func">useQuery</span>({
-            <span class="const">queryKey</span>: [<span class="string"
-              >"coins"</span
-            >], <span class="const">queryFn</span>: fetchCoins });
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code>coingeckoApi.get&lt;Coin[]&gt;(url, {params})</code> — el
-              genérico <code>&lt;Coin[]&gt;</code> tipa el <code>data</code> que
-              devuelve Axios. Sin esto, <code>data</code> sería
-              <code>any</code>.<br />
-              <code>useQuery({queryKey: ["coins"], queryFn: fetchCoins})</code>
-              — <code>queryKey</code> es un identificador único para esta query.
-              Cuando otro componente pida <code>["coins"]</code>, TanStack Query
-              devuelve la misma data cacheada. <code>queryFn</code> es la
-              función que hace el fetch.<br />
-              <strong>¿Qué devuelve useQuery?</strong>
-              <code>{ data, isLoading, error, refetch, ... }</code>.
-              <code>data</code> será <code>Coin[] | undefined</code>,
-              <code>isLoading</code> es <code>boolean</code>,
-              <code>error</code> es <code>Error | null</code>.
-            </div>
-          </div>
+          <p>
+            Escuchar <code>supabase.auth.onAuthStateChange</code> en lugar de
+            leer <code>localStorage</code> manualmente. Estado:
+            <code>session</code>, <code>user</code>, <code>profile</code>,
+            <code>loading</code>.
+          </p>
         </div>
 
-        <!-- 2.2 -->
         <div class="card" id="fase2-2" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="2.2">
+            <input type="checkbox" class="task-checkbox" data-task="2.2" />
             <span class="status-dot status-pending"></span> 2.2 —
-            <code>src/api/coinDetail.ts</code> (detalle individual)
+            <code>src/api/auth.ts</code>
           </h3>
-          <p>
-            Reusa el mismo endpoint <code>/coins/markets</code> pero filtra por
-            <code>?ids=bitcoin</code>.
-          </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useQuery }
-            <span class="keyword">from</span>
-            <span class="string">"@tanstack/react-query"</span>;<br />
-            <span class="keyword">import</span> { coingeckoApi }
-            <span class="keyword">from</span>
-            <span class="string">"../lib/axios"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">Coin</span> } <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">fetchCoin</span> =
-            <span class="keyword">async</span> (<span class="const">id</span>:
-            string): <span class="type">Promise</span>&lt;<span class="type"
-              >Coin</span
-            >&gt; =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data } =
-            <span class="keyword">await</span> coingeckoApi.<span class="func"
-              >get</span
-            >&lt;<span class="type">Coin</span>[]&gt;(<span class="string"
-              >"/coins/markets"</span
-            >, {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;params: {
-            <span class="const">vs_currency</span>:
-            <span class="string">"usd"</span>, <span class="const">ids</span>:
-            id },<br />
-            &nbsp;&nbsp;});<br />
-            &nbsp;&nbsp;<span class="keyword">return</span> data[<span
-              class="number"
-              >0</span
-            >];<br />
-            };<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">useCoinDetail</span> = (<span class="const"
-              >id</span
-            >: string | <span class="keyword">undefined</span>) =&gt;<br />
-            &nbsp;&nbsp;<span class="func">useQuery</span>({<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="const">queryKey</span>: [<span
-              class="string"
-              >"coin"</span
-            >, id],<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="const">queryFn</span>: () =&gt;
-            <span class="func">fetchCoin</span>(id!),<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;enabled: !!id,&nbsp;&nbsp;<span
-              class="comment"
-              >// solo ejecuta si id no es undefined</span
-            ><br />
-            &nbsp;&nbsp;});
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code>enabled: !!id</code> — <code>!!id</code> convierte
-              <code>string | undefined</code> a <code>boolean</code>. Si
-              <code>id</code> es <code>undefined</code> (cuando el parámetro de
-              ruta no se ha cargado), la query no se ejecuta. Esto evita un
-              fetch con <code>?ids=undefined</code>.<br />
-              <code>queryKey: ["coin", id]</code> — al incluir
-              <code>id</code> en la key, cada cripto tiene su propia caché.
-              <code>["coin", "bitcoin"]</code> es distinto de
-              <code>["coin", "ethereum"]</code>.<br />
-              <strong>¿Por qué <code>id!</code> en queryFn?</strong> TypeScript
-              no sabe que <code>enabled: !!id</code> garantiza que
-              <code>id</code> no es undefined dentro de <code>queryFn</code>. El
-              <code>!</code> es un "non-null assertion": le decimos a TS
-              "confía, no va a ser undefined aquí".
-            </div>
-          </div>
+          <p>Hooks y funciones:</p>
+          <ul>
+            <li>
+              <code>useSignInWithEmail()</code> →
+              <code>supabase.auth.signInWithPassword()</code>
+            </li>
+            <li>
+              <code>useSignUpWithEmail()</code> →
+              <code>supabase.auth.signUp()</code>
+            </li>
+            <li>
+              <code>signInWithOAuth(provider)</code> → helper para
+              Google/Facebook/GitHub
+            </li>
+          </ul>
         </div>
 
-        <!-- 2.3 -->
-        <div class="card" id="fase2-3" data-weight="3">
+        <div class="card" id="fase2-3" data-weight="4">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="2.3">
+            <input type="checkbox" class="task-checkbox" data-task="2.3" />
             <span class="status-dot status-pending"></span> 2.3 —
-            <code>src/api/coinHistory.ts</code> (histórico de precios)
+            <code>Login.tsx</code> reescrito
           </h3>
           <p>
-            Obtiene los precios históricos para la gráfica. La Demo API solo
-            permite hasta 365 días.
+            Formulario email/clave + 3 botones OAuth. A11y:
+            <code>id</code>/<code>htmlFor</code>, <code>role="alert"</code>. No
+            leer <code>localStorage</code> en render.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useQuery }
-            <span class="keyword">from</span>
-            <span class="string">"@tanstack/react-query"</span>;<br />
-            <span class="keyword">import</span> { coingeckoApi }
-            <span class="keyword">from</span>
-            <span class="string">"../lib/axios"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">CoinHistoryPoint</span> }
-            <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br /><br />
-            <span class="keyword">interface</span>
-            <span class="type">ChartResponse</span> {<br />
-            &nbsp;&nbsp;prices: [<span class="type">number</span>,
-            <span class="type">number</span>][];&nbsp;&nbsp;<span
-              class="comment"
-              >// [timestamp_ms, price_usd][]</span
-            ><br />
-            }<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">fetchHistory</span> =
-            <span class="keyword">async</span> (<span class="const">id</span>:
-            string, <span class="const">days</span>: string):
-            <span class="type">Promise</span>&lt;<span class="type"
-              >CoinHistoryPoint</span
-            >[]&gt; =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data } =
-            <span class="keyword">await</span> coingeckoApi.<span class="func"
-              >get</span
-            >&lt;<span class="type">ChartResponse</span>&gt;(<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string"
-              >`/coins/${id}/market_chart`</span
-            >,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;{ params: {
-            <span class="const">vs_currency</span>:
-            <span class="string">"usd"</span>, days } }<br />
-            &nbsp;&nbsp;);<br />
-            &nbsp;&nbsp;<span class="keyword">return</span> data.prices.<span
-              class="func"
-              >map</span
-            >(([ts, price]) =&gt; ({ <span class="const">timestamp</span>: ts,
-            <span class="const">price</span> }));<br />
-            };<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">useCoinHistory</span> = (<span class="const"
-              >id</span
-            >: string | <span class="keyword">undefined</span>,
-            <span class="const">days</span>: string) =&gt;<br />
-            &nbsp;&nbsp;<span class="func">useQuery</span>({<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="const">queryKey</span>: [<span
-              class="string"
-              >"coin-history"</span
-            >, id, days],<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="const">queryFn</span>: () =&gt;
-            <span class="func">fetchHistory</span>(id!, days),<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;enabled: !!id,<br />
-            &nbsp;&nbsp;});
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code
-                >interface ChartResponse { prices: [number, number][] }</code
-              >
-              — tipamos la respuesta cruda de CoinGecko.
-              <code>[number, number][]</code> significa "array de tuplas de 2
-              números".<br />
-              <code
-                >data.prices.map(([ts, price]) =&gt; ({timestamp: ts,
-                price}))</code
-              >
-              — transformamos la tupla en un objeto con nombre. En TS,
-              <code>[ts, price]</code> es
-              <strong>destructuring de array</strong>: el primer elemento va a
-              <code>ts</code>, el segundo a <code>price</code>.<br />
-              <strong>¿Porqué "365 días"?</strong> CoinGecko Demo API solo
-              permite histórico hasta 365 días atrás. Con plan Pro obtienes
-              datos desde 2010.
-            </div>
-          </div>
         </div>
 
-        <!-- 2.4 -->
         <div class="card" id="fase2-4" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="2.4">
-            <span class="status-dot status-pending"></span> 2.4 —
-            <code>src/api/auth.ts</code> (login mutation)
+            <input type="checkbox" class="task-checkbox" data-task="2.4" />
+            <span class="status-dot status-pending"></span> 2.4 — Eliminar
+            reqres.in
           </h3>
           <p>
-            Hook de mutación para login con reqres.in (temporal). Cuando migres
-            a Supabase, solo cambiarás el cuerpo de la mutation.
+            Borrar <code>src/context/UserContext.tsx</code>. Verificar que no
+            quedan referencias a <code>reqres.in</code>, <code>eve.holt@</code>,
+            <code>UserContext</code> en el código.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useMutation }
-            <span class="keyword">from</span>
-            <span class="string">"@tanstack/react-query"</span>;<br />
-            <span class="keyword">import</span> axios
-            <span class="keyword">from</span>
-            <span class="string">"axios"</span>;<br />
-            <span class="keyword">import</span> { useAuthStore }
-            <span class="keyword">from</span>
-            <span class="string">"../stores/authStore"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">LoginCredentials</span> }
-            <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br /><br />
-            <span class="keyword">interface</span>
-            <span class="type">LoginResponse</span> {<br />
-            &nbsp;&nbsp;token: string;<br />
-            }<br /><br />
-            <span class="keyword">export const</span>
-            <span class="const">useLoginMutation</span> = () =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span>
-            <span class="func">setSession</span> = useAuthStore((s) =&gt;
-            s.<span class="func">setSession</span>);<br /><br />
-            &nbsp;&nbsp;<span class="keyword">return</span>
-            <span class="func">useMutation</span>({<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="const">mutationFn</span>:
-            <span class="keyword">async</span> (credentials:
-            <span class="type">LoginCredentials</span>) =&gt; {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
-              >const</span
-            >
-            { data } = <span class="keyword">await</span> axios.<span
-              class="func"
-              >post</span
-            >&lt;<span class="type">LoginResponse</span>&gt;(<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string"
-              >"https://reqres.in/api/login"</span
-            >, credentials<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
-              >return</span
-            >
-            data.token;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;},<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;onSuccess: (token) =&gt; {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="func"
-              >setSession</span
-            >({ id: <span class="string">""</span>, email:
-            <span class="string">""</span>, name:
-            <span class="string">""</span>, avatar_url:
-            <span class="string">""</span> }, token);<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;},<br />
-            &nbsp;&nbsp;});<br />
-            };
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Línea por línea:</strong><br />
-              <code>useMutation</code> — a diferencia de
-              <code>useQuery</code> (que lee datos), <code>useMutation</code> es
-              para operaciones que cambian datos en el servidor (POST, PUT,
-              DELETE).<br />
-              <code>mutationFn</code> — la función que hace la petición POST.
-              Recibe <code>LoginCredentials</code> (desestructurado de
-              <code>useMutation</code>).<br />
-              <code>onSuccess: (token) =&gt; { setSession(...) }</code> —
-              callback que se ejecuta cuando la mutation termina exitosamente.
-              Aquí actualizamos el store de Zustand.<br />
-              <code>useAuthStore((s) =&gt; s.setSession)</code> — suscripción
-              selectiva a Zustand. Solo extraemos <code>setSession</code>, no
-              toda la store. Así este hook no se re-renderiza cuando cambia el
-              token.
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- ====== FASE 3 ====== -->
       <div class="phase" id="fase3">
         <div class="phase-title">
-          <span class="phase-number" style="background: #5f1e1e; color: #fca5a5"
+          <span class="phase-number" style="background: #5f4a1e; color: #fcd34d"
             >3</span
           >
-          Rediseñar rutas — App.tsx
+          CoinGecko + Favoritos API
         </div>
         <p class="phase-desc">
-          Corregir el bucle de render y organizar las rutas con un layout
-          protegido.
+          TanStack Query para CoinGecko (criptos) y Supabase (favoritos del
+          usuario).
         </p>
 
-        <div class="card" data-weight="4">
+        <div class="card" id="fase3-1" data-weight="3">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="3">
-            <span class="status-dot status-pending"></span> App.tsx —
-            reescritura completa
+            <input type="checkbox" class="task-checkbox" data-task="3.1" />
+            <span class="status-dot status-pending"></span> 3.1 —
+            <code>useCoins</code>
           </h3>
           <p>
-            <strong>Antes:</strong> <code>&lt;App /&gt;</code> se renderizaba a
-            sí mismo dentro de <code>/criptomonedas</code> → bucle infinito.
+            Hook para obtener las 100 criptos principales desde
+            <code>/coins/markets</code> con <code>vs_currency=usd</code>,
+            <code>order=market_cap_desc</code>.
           </p>
+        </div>
+
+        <div class="card" id="fase3-2" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="3.2" />
+            <span class="status-dot status-pending"></span> 3.2 —
+            <code>useCoinDetail</code>
+          </h3>
           <p>
-            <strong>Ahora:</strong> <code>&lt;App /&gt;</code> solo define
-            rutas, no providers. Usa un componente <code>Protected</code> para
-            redirigir a login si no hay token.
+            <code>/coins/markets?ids=bitcoin</code>.
+            <code>enabled: !!id</code> para no ejecutar con
+            <code>id</code> undefined.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { Navigate, Route, Routes }
-            <span class="keyword">from</span>
-            <span class="string">"react-router-dom"</span>;<br />
-            <span class="keyword">import</span> AppLayout
-            <span class="keyword">from</span>
-            <span class="string">"./components/AppLayout"</span>;<br />
-            <span class="keyword">import</span> Home
-            <span class="keyword">from</span>
-            <span class="string">"./Home"</span>;<br />
-            <span class="keyword">import</span> Profile
-            <span class="keyword">from</span>
-            <span class="string">"./components/Profile"</span>;<br />
-            <span class="keyword">import</span> LayoutCrypto
-            <span class="keyword">from</span>
-            <span class="string">"./components/LayoutCrypto"</span>;<br />
-            <span class="keyword">import</span> CriptoPage
-            <span class="keyword">from</span>
-            <span class="string">"./components/CriptoPage"</span>;<br />
-            <span class="keyword">import</span> Login
-            <span class="keyword">from</span>
-            <span class="string">"./components/Login"</span>;<br />
-            <span class="keyword">import</span> Pagina404
-            <span class="keyword">from</span>
-            <span class="string">"./components/404"</span>;<br />
-            <span class="keyword">import</span> { useAuthStore }
-            <span class="keyword">from</span>
-            <span class="string">"./stores/authStore"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">Protected</span> = ({ children }: { children:
-            React.<span class="type">ReactNode</span> }) =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> token =
-            <span class="func">useAuthStore</span>((s) =&gt; s.token);<br />
-            &nbsp;&nbsp;<span class="keyword">return</span> token ?
-            &lt;&gt;{children}&lt;/&gt; : &lt;Navigate to="/login" /&gt;;<br />
-            };<br /><br />
-            <span class="keyword">const</span> App = () =&gt; (<br />
-            &nbsp;&nbsp;&lt;Routes&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/login" element={&lt;Login
-            /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route element={<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Protected&gt;&lt;AppLayout
-            /&gt;&lt;/Protected&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/"
-            element={&lt;Home /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/perfil"
-            element={&lt;Profile /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/criptomonedas"
-            element={&lt;LayoutCrypto /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route
-            path="/criptomonedas/:id" element={&lt;CriptoPage /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Route&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="*" element={&lt;Pagina404
-            /&gt;} /&gt;<br />
-            &nbsp;&nbsp;&lt;/Routes&gt;<br />
-            );<br /><br />
-            <span class="keyword">export default</span> App;
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>¿Qué cambió?</strong><br />
-              <strong>1.</strong> <code>&lt;Route element={...}&gt;</code> ahora
-              usa <code>&lt;AppLayout /&gt;</code> envuelto en
-              <code>&lt;Protected&gt;</code>, no <code>&lt;App /&gt;</code>. No
-              más bucle.<br />
-              <strong>2.</strong> <code>&lt;Protected&gt;</code> es un
-              componente que verifica si hay token en el store. Si no hay,
-              redirige a <code>/login</code>.<br />
-              <strong>3.</strong> <code>UserContextProvider</code> desapareció —
-              lo reemplaza <code>useAuthStore</code>.<br />
-              <strong>4.</strong> Los imports ya no tienen extensión
-              <code>.tsx</code> — TS resuelve solo.
-            </div>
-          </div>
+        </div>
+
+        <div class="card" id="fase3-3" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="3.3" />
+            <span class="status-dot status-pending"></span> 3.3 —
+            <code>useCoinHistory</code>
+          </h3>
+          <p>
+            <code>/coins/{id}/market_chart?vs_currency=usd&amp;days=N</code>.
+            Mapear <code>[ts, price][]</code> → <code>CoinHistoryPoint[]</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase3-4" data-weight="4">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="3.4" />
+            <span class="status-dot status-pending"></span> 3.4 —
+            <code>useFavorites</code> (nuevo)
+          </h3>
+          <p>3 hooks contra Supabase:</p>
+          <ul>
+            <li>
+              <code>useFavorites()</code> →
+              <code>.from("favorites").select("*")</code>
+            </li>
+            <li>
+              <code>useAddFavorite()</code> → <code>.insert(...)</code> +
+              <code>invalidateQueries</code>
+            </li>
+            <li>
+              <code>useRemoveFavorite()</code> →
+              <code>.delete().eq("id", id)</code> +
+              <code>invalidateQueries</code>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" id="fase3-5" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="3.5" />
+            <span class="status-dot status-pending"></span> 3.5 — Conectar
+            componentes
+          </h3>
+          <p>
+            <code>LayoutCrypto</code> usa <code>useCoins()</code>;
+            <code>CriptoPage</code> usa <code>useCoinDetail</code> +
+            <code>useCoinHistory</code>. Eliminar <code>useData.ts</code>.
+          </p>
         </div>
       </div>
 
       <!-- ====== FASE 4 ====== -->
       <div class="phase" id="fase4">
         <div class="phase-title">
-          <span class="phase-number" style="background: #5f2d5f; color: #d8b4fe"
+          <span class="phase-number" style="background: #1e3a5f; color: #93c5fd"
             >4</span
           >
-          Convertir componentes a TanStack Query + tipos
+          Componentes TSX + fixes
         </div>
         <p class="phase-desc">
-          Reemplazar <code>useData()</code> por hooks de TanStack Query, tipar
-          props, corregir nombres de campos (CoinCap → CoinGecko).
+          Tipar props, corregir bugs de a11y/rendimiento, eliminar
+          <code>useContext</code>.
         </p>
 
-        <!-- 4.1 -->
-        <div class="card" id="fase4-1" data-weight="4">
+        <div class="card" id="fase4-1" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.1">
+            <input type="checkbox" class="task-checkbox" data-task="4.1" />
             <span class="status-dot status-pending"></span> 4.1 —
-            LayoutCrypto.tsx (antes Cuadricula)
+            <code>Loading</code>
           </h3>
           <p>
-            Reemplazar <code>useData("assets", true)</code> por
-            <code>useCoins()</code>. Además corregir el
-            <code>export default</code>.
+            Añadir <code>role="status"</code> +
+            <code>aria-live="polite"</code> +
+            <code>aria-label="Cargando"</code>.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> Elemento
-            <span class="keyword">from</span>
-            <span class="string">"./Element"</span>;<br />
-            <span class="keyword">import</span> Loading
-            <span class="keyword">from</span>
-            <span class="string">"./Loading"</span>;<br />
-            <span class="keyword">import</span> { useCoins }
-            <span class="keyword">from</span>
-            <span class="string">"../api/coins"</span>;&nbsp;&nbsp;<span
-              class="comment"
-              >&lt;-- NUEVO</span
-            ><br />
-            <span class="keyword">import</span>
-            <span class="string">"../css/Cuadricula.css"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">LayoutCrypto</span> = () =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data: coins,
-            isLoading, error } =
-            <span class="func">useCoins</span>();<br /><br />
-            &nbsp;&nbsp;<span class="keyword">if</span> (isLoading)
-            <span class="keyword">return</span> &lt;Loading /&gt;;<br />
-            &nbsp;&nbsp;<span class="keyword">if</span> (error)
-            <span class="keyword">return</span> &lt;p&gt;Error:
-            {error.message}&lt;/p&gt;;<br /><br />
-            &nbsp;&nbsp;<span class="keyword">return</span> (<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1
-            className="titulo-cuadricula"&gt;Lista de
-            Criptomonedas&lt;/h1&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
-            className="container"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{coins?.<span
-              class="func"
-              >map</span
-            >((coin) =&gt; (<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Elemento
-            key={coin.id} coin={coin} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/&gt;<br />
-            &nbsp;&nbsp;);<br />
-            };<br /><br />
-            <span class="keyword">export default</span>
-            LayoutCrypto;&nbsp;&nbsp;<span class="comment"
-              >&lt;-- CORREGIDO</span
-            >
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Cambios clave:</strong><br />
-              <code>const { data: coins, isLoading, error } = useCoins()</code>
-              — desestructuramos con alias. <code>data</code> se renombra a
-              <code>coins</code> para que el componente existente funcione.<br />
-              <code>coins?.map(...)</code> — <code>?.</code> (optional
-              chaining): si <code>coins</code> es null/undefined, no llama a
-              map. Sin esto TS se queja porque <code>data</code> puede ser
-              <code>undefined</code>.<br />
-              <code>&lt;Elemento key={coin.id} coin={coin} /&gt;</code> — ahora
-              pasamos el objeto <code>coin</code> completo en vez de props
-              sueltas. Esto simplifica.<br />
-              <code>export default LayoutCrypto</code> — coincide con el nombre
-              de la función. El bug anterior era que decía
-              <code>Cuadricula</code>.
-            </div>
-          </div>
         </div>
 
-        <!-- 4.2 -->
-        <div class="card" id="fase4-2" data-weight="3">
+        <div class="card" id="fase4-2" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.2">
-            <span class="status-dot status-pending"></span> 4.2 — Element.tsx
-            (props tipadas)
+            <input type="checkbox" class="task-checkbox" data-task="4.2" />
+            <span class="status-dot status-pending"></span> 4.2 —
+            <code>Element</code>
           </h3>
           <p>
-            Ahora recibe <code>coin: Coin</code> en vez de props sueltas.
-            Mapeamos los nuevos nombres de CoinGecko.
+            Props <code>{ coin: Coin }</code>; mapeo CoinGecko;
+            <code>React.memo</code>; botón favorito; <code>&lt;h1&gt;</code> →
+            <code>&lt;h2&gt;</code>; fix <code>FormatNumber</code> (recibe
+            <code>number</code>).
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { Link }
-            <span class="keyword">from</span>
-            <span class="string">"react-router-dom"</span>;<br />
-            <span class="keyword">import type</span> {
-            <span class="type">Coin</span> } <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br />
-            <span class="keyword">import</span> FormatNumber
-            <span class="keyword">from</span>
-            <span class="string">"../helpers/FormatNumber"</span>;<br />
-            <span class="keyword">import</span> RedAndGreen
-            <span class="keyword">from</span>
-            <span class="string">"../helpers/RedAndGreen"</span>;<br />
-            <span class="keyword">import</span> ChangeEmoji
-            <span class="keyword">from</span>
-            <span class="string">"../helpers/ChangeEmoji"</span>;<br /><br />
-            <span class="keyword">interface</span>
-            <span class="type">Props</span> {<br />
-            &nbsp;&nbsp;coin: <span class="type">Coin</span>;<br />
-            }<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">Elemento</span> = ({ coin }:
-            <span class="type">Props</span>) =&gt; (<br />
-            &nbsp;&nbsp;&lt;Link to={<span class="string"
-              >`/criptomonedas/${coin.id}`</span
-            >}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="elemento"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src={coin.image}
-            alt={coin.name} width={40} /&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2
-            className="nombre-elemento"&gt;{coin.name}&lt;/h2&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p
-            className="simbolo-elemento"&gt;{coin.symbol}&lt;/p&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p
-            className="precio-elemento"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="func"
-              >FormatNumber</span
-            >(coin.current_price)}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p className={<span
-              class="func"
-              >RedAndGreen</span
-            >(coin.price_change_percentage_24h)}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{coin.price_change_percentage_24h?.<span
-              class="func"
-              >toFixed</span
-            >(<span class="number">3</span>)}%<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="func"
-              >ChangeEmoji</span
-            >(coin.price_change_percentage_24h)}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-            &nbsp;&nbsp;&lt;/Link&gt;<br />
-            );<br /><br />
-            <span class="keyword">export default</span> Elemento;
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <strong>Mapeo de nombres CoinCap → CoinGecko:</strong><br />
-              <code>priceUsd</code> → <code>current_price</code><br />
-              <code>changePercent24Hr</code> →
-              <code>price_change_percentage_24h</code><br />
-              <code>rank</code> → <code>market_cap_rank</code> (ya no se usa en
-              Element, pero está disponible)<br /><br />
-              <strong>?.</strong> (optional chaining en
-              <code>price_change_percentage_24h?.toFixed(3)</code>): si el campo
-              es null, no llama a toFixed. Previene crash en runtime.
-            </div>
-          </div>
         </div>
 
-        <!-- 4.3 -->
-        <div class="card" id="fase4-3" data-weight="5">
+        <div class="card" id="fase4-3" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.3">
-            <span class="status-dot status-pending"></span> 4.3 — CriptoPage.tsx
-            (reemplazar useData)
+            <input type="checkbox" class="task-checkbox" data-task="4.3" />
+            <span class="status-dot status-pending"></span> 4.3 —
+            <code>404</code>
+          </h3>
+          <p>Import <code>../assets/</code>; tipar.</p>
+        </div>
+
+        <div class="card" id="fase4-4" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.4" />
+            <span class="status-dot status-pending"></span> 4.4 —
+            <code>LayoutCrypto</code>
           </h3>
           <p>
-            Reemplazar los dos <code>useData()</code> por
-            <code>useCoinDetail()</code> y <code>useCoinHistory()</code>.
-            Simplificar el manejo de URLs.
+            <code>useCoins()</code> en vez de <code>useData</code>; export
+            correcto; un solo <code>&lt;h1&gt;</code>.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useParams }
-            <span class="keyword">from</span>
-            <span class="string">"react-router-dom"</span>;<br />
-            <span class="keyword">import</span> { useState }
-            <span class="keyword">from</span>
-            <span class="string">"react"</span>;<br />
-            <span class="keyword">import</span> { useCoinDetail }
-            <span class="keyword">from</span>
-            <span class="string">"../api/coinDetail"</span>;<br />
-            <span class="keyword">import</span> { useCoinHistory }
-            <span class="keyword">from</span>
-            <span class="string">"../api/coinHistory"</span>;<br />
-            <span class="keyword">import</span> CriptoInfo
-            <span class="keyword">from</span>
-            <span class="string">"./CriptoInfo"</span>;<br />
-            <span class="keyword">import</span> CriptoGrafica
-            <span class="keyword">from</span>
-            <span class="string">"./CriptoGraph"</span>;<br />
-            <span class="keyword">import</span> Loading
-            <span class="keyword">from</span>
-            <span class="string">"./Loading"</span>;<br />
-            <span class="keyword">import</span>
-            <span class="string">"../css/CriptoPage.css"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">CriptoPage</span> = () =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { id } =
-            <span class="func">useParams</span>();<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> [days, setDays] =
-            useState(<span class="string">"1"</span>);&nbsp;&nbsp;<span
-              class="comment"
-              >// "1", "7", "30", "365"</span
-            ><br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data: coin,
-            isLoading: loadingCoin, error: errCoin } =
-            <span class="func">useCoinDetail</span>(id);<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> { data: history,
-            isLoading: loadingHistory } =
-            <span class="func">useCoinHistory</span>(id, days);<br /><br />
-            &nbsp;&nbsp;<span class="keyword">if</span> (loadingCoin ||
-            loadingHistory) <span class="keyword">return</span> &lt;Loading
-            /&gt;;<br />
-            &nbsp;&nbsp;<span class="keyword">if</span> (errCoin)
-            <span class="keyword">return</span> &lt;p&gt;Error:
-            {errCoin.message}&lt;/p&gt;;<br /><br />
-            &nbsp;&nbsp;<span class="keyword">return</span> (<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="container-main"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"
-              >{/* select de días */}</span
-            ><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
-            className="filtros-superiores"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;select
-            value={days} onChange={(e) =&gt;
-            <span class="func">setDays</span>(e.target.value)}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option
-            value="1"&gt;1 Día&lt;/option&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option
-            value="7"&gt;7 Días&lt;/option&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option
-            value="30"&gt;30 Días&lt;/option&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option
-            value="365"&gt;1 Año&lt;/option&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
-            className="info-y-grafica"&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{coin &&
-            &lt;CriptoInfo coin={coin} /&gt;}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{history &&
-            &lt;CriptoGrafica history={history} /&gt;}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-            &nbsp;&nbsp;);<br />
-            };
-          </div>
-          <div class="alert alert-warning">
-            <span class="icon">⚠️</span>
-            <div>
-              <strong>Simplificación grande:</strong> Antes tenías 70+ líneas de
-              manejo manual de URLs, fechas, límites, errores. Ahora
-              <code>useCoinHistory(id, "7")</code> hace todo internamente. El
-              estado local se reduce a <code>days</code> (string).<br />
-              El <code>useEffect</code> que llamaba a
-              <code>setErrorDate</code> se elimina porque la validación de
-              fechas la hacía CoinCap, no CoinGecko.
-            </div>
-          </div>
         </div>
 
-        <!-- 4.4 -->
-        <div class="card" id="fase4-4" data-weight="3">
+        <div class="card" id="fase4-5" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.4">
-            <span class="status-dot status-pending"></span> 4.4 — CriptoInfo.tsx
-            (props tipadas)
-          </h3>
-          <p>
-            Recibe <code>coin: Coin</code> en vez de
-            <code>criptos</code> (genérico sin tipo).
-          </p>
-          <p>Mapeo de campos (los mismos que en Element):</p>
-          <div class="map-grid">
-            <div class="map-header">Campo CoinCap (viejo)</div>
-            <div class="map-header">Campo CoinGecko (nuevo)</div>
-            <div class="map-cell">criptos.name</div>
-            <div class="map-cell">coin.name</div>
-            <div class="map-cell">criptos.rank</div>
-            <div class="map-cell">coin.market_cap_rank</div>
-            <div class="map-cell">criptos.symbol</div>
-            <div class="map-cell">coin.symbol</div>
-            <div class="map-cell">criptos.priceUsd</div>
-            <div class="map-cell">coin.current_price</div>
-            <div class="map-cell">criptos.changePercent24Hr</div>
-            <div class="map-cell">coin.price_change_percentage_24h</div>
-            <div class="map-cell">criptos.vwap24Hr</div>
-            <div class="map-cell">
-              (calcular de total_volume / circulating_supply o null)
-            </div>
-            <div class="map-cell">criptos.volumeUsd24Hr</div>
-            <div class="map-cell">coin.total_volume</div>
-            <div class="map-cell">criptos.marketCapUsd</div>
-            <div class="map-cell">coin.market_cap</div>
-            <div class="map-cell">criptos.supply</div>
-            <div class="map-cell">coin.circulating_supply</div>
-            <div class="map-cell">criptos.maxSupply</div>
-            <div class="map-cell">coin.max_supply</div>
-          </div>
-        </div>
-
-        <!-- 4.5 -->
-        <div class="card" id="fase4-5" data-weight="3">
-          <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.5">
+            <input type="checkbox" class="task-checkbox" data-task="4.5" />
             <span class="status-dot status-pending"></span> 4.5 —
-            CriptoGraph.tsx
+            <code>CriptoInfo</code>
           </h3>
-          <p>Recibe <code>history: CoinHistoryPoint[]</code>.</p>
-          <div class="code-block">
-            <span class="keyword">import type</span> {
-            <span class="type">CoinHistoryPoint</span> }
-            <span class="keyword">from</span>
-            <span class="string">"../types"</span>;<br />
-            <span class="keyword">import</span> { Line }
-            <span class="keyword">from</span>
-            <span class="string">"react-chartjs-2"</span>;<br />
-            <span class="comment">// ... imports de Chart.js</span><br /><br />
-            <span class="keyword">interface</span>
-            <span class="type">Props</span> {<br />
-            &nbsp;&nbsp;history:
-            <span class="type">CoinHistoryPoint</span>[];<br />
-            }<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">CriptoGraph</span> = ({ history }:
-            <span class="type">Props</span>) =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> labels =
-            history.<span class="func">map</span>((p) =&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span>
-            <span class="type">Date</span>(p.timestamp).<span class="func"
-              >toLocaleDateString</span
-            >()<br />
-            &nbsp;&nbsp;);<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> prices =
-            history.<span class="func">map</span>((p) =&gt; p.price);<br />
-            &nbsp;&nbsp;<span class="comment">// ... resto igual</span><br />
-            };
-          </div>
+          <p>
+            Props <code>{ coin: Coin }</code>; mapeo CoinCap→CoinGecko; fix
+            <code>NaN</code> con <code>maxSupply ?? "—"</code>.
+          </p>
         </div>
 
-        <!-- 4.6 -->
-        <div class="card" id="fase4-6" data-weight="3">
+        <div class="card" id="fase4-6" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.6">
-            <span class="status-dot status-pending"></span> 4.6 — Menu.tsx +
-            Profile.tsx (conectar authStore)
+            <input type="checkbox" class="task-checkbox" data-task="4.6" />
+            <span class="status-dot status-pending"></span> 4.6 —
+            <code>CriptoGraph</code>
           </h3>
           <p>
-            Reemplazar <code>useContext(UserContext)</code> por
-            <code>useAuthStore()</code>.
+            Props <code>{ history: CoinHistoryPoint[] }</code>;
+            <code>useMemo</code> para <code>data</code>/<code>options</code>;
+            <code>role="img"</code> + <code>aria-label</code>; colores del tema.
           </p>
-          <div class="code-block">
-            <span class="comment">// Menu.tsx — antes:</span><br />
-            <span class="keyword">const</span> usuario =
-            <span class="func">useContext</span>(UserContext);&nbsp;&nbsp;<span
-              class="comment"
-              >// sin tipo</span
-            ><br /><br />
-            <span class="comment">// Menu.tsx — después:</span><br />
-            <span class="keyword">const</span> user =
-            <span class="func">useAuthStore</span>((s) =&gt;
-            s.user);&nbsp;&nbsp;<span class="comment"
-              >// tipado como AuthUser | null</span
-            ><br />
-            <span class="keyword">const</span> logout =
-            <span class="func">useAuthStore</span>((s) =&gt; s.logout);<br /><br />
-            <span class="comment">// Donde decía usuario.first_name:</span
-            ><br />
-            {user?.name ||
-            <span class="string">"Usuario"</span>}&nbsp;&nbsp;<span
-              class="comment"
-              >// ?. evita crash si user es null</span
-            >
-          </div>
-          <div class="alert alert-info">
-            <span class="icon">📖</span>
-            <div>
-              <code>useAuthStore((s) =&gt; s.user)</code> — suscripción
-              selectiva. Solo este componente se re-renderiza si
-              <code>user</code> cambia. Si otro componente cambia
-              <code>token</code>, Menu no se re-renderiza. Eso es la ventaja de
-              Zustand sobre Context.
-            </div>
-          </div>
         </div>
 
-        <!-- 4.7 -->
-        <div class="card" id="fase4-7" data-weight="3">
+        <div class="card" id="fase4-7" data-weight="2">
           <h3>
-            <input type="checkbox" class="task-checkbox" data-task="4.7">
-            <span class="status-dot status-pending"></span> 4.7 — Login.tsx
-            (corregir errores TS + usar mutation)
+            <input type="checkbox" class="task-checkbox" data-task="4.7" />
+            <span class="status-dot status-pending"></span> 4.7 —
+            <code>CriptoPage</code>
           </h3>
           <p>
-            <strong>Error actual:</strong>
-            <code>useState&lt;string | null&gt;(null)</code> y luego
-            <code>setUser({...user, email})</code> → TypeScript se queja porque
-            no puedes hacer spread de <code>string</code>.
+            Reemplazar 2× <code>useData</code> por <code>useCoinDetail</code> +
+            <code>useCoinHistory</code>; eliminar <code>setState</code> en
+            <code>useEffect</code>; tipar estados.
           </p>
+        </div>
+
+        <div class="card" id="fase4-8" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.8" />
+            <span class="status-dot status-pending"></span> 4.8 —
+            <code>Menu</code>
+          </h3>
           <p>
-            Solución: usar un objeto como estado
-            <code>{email: "", password: ""}</code> y la mutation en vez de axios
-            directo.
+            <code>useAuthStore</code> en vez de <code>useContext</code>;
+            hamburguesa <code>&lt;button&gt;</code> con
+            <code>aria-expanded</code>; logout <code>&lt;button&gt;</code>; fix
+            <code>/perfil</code>; cleanup <code>body.overflow</code>.
           </p>
-          <div class="code-block">
-            <span class="keyword">import</span> { useState }
-            <span class="keyword">from</span>
-            <span class="string">"react"</span>;<br />
-            <span class="keyword">import</span> { Navigate }
-            <span class="keyword">from</span>
-            <span class="string">"react-router-dom"</span>;<br />
-            <span class="keyword">import</span> { useAuthStore }
-            <span class="keyword">from</span>
-            <span class="string">"../stores/authStore"</span>;<br />
-            <span class="keyword">import</span> { useLoginMutation }
-            <span class="keyword">from</span>
-            <span class="string">"../api/auth"</span>;<br />
-            <span class="keyword">import</span>
-            <span class="string">"../css/login.css"</span>;<br /><br />
-            <span class="keyword">const</span>
-            <span class="const">Login</span> = () =&gt; {<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> token =
-            <span class="func">useAuthStore</span>((s) =&gt; s.token);<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> {
-            <span class="func">mutate</span>, isPending, error } =
-            <span class="func">useLoginMutation</span>();<br />
-            &nbsp;&nbsp;<span class="keyword">const</span> [credentials,
-            setCredentials] = useState({<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;email: <span class="string">""</span>,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;password:
-            <span class="string">""</span>,<br />
-            &nbsp;&nbsp;});&nbsp;&nbsp;<span class="comment"
-              >// ✅ objeto, no string | null</span
-            ><br /><br />
-            &nbsp;&nbsp;<span class="keyword">if</span> (token)
-            <span class="keyword">return</span> &lt;Navigate to="/" /&gt;;<br /><br />
-            &nbsp;&nbsp;<span class="keyword">const</span>
-            <span class="func">handleSubmit</span> = (e: React.FormEvent) =&gt;
-            {<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="func">mutate</span
-            >(credentials);&nbsp;&nbsp;<span class="comment"
-              >// ✅ TanStack Query maneja carga/error</span
-            ><br />
-            &nbsp;&nbsp;};<br /><br />
-            &nbsp;&nbsp;<span class="keyword">return</span> (<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;form onSubmit={handleSubmit}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value={credentials.email}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onChange={(e) =&gt;
-            <span class="func">setCredentials</span>({...credentials, email:
-            e.target.value})}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"
-              >{/* ...similar para password */}</span
-            ><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button type="submit"
-            disabled={isPending}&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isPending ?
-            <span class="string">"Cargando..."</span> :
-            <span class="string">"Ingresar"</span>}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br />
-            &nbsp;&nbsp;);<br />
-            };
-          </div>
-          <div class="alert alert-success">
-            <span class="icon">✅</span>
-            <div>
-              <strong>¿Qué arreglamos?</strong><br />
-              <strong>1.</strong>
-              <code>useState({email: "", password: ""})</code> — ahora es un
-              objeto, no <code>string | null</code>. El spread
-              <code>{...credentials, email: e.target.value}</code> funciona sin
-              error TS.<br />
-              <strong>2.</strong> Se eliminó <code>useForm</code> y
-              <code>UserCredentials</code> (ya no están importados, 0 errores de
-              unused).<br />
-              <strong>3.</strong> <code>mutate(credentials)</code> reemplaza a
-              <code>axios.post()</code> + <code>.then</code> +
-              <code>.catch</code> — la mutation maneja loading/error
-              automáticamente.<br />
-              <strong>4.</strong> <code>onSuccess</code> de la mutation guarda
-              en Zustand → <code>token</code> cambia →
-              <code>&lt;Navigate to="/" /&gt;</code> se ejecuta.
-            </div>
-          </div>
+        </div>
+
+        <div class="card" id="fase4-9" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.9" />
+            <span class="status-dot status-pending"></span> 4.9 —
+            <code>Profile</code>
+          </h3>
+          <p>
+            <code>useAuthStore</code> perfil; campos
+            <code>full_name</code>/<code>avatar_url</code>; estado de loading.
+          </p>
+        </div>
+
+        <div class="card" id="fase4-10" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.10" />
+            <span class="status-dot status-pending"></span> 4.10 —
+            <code>Footer</code>
+          </h3>
+          <p>
+            Fix imports; <code>mailto:</code> sin <code>target="_blank"</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase4-11" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.11" />
+            <span class="status-dot status-pending"></span> 4.11 —
+            <code>App.tsx</code>
+          </h3>
+          <p>
+            Verificar <code>&lt;Protected&gt;</code> con <code>session</code>;
+            importar <code>ReactNode</code> correctamente.
+          </p>
+        </div>
+
+        <div class="card" id="fase4-12" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="4.12" />
+            <span class="status-dot status-pending"></span> 4.12 —
+            <code>Home.tsx</code>
+          </h3>
+          <p>
+            Fix CSS + casing; fallback <code>VITE_NAME_PAGE</code> con valor por
+            defecto.
+          </p>
         </div>
       </div>
 
       <!-- ====== FASE 5 ====== -->
       <div class="phase" id="fase5">
         <div class="phase-title">
-          <span class="phase-number" style="background: #2d1f0a; color: #fcd34d"
+          <span class="phase-number" style="background: #5f1e5f; color: #f9a8d4"
             >5</span
           >
-          Limpieza y verificación
+          Favoritos + nueva ruta
         </div>
         <p class="phase-desc">
-          Eliminar archivos muertos, corregir detalles finales y verificar que
-          todo compile.
+          Página dedicada a los favoritos + botón en cada tarjeta + ruta
+          <code>/favoritos</code>.
         </p>
 
-        <div class="card">
-          <h3>🗑️ Archivos para eliminar</h3>
-          <div class="table-wrap">
-            <table>
-              <tr>
-                <th>Archivo</th>
-                <th>Razón</th>
-              </tr>
-              <tr>
-                <td>src/context/UserContext.tsx</td>
-                <td>Reemplazado por authStore (Zustand)</td>
-              </tr>
-              <tr>
-                <td>src/hooks/useData.ts</td>
-                <td>Reemplazado por TanStack Query hooks</td>
-              </tr>
-              <tr>
-                <td>src/components/Cuadricaula.tsx</td>
-                <td>Renombrado a LayoutCrypto (si existe el viejo)</td>
-              </tr>
-            </table>
-          </div>
+        <div class="card" id="fase5-1" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="5.1" />
+            <span class="status-dot status-pending"></span> 5.1 —
+            <code>Favorites.tsx</code> (nuevo)
+          </h3>
+          <p>
+            Lista de <code>useFavorites()</code>. Link a cada cripto. Botón
+            "Quitar" con <code>useRemoveFavorite()</code>. Estado vacío.
+          </p>
         </div>
 
-        <div class="card">
-          <h3>🔧 Correcciones menores</h3>
-          <div class="steps-grid">
-            <div class="step-item">
-              <span class="step-num">1</span>
-              <span class="step-text"
-                >Quitar <code>.tsx</code> de los imports en
-                <code>App.tsx</code> y <code>404.tsx</code> — TS resuelve sin
-                extensión.</span
-              >
-            </div>
-            <div class="step-item">
-              <span class="step-num">2</span>
-              <span class="step-text"
-                >Eliminar <code>PropTypes</code> de todos los componentes —
-                innecesario con TypeScript.</span
-              >
-            </div>
-            <div class="step-item">
-              <span class="step-num">3</span>
-              <span class="step-text"
-                >Revisar que <code>Footer.tsx</code> no tenga referencias a
-                <code>UserContext</code>.</span
-              >
-            </div>
-            <div class="step-item">
-              <span class="step-num">4</span>
-              <span class="step-text"
-                >Agregar <code>src/vite-env.d.ts</code> si no existe (ya lo
-                creamos).</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>🧪 Comandos de verificación</h3>
-          <p>Ejecutar en orden:</p>
+        <div class="card" id="fase5-2" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="5.2" />
+            <span class="status-dot status-pending"></span> 5.2 — Ruta
+            <code>/favoritos</code>
+          </h3>
           <div class="code-block">
-            pnpm build&nbsp;&nbsp;<span class="comment"
-              ># tsc + vite build — debe dar 0 errores</span
-            ><br />
-            pnpm lint&nbsp;&nbsp;&nbsp;<span class="comment"
-              ># eslint — 0 errores</span
-            ><br />
-            pnpm dev&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"
-              ># probar login, lista, detalle, gráfica</span
-            >
+            &lt;Route path=<span class="string">"/favoritos"</span>
+            element={&lt;Favorites /&gt;} /&gt;
           </div>
-          <div class="alert alert-warning">
-            <span class="icon">⚠️</span>
-            <div>
-              Si hay errores de tipo
-              <code>"Cannot find module '../api/coins'"</code>, verifica que el
-              archivo existe y la ruta es correcta. TS no resuelve imports con
-              extensión.
-            </div>
+          <p>Dentro del layout protegido en <code>App.tsx</code>.</p>
+        </div>
+
+        <div class="card" id="fase5-3" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="5.3" />
+            <span class="status-dot status-pending"></span> 5.3 — Link en
+            <code>Menu</code>
+          </h3>
+          <div class="code-block">
+            &lt;NavLink to=<span class="string">"/favoritos"</span>&gt;⭐
+            Favoritos&lt;/NavLink&gt;
           </div>
+        </div>
+
+        <div class="card" id="fase5-4" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="5.4" />
+            <span class="status-dot status-pending"></span> 5.4 — Botón favorito
+            en <code>Element</code>
+          </h3>
+          <p>
+            Estrella llena/vacía según <code>useFavorites()</code>.
+            <code>useAddFavorite</code> / <code>useRemoveFavorite</code>.
+            Visible solo con sesión activa.
+          </p>
+        </div>
+      </div>
+
+      <!-- ====== FASE 6 ====== -->
+      <div class="phase" id="fase6">
+        <div class="phase-title">
+          <span class="phase-number" style="background: #1e5f5f; color: #5eead4"
+            >6</span
+          >
+          Modo oscuro / claro con Context
+          <span class="tag tag-create" style="margin-left: 0.5rem"
+            >pedagógico</span
+          >
+        </div>
+        <p class="phase-desc">
+          Caso de uso legítimo de Context: estado de UI global que cambia poco.
+          Practicamos Context conviviendo con Zustand y TanStack Query.
+        </p>
+
+        <div class="card" id="fase6-1" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="6.1" />
+            <span class="status-dot status-pending"></span> 6.1 —
+            <code>ThemeContext.tsx</code>
+          </h3>
+          <p>
+            <code>ThemeProvider</code>, <code>useTheme()</code>, lazy init desde
+            <code>localStorage</code> + <code>prefers-color-scheme</code>.
+            Exporta <code>theme</code>, <code>toggleTheme</code>,
+            <code>setTheme</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase6-2" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="6.2" />
+            <span class="status-dot status-pending"></span> 6.2 — Script
+            anti-flash en <code>index.html</code>
+          </h3>
+          <p>
+            IIFE al inicio de <code>&lt;head&gt;</code> que lee
+            <code>localStorage</code> y aplica <code>data-theme</code> antes de
+            que cargue React.
+          </p>
+        </div>
+
+        <div class="card" id="fase6-3" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="6.3" />
+            <span class="status-dot status-pending"></span> 6.3 — Variables CSS
+            dark/light
+          </h3>
+          <p>
+            En <code>App.css</code> reemplazar el <code>:root</code> actual por
+            dos bloques: <code>:root, [data-theme="dark"]</code> y
+            <code>[data-theme="light"]</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase6-4" data-weight="3">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="6.4" />
+            <span class="status-dot status-pending"></span> 6.4 — Refactor de
+            los 8 archivos CSS
+          </h3>
+          <p>
+            Reemplazar ~63 valores hardcodeados en <code>spinner.css</code>,
+            <code>404.css</code>, <code>CriptoPage.css</code>,
+            <code>perfil.css</code>, <code>login.css</code>,
+            <code>PieDePagina.css</code>, <code>Cuadricula.css</code>,
+            <code>menu.css</code> por <code>var(--*)</code>.
+          </p>
+        </div>
+
+        <div class="card" id="fase6-5" data-weight="2">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="6.5" />
+            <span class="status-dot status-pending"></span> 6.5 — Integración
+          </h3>
+          <p>
+            <code>main.tsx</code> envuelve con
+            <code>&lt;ThemeProvider&gt;</code>; <code>Menu</code> muestra
+            <code>&lt;ThemeToggle /&gt;</code>; <code>CriptoGraph</code> usa
+            <code>useTheme()</code> + <code>useMemo([theme])</code> para
+            colores.
+          </p>
+        </div>
+      </div>
+
+      <!-- ====== FASE 7 ====== -->
+      <div class="phase" id="fase7">
+        <div class="phase-title">
+          <span class="phase-number" style="background: #2d1f0a; color: #fcd34d"
+            >7</span
+          >
+          Limpieza y verificación final
+        </div>
+        <p class="phase-desc">
+          Eliminar código muerto, verificar build, lint y flujos end-to-end.
+        </p>
+
+        <div class="card" data-weight="4">
+          <h3>
+            <input type="checkbox" class="task-checkbox" data-task="7" />
+            <span class="status-dot status-pending"></span> Build + lint + smoke
+            test
+          </h3>
+          <ul>
+            <li><code>pnpm build</code> → 0 errores TS y Vite</li>
+            <li>
+              <code>pnpm lint</code> → 0 errores (incluido
+              <code>react-compiler/react-compiler</code>)
+            </li>
+            <li>
+              Probar: login Google/Facebook/GitHub, login email, registro,
+              logout, lista, detalle, gráfica, favoritos, tema, 404, perfil
+            </li>
+            <li>
+              Eliminar <code>date-fns</code>, <code>react-date-range</code> si
+              no se usan
+            </li>
+            <li>
+              Verificar que no queden imports a <code>reqres.in</code>,
+              <code>UserContext</code>, <code>useData</code>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -2251,83 +1753,113 @@
           <div class="file-tree">
             <span class="dir">📁 src/</span><br />
             <span class="dir indent">📁 api/</span><br />
-            <span class="file indent2">📄 coins.ts</span><br />
+            <span class="file indent2">📄 auth.ts</span><br />
+            <span class="file indent2">📄 coin.ts</span><br />
             <span class="file indent2">📄 coinDetail.ts</span><br />
             <span class="file indent2">📄 coinHistory.ts</span><br />
-            <span class="file indent2">📄 auth.ts</span><br />
+            <span class="file indent2">📄 favorites.ts</span>
+            <span class="comment" style="color: #6ee7b7">★ nuevo</span><br />
             <span class="dir indent">📁 stores/</span><br />
-            <span class="file indent2">📄 authStore.ts</span><br />
+            <span class="file indent2">📄 authStore.ts</span>
+            <span class="comment" style="color: #fcd34d">refactor</span><br />
+            <span class="dir indent">📁 context/</span><br />
+            <span class="file indent2">📄 ThemeContext.tsx</span>
+            <span class="comment" style="color: #6ee7b7">★ nuevo</span><br />
             <span class="dir indent">📁 lib/</span><br />
-            <span class="file indent2">📄 axios.ts</span><br />
+            <span class="file indent2">📄 axios.ts</span>
+            <span class="comment" style="color: #93c5fd">CoinGecko</span><br />
+            <span class="file indent2">📄 supabaseClient.ts</span>
+            <span class="comment" style="color: #6ee7b7">★ nuevo</span><br />
             <span class="dir indent">📁 types/</span><br />
-            <span class="file indent2">📄 index.ts</span><br />
+            <span class="file indent2">📄 index.ts</span>
+            <span class="comment" style="color: #fcd34d">ampliado</span><br />
             <span class="dir indent">📁 components/</span><br />
             <span class="file indent2">📄 AppLayout.tsx</span><br />
-            <span class="file indent2">📄 Menu.tsx</span><br />
-            <span class="file indent2">📄 Footer.tsx</span><br />
-            <span class="file indent2">📄 Login.tsx</span><br />
-            <span class="file indent2">📄 LayoutCrypto.tsx</span><br />
+            <span class="file indent2">📄 Menu.tsx</span>
+            <span class="comment" style="color: #fcd34d">+ThemeToggle</span
+            ><br />
+            <span class="file indent2">📄 Footer.tsx</span>
+            <span class="comment" style="color: #fcd34d">fix imports</span
+            ><br />
+            <span class="file indent2">📄 Login.tsx</span>
+            <span class="comment" style="color: #fca5a5">Supabase</span><br />
+            <span class="file indent2">📄 LayoutCrypto.tsx</span>
+            <span class="comment" style="color: #fca5a5">fix export</span><br />
             <span class="file indent2">📄 CriptoPage.tsx</span><br />
             <span class="file indent2">📄 CriptoInfo.tsx</span><br />
-            <span class="file indent2">📄 CriptoGraph.tsx</span><br />
-            <span class="file indent2">📄 Element.tsx</span><br />
-            <span class="file indent2">📄 Loading.tsx</span><br />
-            <span class="file indent2">📄 404.tsx</span><br />
+            <span class="file indent2">📄 CriptoGraph.tsx</span>
+            <span class="comment" style="color: #fcd34d">+useMemo tema</span
+            ><br />
+            <span class="file indent2">📄 Element.tsx</span>
+            <span class="comment" style="color: #fcd34d">+memo +fav</span><br />
+            <span class="file indent2">📄 Loading.tsx</span>
+            <span class="comment" style="color: #93c5fd">+a11y</span><br />
+            <span class="file indent2">📄 404.tsx</span>
+            <span class="comment" style="color: #fcd34d">fix import</span><br />
             <span class="file indent2">📄 Profile.tsx</span><br />
-            <span class="dir indent">📁 helpers/</span><br />
-            <span class="file indent2">📄 FormatNumber.ts</span><br />
-            <span class="file indent2">📄 ChangeEmoji.ts</span><br />
-            <span class="file indent2">📄 RedAndGreen.ts</span><br />
-            <span class="dir indent">📁 css/</span>
+            <span class="file indent2">📄 Favorites.tsx</span>
+            <span class="comment" style="color: #6ee7b7">★ nuevo</span><br />
+            <span class="file indent2">📄 ThemeToggle.tsx</span>
+            <span class="comment" style="color: #6ee7b7">★ nuevo</span><br />
+            <span class="dir indent">📁 helpers/</span>
             <span class="comment" style="color: #5b6b9a">(sin cambios)</span
+            ><br />
+            <span class="dir indent">📁 css/</span>
+            <span class="comment" style="color: #5b6b9a"
+              >refactor a variables</span
             ><br />
             <span class="dir indent">📁 assets/</span>
             <span class="comment" style="color: #5b6b9a">(sin cambios)</span
             ><br />
             <span class="file indent">📄 App.tsx</span><br />
-            <span class="file indent">📄 App.css</span><br />
-            <span class="file indent">📄 Home.tsx</span><br />
+            <span class="file indent">📄 App.css</span>
+            <span class="comment" style="color: #fcd34d">+tema</span><br />
+            <span class="file indent">📄 Home.tsx</span>
+            <span class="comment" style="color: #fca5a5">fix casing</span><br />
             <span class="file indent">📄 Home.css</span><br />
-            <span class="file indent">📄 main.tsx</span><br />
+            <span class="file indent">📄 main.tsx</span>
+            <span class="comment" style="color: #fcd34d">+providers</span><br />
             <span class="file indent">📄 vite-env.d.ts</span>
+            <span class="comment" style="color: #fcd34d">+ImportMetaEnv</span
+            ><br />
           </div>
         </div>
 
         <div class="card">
-          <h3>💡 Resumen de lo que se elimina vs lo que se crea</h3>
-          <div class="comparison">
-            <div>
-              <div class="label old">❌ Se elimina</div>
-              <ul style="color: #fca5a5">
-                <li><code>UserContext.tsx</code></li>
-                <li><code>useData.ts</code></li>
-                <li><code>VITE_API_URL / KEY</code> (env)</li>
-                <li><code>VITE_URL_lOGIN / KEY</code> (env)</li>
-                <li>PropTypes en todos los comps</li>
-                <li>Imports con extensión .tsx</li>
-              </ul>
-            </div>
-            <div>
-              <div class="label new">✅ Se crea/modifica</div>
-              <ul style="color: #6ee7b7">
-                <li><code>src/api/</code> (4 hooks)</li>
-                <li><code>src/stores/authStore.ts</code></li>
-                <li><code>src/lib/axios.ts</code></li>
-                <li><code>src/types/index.ts</code></li>
-                <li><code>src/main.tsx</code> (reescrito)</li>
-                <li><code>src/App.tsx</code> (rutas corregidas)</li>
-                <li>Todos los .tsx componentes tipados</li>
-              </ul>
-            </div>
+          <h3>🗑️ Archivos eliminados</h3>
+          <ul>
+            <li>
+              <code>src/context/UserContext.tsx</code> (reemplazado por Zustand
+              + Supabase)
+            </li>
+            <li>
+              <code>src/hooks/useData.ts</code> (reemplazado por TanStack Query)
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🌐 Variables de entorno finales (<code>.env</code>)</h3>
+          <div class="code-block">
+            VITE_NAME_PAGE=CriptoBro<br />
+            VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3<br />
+            VITE_COINGECKO_API_KEY=tu_demo_key_aqui<br />
+            VITE_SUPABASE_URL=https://tu-proyecto.supabase.co<br />
+            VITE_SUPABASE_ANON_KEY=sb_publishable_tu_key_aqui
           </div>
+          <p style="margin-top: 0.75rem; color: #94a3b8; font-size: 0.85rem">
+            ⚠️ La API key de CoinGecko y el <code>anon key</code> de Supabase
+            viajan en el bundle. Aceptable para práctica sin backend; en
+            producción se debería usar Edge Functions.
+          </p>
         </div>
       </div>
 
       <!-- FOOTER -->
       <footer class="footer">
         <p>
-          CriptoBro — Plan de Refactor · Documentación generada para aprendizaje
-          de TypeScript
+          CriptoBro — Plan de Refactor v2 · Documentación para aprendizaje de
+          TypeScript
         </p>
       </footer>
     </main>
@@ -2366,24 +1898,32 @@
           progressFill.style.width = pct + "%";
 
           const descriptions = [];
-          if (pct === 0) descriptions.push("Sin comenzar");
-          else if (pct < 25) descriptions.push("Deps instaladas + archivos renombrados");
-          else if (pct < 50) descriptions.push("Capa de datos construida");
-          else if (pct < 75) descriptions.push("Componentes convirtiendo a TSX");
-          else if (pct < 100) descriptions.push("Casi listo — limpieza final");
+          if (pct === 0) descriptions.push("Marca las tareas completadas");
+          else if (pct < 15) descriptions.push("Arreglando build");
+          else if (pct < 30) descriptions.push("Infraestructura lista");
+          else if (pct < 50) descriptions.push("Auth funcionando");
+          else if (pct < 70) descriptions.push("Datos en pantalla");
+          else if (pct < 90) descriptions.push("Casi listo");
           else descriptions.push("Refactor completo");
 
           progressText.innerHTML =
-            'Progreso: <strong style="color: #e2e8f0">' + pct + "%</strong> — " + descriptions[0];
+            'Progreso: <strong style="color: #e2e8f0">' +
+            pct +
+            "%</strong> — " +
+            descriptions[0];
 
-          document.querySelectorAll("[data-sidebar-task]").forEach(function (link) {
-            const task = link.getAttribute("data-sidebar-task");
-            const cb = document.querySelector('.task-checkbox[data-task="' + task + '"]');
-            const check = link.querySelector(".sidebar-check");
-            if (cb && check) {
-              check.style.display = cb.checked ? "inline" : "none";
-            }
-          });
+          document
+            .querySelectorAll("[data-sidebar-task]")
+            .forEach(function (link) {
+              const task = link.getAttribute("data-sidebar-task");
+              const cb = document.querySelector(
+                '.task-checkbox[data-task="' + task + '"]',
+              );
+              const check = link.querySelector(".sidebar-check");
+              if (cb && check) {
+                check.style.display = cb.checked ? "inline" : "none";
+              }
+            });
         }
 
         function updateCardAppearance(card, checked) {
