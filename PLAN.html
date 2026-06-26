@@ -1245,6 +1245,37 @@
             <code>session</code>, <code>user</code>, <code>profile</code>,
             <code>loading</code>.
           </p>
+          <div class="alert alert-warning">
+            <span class="icon">⚠️</span>
+            <div>
+              <strong>Importante — <code>loading</code> debe iniciarse en
+              <code>true</code>:</strong> Supabase tarda un instante en restaurar
+              la sesión al cargar (lee <code>localStorage</code> + valida el
+              JWT). Hasta que llega el primer evento
+              <code>INITIAL_SESSION</code>, <code>session</code> es
+              <code>null</code> aunque el usuario sí esté logueado. El
+              <code>&lt;Protected&gt;</code> debe esperar a
+              <code>loading: false</code> antes de decidir:
+            </div>
+          </div>
+          <div class="code-block">
+            <span class="keyword">const</span> { session, loading } =
+            <span class="func">useAuthStore</span>((s) =&gt; ({<br />
+            &nbsp;&nbsp;session: s.session,<br />
+            &nbsp;&nbsp;loading: s.loading,<br />
+            }));<br /><br />
+            <span class="keyword">if</span> (loading) <span class="keyword"
+              >return</span
+            >
+            &lt;Loading /&gt;;<br />
+            <span class="keyword">return</span> session ? &lt;&gt;{children}&lt;/&gt;
+            : &lt;Navigate to=<span class="string">"/login"</span> /&gt;;
+          </div>
+          <p style="margin-top: 0.5rem;">
+            Si <code>&lt;Protected&gt;</code> solo comprueba <code>session</code>,
+            redirige a <code>/login</code> en cada reload (flash visible a
+            <code>/login</code> y de vuelta).
+          </p>
         </div>
 
         <div class="card" id="fase2-2" data-weight="3">
@@ -1370,6 +1401,53 @@
               <code>invalidateQueries</code>
             </li>
           </ul>
+          <div class="alert alert-warning">
+            <span class="icon">⚠️</span>
+            <div>
+              <strong>Importante — <code>enabled</code> reactivo a
+              <code>session</code>:</strong> si usamos
+              <code>useAuthStore.getState().session</code> dentro del query, es
+              un valor estático leído una vez y la query no se re-habilita
+              cuando el usuario hace login. Hay que leer la sesión con el hook
+              de Zustand:
+            </div>
+          </div>
+          <div class="code-block">
+            <span class="keyword">export const</span>
+            <span class="const">useFavorites</span> = () =&gt; {<br />
+            &nbsp;&nbsp;<span class="keyword">const</span> session =
+            <span class="func">useAuthStore</span>((s) =&gt; s.session);<br /><br />
+            &nbsp;&nbsp;<span class="keyword">return</span>
+            <span class="func">useQuery</span>({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;queryKey: [<span class="string"
+              >"favorites"</span
+            >],<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;queryFn:
+            <span class="keyword">async</span> () =&gt; {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
+              >const</span
+            >
+            { data, error } = <span class="keyword">await</span> supabase.from(<span
+              class="string"
+              >"favorites"</span
+            >).select(<span class="string">"*"</span>).order(<span
+              class="string"
+              >"created_at"</span
+            >, { ascending: <span class="keyword">false</span> });<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
+              >if</span
+            >
+            (error) <span class="keyword">throw</span> error;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
+              >return</span
+            >
+            data <span class="keyword">as</span>
+            <span class="type">Favorite</span>[];<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;},<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;enabled: !!session,<br />
+            &nbsp;&nbsp;});<br />
+            };
+          </div>
         </div>
 
         <div class="card" id="fase3-5" data-weight="3">

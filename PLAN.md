@@ -28,7 +28,7 @@ Mantener Axios como cliente HTTP para CoinGecko. Todo el código generado se exp
 | API criptos        | CoinGecko Demo API (`x-cg-demo-api-key`)                     |
 | Auth / Backend     | Supabase (OAuth + email/password + Postgres)                 |
 | Charts             | Chart.js + react-chartjs-2                                   |
-| Estilos            | Tailwind CSS + variables CSS para temas                      |
+| Estilos            | CSS plano en `src/css/*.css` + variables CSS para temas      |
 
 ---
 
@@ -190,9 +190,21 @@ Escuchar `supabase.auth.onAuthStateChange` en lugar de leer `localStorage` manua
 - `session: Session | null`
 - `user: User | null`
 - `profile: Profile | null`
-- `loading: boolean`
+- `loading: boolean` — **`true` mientras Supabase restaura la sesión al cargar la app** (lee `localStorage` + valida el JWT con el servidor). Se inicializa en `true` y pasa a `false` después del primer `INITIAL_SESSION` o `SIGNED_OUT`.
 - `signOut(): Promise<void>`
 - `setSession(session)`
+
+#### `<Protected>` debe esperar a `loading: false`
+
+Al cargar la app, Supabase tarda un instante en restaurar la sesión. Si `<Protected>` solo comprueba `session`, redirige a `/login` en cada reload (flash visible). Implementación correcta:
+
+```tsx
+const { session, loading } = useAuthStore((s) => ({ session: s.session, loading: s.loading }));
+if (loading) return <Loading />;                                   // espera, no redirige
+return session ? <>{children}</> : <Navigate to="/login" />;       // ya decidido
+```
+
+Explicación: el `useEffect` en `authStore` se suscribe a `onAuthStateChange` y al recibir el primer evento (`INITIAL_SESSION` o ausencia de él) marca `loading: false`. Hasta entonces, mostramos `<Loading />` en vez de redirigir.
 
 ### 2.2 `src/api/auth.ts` (reescribir)
 
@@ -230,6 +242,36 @@ Eliminar reqres.in. Crear:
 | `src/api/coinDetail.ts`  | Fix typo `/coins/markets`; `useCoinDetail(id)`                     |
 | `src/api/coinHistory.ts` | `useCoinHistory(id, days)` → `/coins/{id}/market_chart`            |
 | `src/api/favorites.ts`   | NUEVO: `useFavorites()`, `useAddFavorite()`, `useRemoveFavorite()` |
+
+#### `useFavorites` con `enabled` reactivo
+
+El `enabled` de TanStack Query debe ser reactivo a `session`. Si usamos `useAuthStore.getState().session` dentro del query, no se re-evalúa cuando el usuario hace login (es un valor estático leído una vez). Hay que leer la sesión con el hook de Zustand para que la query se habilite/deshabilite automáticamente:
+
+```ts
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "../lib/supabaseClient";
+import { useAuthStore } from "../stores/authStore";
+import type { Favorite } from "../types";
+
+export const useFavorites = () => {
+  const session = useAuthStore((s) => s.session);    // reactivo, no getState()
+
+  return useQuery({
+    queryKey: ["favorites"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("favorites")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as Favorite[];
+    },
+    enabled: !!session,   // se habilita cuando hay sesión
+  });
+};
+```
+
+Explicación: `useAuthStore((s) => s.session)` se suscribe al slice de Zustand y fuerza re-render del componente cuando `session` cambia. La query observa `enabled` y arranca el fetch en cuanto es `true`.
 
 ### 3.2 Conectar con componentes
 
