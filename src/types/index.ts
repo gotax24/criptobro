@@ -20,11 +20,11 @@ export interface CoinHistoryPoint {
   price: number;
 }
 
-export interface AuthUser {
+export interface Profile {
   id: string;
-  email: string;
-  name: string;
+  full_name: string;
   avatar_url: string;
+  updated_at: string;
 }
 
 export interface LoginCredential {
