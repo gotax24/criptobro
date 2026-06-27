@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import personaPerdida from "../asset/404.svg";
+import personaPerdida from "../assets/404.svg";
 import "../css/404.css";
 
 const Page404 = () => {

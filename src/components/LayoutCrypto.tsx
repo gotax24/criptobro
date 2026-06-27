@@ -36,4 +36,4 @@ function LayoutCrypto() {
   );
 }
 
-export default Cuadricula;
+export default LayoutCrypto;

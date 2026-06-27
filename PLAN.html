@@ -1141,7 +1141,7 @@
               Copiar al <code>.env</code>:
               <div class="code-block">
                 VITE_SUPABASE_URL=https://xxxx.supabase.co<br />
-                VITE_SUPABASE_ANON_KEY=sb_publishable_xxxx
+                VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxx
               </div>
             </li>
           </ol>
@@ -1200,19 +1200,49 @@
             <span class="keyword">import</span> { createClient }
             <span class="keyword">from</span>
             <span class="string">"@supabase/supabase-js"</span>;<br /><br />
+            <span class="keyword">const</span> url =
+            import.meta.env.<span class="const">VITE_SUPABASE_URL</span>;<br />
+            <span class="keyword">const</span> key =
+            import.meta.env.<span class="const"
+              >VITE_SUPABASE_PUBLISHABLE_KEY</span
+            >;<br /><br />
+            <span class="keyword">if</span> (!url || !key) {<br />
+            &nbsp;&nbsp;<span class="keyword">throw new</span>
+            <span class="type">Error</span>(<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string"
+              >"Faltan VITE_SUPABASE_URL o VITE_SUPABASE_PUBLISHABLE_KEY"</span
+            ><br />
+            &nbsp;&nbsp;);<br />
+            }<br /><br />
             <span class="keyword">export const</span>
-            <span class="const">supabase</span> = createClient(<br />
-            &nbsp;&nbsp;import.meta.env.<span class="const"
-              >VITE_SUPABASE_URL</span
-            >,<br />
-            &nbsp;&nbsp;import.meta.env.<span class="const"
-              >VITE_SUPABASE_ANON_KEY</span
-            >,<br />
-            &nbsp;&nbsp;{ auth: { persistSession:
-            <span class="keyword">true</span>, autoRefreshToken:
-            <span class="keyword">true</span> } }<br />
-            );
+            <span class="const">supabase</span> = createClient(url, key, {<br />
+            &nbsp;&nbsp;auth: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;persistSession:
+            <span class="keyword">true</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;autoRefreshToken:
+            <span class="keyword">true</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;detectSessionInUrl:
+            <span class="keyword">true</span>,<br />
+            &nbsp;&nbsp;},<br />
+            });
           </div>
+          <p>
+            <strong>3 opciones clave:</strong>
+          </p>
+          <ul>
+            <li>
+              <code>detectSessionInUrl: true</code> — procesa el
+              <code>#access_token</code> del redirect de OAuth (Google/Facebook/GitHub)
+            </li>
+            <li>
+              <code>persistSession: true</code> — guarda el JWT en
+              <code>localStorage</code>
+            </li>
+            <li>
+              <code>autoRefreshToken: true</code> — renueva el token antes de
+              que expire
+            </li>
+          </ul>
           <p>
             Actualizar <code>src/types/index.ts</code> con <code>Profile</code>,
             <code>Favorite</code>.
@@ -1923,7 +1953,7 @@
             VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3<br />
             VITE_COINGECKO_API_KEY=tu_demo_key_aqui<br />
             VITE_SUPABASE_URL=https://tu-proyecto.supabase.co<br />
-            VITE_SUPABASE_ANON_KEY=sb_publishable_tu_key_aqui
+            VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_tu_key_aqui
           </div>
           <p style="margin-top: 0.75rem; color: #94a3b8; font-size: 0.85rem">
             ⚠️ La API key de CoinGecko y el <code>anon key</code> de Supabase

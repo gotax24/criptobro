@@ -1,6 +1,6 @@
-import githubLogo from "../asset/github.svg";
-import emailLogo from "../asset/email.svg";
-import linkendlinLogo from "../asset/likendlin.svg";
+import githubLogo from "../assets/github.svg";
+import emailLogo from "../assets/email.svg";
+import linkendlinLogo from "../assets/likendlin.svg";
 import "../css/PieDePagina.css";
 
 const Footer = () => {

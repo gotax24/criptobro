@@ -3,7 +3,7 @@ import { coingeckoApi } from "../lib/axios";
 import type { Coin } from "../types";
 
 const fetchCoin = async (id: string): Promise<Coin> => {
-  const { data } = await coingeckoApi.get<Coin[]>("/coins/makets", {
+  const { data } = await coingeckoApi.get<Coin[]>("/coins/markets", {
     params: { vs_currency: "usd", ids: id },
   });
 

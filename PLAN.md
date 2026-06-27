@@ -115,7 +115,7 @@ pnpm add @supabase/supabase-js
 
    ```bash
    VITE_SUPABASE_URL=https://xxxx.supabase.co
-   VITE_SUPABASE_ANON_KEY=sb_publishable_xxxx
+   VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxx
    ```
 
 ### 1.3 SQL — tablas `profiles` y `favorites`
@@ -165,12 +165,61 @@ create trigger on_auth_user_created
   for each row execute function public.handle_new_user();
 ```
 
+#### Nota sobre la sintaxis de constraints
+
+PostgreSQL acepta dos estilos para definir `PRIMARY KEY` y `FOREIGN KEY`:
+
+```sql
+-- Estilo 1: inline (el que usamos arriba) — más conciso
+id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE
+
+-- Estilo 2: constraints con nombre explícito — más verboso pero los errores dicen el nombre
+CREATE TABLE public.profiles (
+  id uuid NOT NULL,
+  CONSTRAINT profile_PK PRIMARY KEY (id),
+  CONSTRAINT profile_auth_FK FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE
+);
+```
+
+La sintaxis es `CONSTRAINT <nombre> <tipo> (<columnas>)`, **nunca** `CONSTRAINT <tipo> <nombre>`. El `<nombre>` y el `<tipo>` no se pueden intercambiar.
+
+Para nuestro caso usamos el estilo 1 (inline) porque es más corto y los constraints son simples. Si más adelante necesitas referenciar un constraint por nombre (por ejemplo `ALTER TABLE ... DROP CONSTRAINT profile_PK`), puedes migrar a estilo 2.
+
 ### 1.4 Archivos a crear
 
-| Archivo                     | Responsabilidad                                         |
-| --------------------------- | ------------------------------------------------------- |
-| `src/lib/supabaseClient.ts` | `createClient(url, key)` singleton para el browser      |
-| `src/types/index.ts`        | Tipos `Coin`, `CoinHistoryPoint`, `Profile`, `Favorite` |
+| Archivo                     | Responsabilidad                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `src/lib/supabaseClient.ts` | `createClient(url, key)` con guard de validación y `detectSessionInUrl: true` (crítico para OAuth)                       |
+| `src/types/index.ts`        | Tipos `Coin`, `CoinHistoryPoint`, `Profile`, `Favorite`                                                                  |
+
+#### `src/lib/supabaseClient.ts` — código completo
+
+```ts
+import { createClient } from "@supabase/supabase-js";
+
+const url = import.meta.env.VITE_SUPABASE_URL;
+const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+if (!url || !key) {
+  throw new Error(
+    "Faltan variables de entorno: VITE_SUPABASE_URL y VITE_SUPABASE_PUBLISHABLE_KEY deben estar definidas en .env"
+  );
+}
+
+export const supabase = createClient(url, key, {
+  auth: {
+    persistSession: true,        // guarda el JWT en localStorage
+    autoRefreshToken: true,      // renueva el token automáticamente antes de que expire
+    detectSessionInUrl: true,    // ← crítico: captura el #access_token del redirect de OAuth
+  },
+});
+```
+
+Explicación:
+
+- **Guard `if (!url || !key)`**: si las variables no están en `.env`, falla **al cargar el módulo** con un mensaje claro, no después con un error críptico de "Invalid API key". Fail-fast.
+- **`detectSessionInUrl: true`**: después de que Google/Facebook/GitHub redirigen al callback, la URL contiene `#access_token=...`. Con esta opción, `supabase-js` lee el hash, extrae el token, lo guarda como sesión y limpia la URL. Sin esto, el flujo OAuth no funciona en SPAs.
+- **`persistSession` + `autoRefreshToken`**: explícitos aunque sean los defaults. Documentan la intención.
 
 ### 1.5 Archivos a mantener / ajustar
 
@@ -464,7 +513,7 @@ VITE_NAME_PAGE=CriptoBro
 VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3
 VITE_COINGECKO_API_KEY=tu_demo_key_aqui
 VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
-VITE_SUPABASE_ANON_KEY=sb_publishable_tu_key_aqui
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_tu_key_aqui
 ```
 
 **Nota de seguridad**: la API key de CoinGecko y el `anon key` de Supabase viajan en el bundle del frontend. Esto es aceptable para una aplicación de práctica sin backend propio, pero en producción real se debería usar un backend intermedio o Edge Functions.

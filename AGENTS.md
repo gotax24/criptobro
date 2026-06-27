@@ -28,10 +28,10 @@ VITE_NAME_PAGE=CriptoBro
 VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3
 VITE_COINGECKO_API_KEY=<key>
 VITE_SUPABASE_URL=https://xxxx.supabase.co
-VITE_SUPABASE_ANON_KEY=<key>
+VITE_SUPABASE_PUBLISHABLE_KEY=<key>
 ```
 
-The CoinGecko key travels via the `x-cg-demo-api-key` header (not query string). The Supabase `anon` key is safe to expose in the frontend (it is subject to Row Level Security).
+The CoinGecko key travels via the `x-cg-demo-api-key` header (not query string). The Supabase `publishable` key (formerly called `anon`) is safe to expose in the frontend (it is subject to Row Level Security).
 
 ## Project context
 
