@@ -1,11 +1,10 @@
 import { create } from "zustand";
-import type { AuthUser } from "../types";
+import { Session, User } from "@supabase/supabase-js";
+import { supabase } from "../lib/supabase";
+import type { Profile } from "../types";
 
 interface AuthState {
-  user: AuthUser | null;
-  token: string | null;
-  setSession: (user: AuthUser, token: string) => void;
-  logout: () => void;
+  
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
