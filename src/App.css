@@ -1,103 +1,288 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+/* ===================================================================
+   CriptoBro — Sistema de diseño "Precision Finance"
+   Paleta monocromática + acento coral. Tipografía Work Sans + JetBrains Mono.
+   Ver DESIGN_GUIDELINES.md para tokens, escalas y patrones.
+   =================================================================== */
 
-/* Estilos globales para toda la aplicación */
-* {
+/* === Variables de tema === */
+:root,
+[data-theme="dark"] {
+  --bg: #0c0c0c;
+  --bg-elevated: #1a1a1a;
+  --surface: #1a1a1a;
+  --surface-hover: #222222;
+  --border: #2d2d2d;
+  --border-strong: #3a3a3a;
+  --text: #f5f5f5;
+  --text-muted: #888888;
+  --text-subtle: #555555;
+
+  --accent: #ff4d6a;
+  --accent-hover: #ff6b82;
+  --accent-soft: rgba(255, 77, 106, 0.1);
+
+  --positive: #22c55e;
+  --negative: #ef4444;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+
+  --gradient-bg: radial-gradient(
+    ellipse at center,
+    #181818 0%,
+    #0c0c0c 70%
+  );
+}
+
+[data-theme="light"] {
+  --bg: #fafaf8;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f1;
+  --border: #e6e6e3;
+  --border-strong: #d0d0cc;
+  --text: #0a0a0a;
+  --text-muted: #666666;
+  --text-subtle: #999999;
+
+  --accent: #e63946;
+  --accent-hover: #c1121f;
+  --accent-soft: rgba(230, 57, 70, 0.08);
+
+  --positive: #16a34a;
+  --negative: #dc2626;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  --gradient-bg: radial-gradient(
+    ellipse at center,
+    #ffffff 0%,
+    #fafaf8 70%
+  );
+}
+
+/* === Tipografía === */
+:root {
+  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", Menlo, monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 2rem;
+  --fs-4xl: 2.5rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+}
+
+/* === Espaciado === */
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* === Reset === */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(8, 34, 63);
-  color: white;
-  font-family: "IBM Plex Mono", monospace;
-  line-height: 1.6;
+  background: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  min-height: 100vh;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-/* Variables CSS globales */
-:root {
-  --primary-color: rgb(8, 34, 63);
-  --secondary-color: #056bb5;
-  --accent-color: #3399ff;
-  --text-color: white;
-  --error-color: #ff4d4d;
-  --success-color: #4caf50;
-  --font-primary: "Poppins", sans-serif;
-  --font-secondary: "IBM Plex Mono", monospace;
-}
-
-/* Contenedor general de páginas */
-.page-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Fix para problemas comunes */
+/* === Imágenes y desbordes === */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Corrige problemas de texto que se desborda */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text);
+}
+
+p,
+li {
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: var(--text);
 }
 
-/* Para preservar el espacio del contenido y evitar saltos abruptos de diseño */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* === Utilidades de layout === */
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
 .content-wrapper {
-  min-height: calc(100vh - 200px); /* Ajustar según altura del header/footer */
+  min-height: calc(100vh - 200px);
 }
 
-/* Utilidades de flex comunes */
 .flex {
   display: flex;
 }
-
 .flex-col {
   flex-direction: column;
 }
-
 .items-center {
   align-items: center;
 }
-
-.justify-between {
-  justify-content: space-between;
-}
-
 .justify-center {
   justify-content: center;
 }
-
-/* Espaciado consistente */
+.justify-between {
+  justify-content: space-between;
+}
+.gap-1 {
+  gap: var(--space-1);
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-3 {
+  gap: var(--space-3);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
 .mt-1 {
-  margin-top: 0.5rem;
+  margin-top: var(--space-1);
 }
 .mt-2 {
-  margin-top: 1rem;
+  margin-top: var(--space-2);
 }
 .mt-4 {
-  margin-top: 2rem;
+  margin-top: var(--space-4);
 }
 .mb-1 {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-1);
 }
 .mb-2 {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-2);
 }
 .mb-4 {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-4);
+}
+
+/* === Texto de datos (precios, números) === */
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* === Animación global de entrada === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-slow) ease both;
 }

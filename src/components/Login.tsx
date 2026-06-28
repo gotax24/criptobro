@@ -60,14 +60,13 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="Login-container">
-        <div className="title-logo-container">
-          <img className="logo-login" src="/logo.svg" alt="Logo" />
-          <h1 className="tittle-login">CriptoBro</h1>
-        </div>
-        <form className="form-login" onSubmit={handleSubmit}>
-          <h2>{mode === "login" ? "Iniciar sesion" : "Crear cuenta"}</h2>
+    <div className="Login-container">
+      <div className="title-logo-container">
+        <img className="logo-login" src="/logo.svg" alt="Logo CriptoBro" />
+        <h1 className="tittle-login">CriptoBro</h1>
+      </div>
+      <form className="form-login" onSubmit={handleSubmit}>
+        <h2>{mode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
 
           {displayError && (
             <p className="error" role="alert">
@@ -146,46 +145,48 @@ const Login = () => {
               </>
             )}
           </p>
-        </form>
+      </form>
 
-        {/* 20. Separador visual y botones OAuth */}
-        <div className="oauth-section">
-          <p className="oauth-divider">
-            <span>o continúa con</span>
-          </p>
+      {/* Separador visual y botones OAuth */}
+      <div className="oauth-section">
+        <p className="oauth-divider">
+          <span>o continúa con</span>
+        </p>
 
-          <div className="oauth-buttons">
-            {/* type="button" evita que disparen el submit del form */}
-            <button
-              type="button"
-              className="btn-oauth btn-google"
-              onClick={() => handleOAuth("google")}
-              aria-label="Continuar con Google"
-            >
-              Google
-            </button>
+        <div className="oauth-buttons">
+          {/* type="button" evita que disparen el submit del form */}
+          <button
+            type="button"
+            className="btn-oauth btn-google"
+            onClick={() => handleOAuth("google")}
+            aria-label="Continuar con Google"
+          >
+            <span className="oauth-icon" aria-hidden="true">G</span>
+            Google
+          </button>
 
-            <button
-              type="button"
-              className="btn-oauth btn-facebook"
-              onClick={() => handleOAuth("facebook")}
-              aria-label="Continuar con Facebook"
-            >
-              Facebook
-            </button>
+          <button
+            type="button"
+            className="btn-oauth btn-facebook"
+            onClick={() => handleOAuth("facebook")}
+            aria-label="Continuar con Facebook"
+          >
+            <span className="oauth-icon" aria-hidden="true">f</span>
+            Facebook
+          </button>
 
-            <button
-              type="button"
-              className="btn-oauth btn-github"
-              onClick={() => handleOAuth("github")}
-              aria-label="Continuar con GitHub"
-            >
-              GitHub
-            </button>
-          </div>
+          <button
+            type="button"
+            className="btn-oauth btn-github"
+            onClick={() => handleOAuth("github")}
+            aria-label="Continuar con GitHub"
+          >
+            <span className="oauth-icon" aria-hidden="true">⌘</span>
+            GitHub
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
