@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Home from "./Home";
@@ -6,11 +7,15 @@ import LayoutCrypto from "./components/LayoutCrypto";
 import CriptoPage from "./components/CriptoPage";
 import Login from "./components/Login";
 import Page404 from "./components/404";
+import Loading from "./components/Loading";
 import { useAuthStore } from "./stores/authStore";
 
-const Protected = ({ children }: { children: React.ReactNode }) => {
-  const token = useAuthStore((s) => s.token);
-  return token ? <>{children}</> : <Navigate to="/login" />;
+const Protected = ({ children }: { children: ReactNode }) => {
+  const session = useAuthStore((s) => s.session);
+  const loading = useAuthStore((s) => s.loading);
+
+  if (loading) return <Loading />;                          // espera a que Supabase decida
+  return session ? <>{children}</> : <Navigate to="/login" />;
 };
 
 const App = () => (

@@ -1,26 +1,50 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useAuthStore } from "../stores/authStore";
-import type { LoginCredential } from "../types";
+import { supabase } from "../lib/supabase";
 
-interface LoginResponse {
-  token: string;
+interface AuthCredential {
+  email: string;
+  password: string;
 }
 
-export const useLoginMutation = () => {
-  const setSession = useAuthStore((s) => s.setSession);
-
+export const useSignInWithEmail = () => {
   return useMutation({
-    mutationFn: async (credentials: LoginCredential) => {
-      const { data } = await axios.post<LoginResponse>(
-        "https://reqres.in/api/login",
-        credentials,
-      );
+    mutationFn: async (credentials: AuthCredential) => {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password,
+      });
 
-      return data.token;
-    },
-    onSuccess: (token) => {
-      setSession({ id: "", email: "", name: "", avatar_url: "" }, token);
+      if (error) throw error;
+
+      return data;
     },
   });
+};
+
+export const useSignUpWithEmail = () => {
+  return useMutation({
+    mutationFn: async (credentials: AuthCredential) => {
+      const { data, error } = await supabase.auth.signUp({
+        email: credentials.email,
+        password: credentials.password,
+      });
+
+      if (error) throw error;
+
+      return data;
+    },
+  });
+};
+
+export const signInWithOAuth = async (
+  provider: "google" | "facebook" | "github",
+) => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo: window.location.origin,
+    },
+  });
+
+  if (error) throw error;
 };

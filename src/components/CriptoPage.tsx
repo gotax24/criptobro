@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
-import useData from "../hooks/useData";
 import CriptoInfo from "./CriptoInfo";
 import Cargando from "./Loading";
 import "../css/CriptoPage.css";

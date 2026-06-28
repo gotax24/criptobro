@@ -1,5 +1,4 @@
 import Elemento from "./Element";
-import useData from "../hooks/useData";
 import Cargando from "./Loading";
 import "../css/Cuadricula.css";
 

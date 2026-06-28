@@ -1,52 +1,63 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Navigate } from "react-router-dom";
+import {
+  useSignInWithEmail,
+  useSignUpWithEmail,
+  signInWithOAuth,
+} from "../api/auth";
+import { useAuthStore } from "../stores/authStore";
 import "../css/login.css";
+import Loading from "./Loading";
 
-interface UserCredentials {
-  email: string;
-  password: string;
-}
-
-interface LoginResponse {
-  token: string;
-}
-
-interface LoginError {
-  error: string;
-}
+type AuthMode = "login" | "register";
 
 const Login = () => {
-  const navigation = useNavigate();
-  const [user, setUser] = useState<string | null>(null);
-  const [cargando, setCargando] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const session = useAuthStore((s) => s.session);
+  const loading = useAuthStore((s) => s.loading);
 
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+  const {
+    mutate: signIn,
+    isPending: signingIn,
+    error: signInError,
+  } = useSignInWithEmail();
+
+  const {
+    mutate: signUp,
+    isPending: signingUp,
+    error: signUpError,
+  } = useSignUpWithEmail();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [mode, setMode] = useState<AuthMode>("login");
+  const [oauthError, setOauthError] = useState<string | null>(null);
+
+  if (loading) return <Loading />;
+
+  if (session) return <Navigate to="/" />;
+
+  const isPending = mode === "login" ? signingIn : signingUp;
+  const authError = mode === "login" ? signInError : signUpError;
+  const displayError = authError?.message || oauthError;
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setCargando(true);
-    setError(null);
 
-    axios
-      .post<LoginResponse>(`https://reqres.in/api/login`, user)
-      .then((data) => {
-        setCargando(false);
-        localStorage.setItem("tokenCriptoBro", data.data.token);
-        navigation("/");
-      })
-      .catch((e: unknown) => {
-        setCargando(false);
-        console.error(e);
-
-        if (axios.isAxiosError<LoginError>(e)) {
-          setError(e.response?.data?.error || "Error de autenticacion");
-        } else {
-          setError("Ocurrio un error inesperado");
-        }
-      });
+    if (mode === "register") {
+      signUp({ email, password });
+    } else {
+      signIn({ email, password });
+    }
   };
 
-  if (localStorage.getItem("tokenCriptoBro")) return <Navigate to="/" />;
+  const handleOAuth = async (provider: "google" | "facebook" | "github") => {
+    try {
+      setOauthError(null);
+      await signInWithOAuth(provider);
+    } catch (err) {
+      setOauthError(err instanceof Error ? err.message : "Error con OAuth");
+    }
+  };
 
   return (
     <>
@@ -55,63 +66,124 @@ const Login = () => {
           <img className="logo-login" src="/logo.svg" alt="Logo" />
           <h1 className="tittle-login">CriptoBro</h1>
         </div>
-        <h2 className="sub-tittle-login">Iniciar Sesion</h2>
-        <form className="form-login" onSubmit={submit}>
+        <form className="form-login" onSubmit={handleSubmit}>
+          <h2>{mode === "login" ? "Iniciar sesion" : "Crear cuenta"}</h2>
+
+          {displayError && (
+            <p className="error" role="alert">
+              {displayError}
+            </p>
+          )}
+
           <div className="field">
-            <label className="label-login" htmlFor="email">
+            <label className="label-login" htmlFor="login-email">
               Email
             </label>
             <input
-              autoComplete="on"
+              id="login-email"
+              autoComplete="email"
               className="input-login"
               type="email"
               name="email"
               required
+              value={email}
               onChange={(e) => {
-                setUser({
-                  ...user,
-                  email: e.target.value,
-                });
+                setEmail(e.target.value);
               }}
+              disabled={isPending}
             />
           </div>
           <div className="field">
-            <label className="label-login" htmlFor="password">
+            <label className="label-login" htmlFor="login-password">
               Contraseña
             </label>
             <input
-              autoComplete="current-password"
+              autoComplete={
+                mode === "login" ? "current-password" : "new-password"
+              }
               className="input-login"
               type="password"
-              name="password"
+              name="login-password"
+              id="login-password"
               required
-              onChange={(e) => {
-                setUser({
-                  ...user,
-                  password: e.target.value,
-                });
-              }}
+              value={password}
+              minLength={6}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={isPending}
             />
           </div>
           <div className="submit">
-            <input
-              className="button-login"
-              type="submit"
-              value={cargando ? "Cargando..." : "Ingresar"}
-            />
+            <button className="button-login" type="submit" disabled={isPending}>
+              {isPending
+                ? "Cargando ..."
+                : mode === "login"
+                  ? "Iniciar sesion"
+                  : "Crear cuenta"}
+            </button>
           </div>
+          <p className="toggle-mode">
+            {mode === "login" ? (
+              <>
+                ¿No tienes cuenta?{" "}
+                <button
+                  type="button"
+                  className="link-button"
+                  onClick={() => setMode("register")}
+                >
+                  Crear una
+                </button>
+              </>
+            ) : (
+              <>
+                ¿Ya tienes cuenta?{" "}
+                <button
+                  type="button"
+                  className="link-button"
+                  onClick={() => setMode("login")}
+                >
+                  Iniciar sesión
+                </button>
+              </>
+            )}
+          </p>
         </form>
-        {error && <span className="error">Error: {error}</span>}
-        <p className="disclaimer">
-          Este formulario utiliza una API gratuita para simular un inicio de
-          sesión en un servidor real. Puedes probar el sistema utilizando estos
-          datos de prueba:
-          <br />
-          <strong>Email:</strong> eve.holt@reqres.in <br />
-          <strong>Contraseña:</strong> cityslicka <br />
-          Introduce estos datos en los campos correspondientes para experimentar
-          el proceso de inicio de sesión.
-        </p>
+
+        {/* 20. Separador visual y botones OAuth */}
+        <div className="oauth-section">
+          <p className="oauth-divider">
+            <span>o continúa con</span>
+          </p>
+
+          <div className="oauth-buttons">
+            {/* type="button" evita que disparen el submit del form */}
+            <button
+              type="button"
+              className="btn-oauth btn-google"
+              onClick={() => handleOAuth("google")}
+              aria-label="Continuar con Google"
+            >
+              Google
+            </button>
+
+            <button
+              type="button"
+              className="btn-oauth btn-facebook"
+              onClick={() => handleOAuth("facebook")}
+              aria-label="Continuar con Facebook"
+            >
+              Facebook
+            </button>
+
+            <button
+              type="button"
+              className="btn-oauth btn-github"
+              onClick={() => handleOAuth("github")}
+              aria-label="Continuar con GitHub"
+            >
+              GitHub
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

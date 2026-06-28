@@ -22,8 +22,8 @@ export interface CoinHistoryPoint {
 
 export interface Profile {
   id: string;
-  full_name: string;
-  avatar_url: string;
+  full_name: string | null;
+  avatar_url: string | null;
   updated_at: string;
 }
 
