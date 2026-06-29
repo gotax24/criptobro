@@ -31,3 +31,12 @@ export interface LoginCredential {
   email: string;
   password: string;
 }
+
+export interface Favorites {
+  id: string;
+  user_id: string;
+  coin_id: string;
+  coin_name: string;
+  coin_symbol:string;
+  created_at: string
+}

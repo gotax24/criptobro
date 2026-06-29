@@ -1,35 +1,36 @@
-import Elemento from "./Element";
-import Cargando from "./Loading";
+import { useCoins } from "../api/coin";
+import Element from "./Element";
+import Loading from "./Loading";
 import "../css/Cuadricula.css";
 
 function LayoutCrypto() {
-  const [criptos, cargandoCriptos, errorCripto] = useData("assets", true);
+  const { data: coins, isLoading, error } = useCoins();
 
-  if (cargandoCriptos) return <Cargando />;
+  if (isLoading) return <Loading />;
+
+  if (error) {
+    return (
+      <div className="container">
+        <p className="error-message">Error: {error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <h1 className="titulo-cuadricula">Lista de Criptomonedas</h1>
       <div className="container">
-        {criptos &&
-          criptos.map(
-            ({ id, name, symbol, priceUsd, changePercent24Hr, rank }) => (
-              <Elemento
-                key={id}
-                rank={rank}
-                name={name}
-                symbol={symbol}
-                priceUsd={priceUsd}
-                change={Number(changePercent24Hr).toFixed(3)}
-                id={id}
-              />
-            )
-          )}
-        {errorCripto && (
-          <p className="error-message">
-            {errorCripto?.message || "Ocurrió un error al cargar los datos."}
-          </p>
-        )}
+        {coins?.map((coin) => (
+          <Element
+            key={coin.id}
+            id={coin.id}
+            name={coin.name}
+            symbol={coin.symbol}
+            rank={coin.market_cap_rank}
+            priceUsd={coin.current_price}
+            change={Number(coin.price_change_percentage_24h).toFixed(3)}
+          />
+        ))}
       </div>
     </>
   );
