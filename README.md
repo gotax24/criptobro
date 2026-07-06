@@ -21,19 +21,19 @@
 
 ## Tecnologías Utilizadas
 
-| Capa | Tecnología |
-| --- | --- |
-| Framework | React 19 + Vite 8 + TypeScript 6 |
-| Routing | React Router 7 |
-| Estado servidor | TanStack Query |
-| Estado global auth | Zustand |
-| Estado UI tema | React Context |
-| HTTP | Axios (CoinGecko) + @supabase/supabase-js (Auth + DB) |
-| API criptos | CoinGecko Demo API |
-| Auth / Backend | Supabase (OAuth + email/password + Postgres) |
-| Charts | Chart.js + react-chartjs-2 |
-| Estilos | CSS plano + variables CSS para temas |
-| Linter | ESLint 9 + React Compiler |
+| Capa               | Tecnología                                            |
+| ------------------ | ----------------------------------------------------- |
+| Framework          | React 19 + Vite 8 + TypeScript 6                      |
+| Routing            | React Router 7                                        |
+| Estado servidor    | TanStack Query                                        |
+| Estado global auth | Zustand                                               |
+| Estado UI tema     | React Context                                         |
+| HTTP               | Axios (CoinGecko) + @supabase/supabase-js (Auth + DB) |
+| API criptos        | CoinGecko Demo API                                    |
+| Auth / Backend     | Supabase (OAuth + email/password + Postgres)          |
+| Charts             | Chart.js + react-chartjs-2                            |
+| Estilos            | CSS plano + variables CSS para temas                  |
+| Linter             | ESLint 9 + React Compiler                             |
 
 ## Instalación y Configuración
 
@@ -68,17 +68,18 @@
    ```
 
 5. **Compila para producción**:
+
    ```bash
    pnpm build
    ```
 
 ## Comandos
 
-| Comando | Descripción |
-| --- | --- |
-| `pnpm dev` | Servidor de desarrollo (Vite) |
-| `pnpm build` | Typecheck + build de producción |
-| `pnpm lint` | ESLint con React Compiler |
+| Comando        | Descripción                     |
+| -------------- | ------------------------------- |
+| `pnpm dev`     | Servidor de desarrollo (Vite)   |
+| `pnpm build`   | Typecheck + build de producción |
+| `pnpm lint`    | ESLint con React Compiler       |
 | `pnpm preview` | Preview del build de producción |
 
 ## Uso
