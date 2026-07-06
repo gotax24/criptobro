@@ -1,75 +1,98 @@
-/* Contenedor general para centrar el contenido de la página 404 */
+/* ===================================================================
+   404 — "Precision Finance" design system
+   Página no encontrada. Mensaje grande, link sutil con acento coral.
+   =================================================================== */
+
+/* === Container: pantalla completa, centrado === */
 .pagina-404-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: white;
-  text-align: center;
-  background-color: rgb(8, 34, 63);
-  padding: 2rem 1rem;
+  padding: var(--space-4);
   box-sizing: border-box;
-  gap: 1rem;
+  gap: var(--space-4);
+  text-align: center;
+  background: var(--bg);
+  color: var(--text);
+  animation: fadeIn var(--transition-slow) ease both;
 }
 
-/* Estilo del título principal */
+/* === Título principal === */
 .h1-404 {
-  font-family: "Poppins", sans-serif;
-  font-size: 2.5rem;
-  color: white;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
 }
 
-/* Estilo del subtítulo */
+/* === Subtítulo === */
 .h2-404 {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1.2rem;
-  color: #ccc;
-  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+  margin: 0;
   max-width: 600px;
 }
 
-/* Imagen del 404 */
+/* === Ilustración === */
 .img-404 {
   width: 250px;
   max-width: 100%;
-  margin: 1rem 0;
+  margin: var(--space-4) 0;
 }
 
-/* Párrafo de la página 404 */
+/* === Párrafo === */
 .p-404 {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1rem;
-  color: #aaa;
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+  margin: 0;
 }
 
-/* Link de regreso al inicio */
+/* === Link de regreso === */
 .Link-404 {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1rem;
-  color: #56b6c2;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
   display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--accent);
+  text-decoration: none;
+  background: var(--accent-soft);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-fast);
 }
 
 .Link-404:hover {
-  background-color: #56b6c2;
-  color: white;
+  background: var(--accent);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
+.Link-404:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .h1-404 {
-    font-size: 2rem;
+    font-size: var(--fs-3xl);
   }
 
   .h2-404 {
-    font-size: 1rem;
-    padding: 0 1rem;
+    font-size: var(--fs-base);
+    padding: 0 var(--space-4);
   }
 
   .img-404 {
@@ -77,23 +100,18 @@
   }
 
   .p-404 {
-    font-size: 0.95rem;
-    padding: 0 1rem;
-  }
-
-  .Link-404 {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
+    font-size: var(--fs-sm);
+    padding: 0 var(--space-4);
   }
 }
 
 @media (max-width: 480px) {
   .h1-404 {
-    font-size: 1.6rem;
+    font-size: var(--fs-2xl);
   }
 
   .h2-404 {
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
   }
 
   .img-404 {
@@ -101,11 +119,11 @@
   }
 
   .p-404 {
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
   }
 
   .Link-404 {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.9rem;
+    font-size: var(--fs-sm);
+    padding: var(--space-2) var(--space-3);
   }
 }

@@ -1,6 +1,6 @@
 import githubLogo from "../assets/github.svg";
 import emailLogo from "../assets/email.svg";
-import linkendlinLogo from "../assets/likendlin.svg";
+import linkedinLogo from "../assets/linkedin.svg";
 import "../css/PieDePagina.css";
 
 const Footer = () => {
@@ -22,21 +22,16 @@ const Footer = () => {
           className="link-networks"
         >
           <img
-            src={linkendlinLogo}
+            src={linkedinLogo}
             className="img-footer"
-            alt="logo de likendlin"
+            alt="logo de linkedin"
           />
         </a>
-        <a
-          href="mailto:dev.ejbr@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-networks"
-        >
+        <a href="mailto:dev.ejbr@gmail.com" className="link-networks">
           <img src={emailLogo} className="img-footer" alt="logo de email" />
         </a>
       </address>
-      <div className="copyright">Creator: Ing. Ernesto Bracho 2024 &#169;</div>
+      <div className="copyright">Creator: Ing. Ernesto Bracho 2024 ©</div>
     </footer>
   );
 };

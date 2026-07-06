@@ -1,4 +1,9 @@
-/* Perfil Component */
+/* ===================================================================
+   Profile — "Precision Finance" design system
+   Perfil de usuario. Avatar + datos centrados, acento coral sutil.
+   =================================================================== */
+
+/* === Container del perfil === */
 .container-perfil {
   display: flex;
   flex-direction: column;
@@ -6,41 +11,75 @@
   justify-content: center;
   max-width: 400px;
   margin: auto;
-  padding: 2rem;
-  border-radius: 8px;
+  padding: var(--space-8);
+  border-radius: var(--radius-md);
+  animation: fadeIn var(--transition-slow) ease both;
 }
 
+/* === Avatar === */
 .img-perfil {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   object-fit: cover;
-  border: 3px solid #5689ef;
-  margin-bottom: 1.5rem;
+  border: 3px solid var(--accent);
+  margin-bottom: var(--space-6);
 }
 
+/* === Nombre === */
 .name-perfil {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fafafa;
+  font-family: var(--font-body);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  text-align: center;
   margin: 0;
-  text-align: center;
 }
 
+/* === Correo === */
 .correo-perfil {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin: 0.5rem 0 1rem 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-regular);
+  color: var(--text);
   text-align: center;
+  margin: var(--space-2) 0 var(--space-4) 0;
 }
 
+/* === Advertencia === */
 .advertencia {
-  font-size: 0.9rem;
-  color: rgb(205, 71, 71);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--negative);
   text-align: center;
   max-width: 300px;
-  line-height: 1.4;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  line-height: var(--lh-normal);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+  .container-perfil {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .img-perfil {
+    width: 120px;
+    height: 120px;
+  }
+
+  .name-perfil {
+    font-size: var(--fs-2xl);
+  }
+
+  .correo-perfil {
+    font-size: var(--fs-lg);
+  }
+
+  .advertencia {
+    font-size: var(--fs-xs);
+  }
 }

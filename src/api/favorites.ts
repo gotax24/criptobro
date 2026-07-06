@@ -24,7 +24,6 @@ export const useFavorites = () => {
 
 export const useAddFavorite = () => {
   const queryClient = useQueryClient();
-  const user = useAuthStore((s) => s.user);
 
   return useMutation({
     mutationFn: async (coin: {
@@ -32,8 +31,14 @@ export const useAddFavorite = () => {
       coin_name: string;
       coin_symbol: string;
     }) => {
+      const user = useAuthStore.getState().user;
+
+      if (!user) {
+        throw new Error("Debes iniciar sesión para agregar favoritos");
+      }
+
       const { error } = await supabase.from("favorites").insert({
-        user_id: user!.id,
+        user_id: user.id,
         coin_id: coin.coin_id,
         coin_name: coin.coin_name,
         coin_symbol: coin.coin_symbol,

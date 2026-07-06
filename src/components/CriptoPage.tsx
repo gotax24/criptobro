@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCoinDetail } from "../api/coinDetail";
 import { useCoinHistory } from "../api/coinHistory";
 import CriptoInfo from "./CriptoInfo";
-import CriptoChart from "./CriptoGraph";
+import CriptoGraph from "./CriptoGraph";
 import Loading from "./Loading";
 import "../css/CriptoPage.css";
 
@@ -11,7 +11,7 @@ const DAYS_OPTIONS = [
   { value: "1", label: "1 Dia" },
   { value: "7", label: "7 Dias" },
   { value: "30", label: "30 Dias" },
-  { value: "1", label: "1 Ano" },
+  { value: "365", label: "1 Año" },
 ] as const;
 
 const CriptoPage = () => {
@@ -58,11 +58,9 @@ const CriptoPage = () => {
       </div>
 
       <div className="info-y-grafica">
-        <div className="info-cripto">
-          {coin && <CriptoInfo coin={coin} />}
-        </div>
+        <div className="info-cripto">{coin && <CriptoInfo coin={coin} />}</div>
         <div className="grafica-cripto">
-          {history && <CriptoChart history={history} />}
+          {history && <CriptoGraph history={history} />}
         </div>
       </div>
     </div>

@@ -21,15 +21,7 @@ function LayoutCrypto() {
       <h1 className="titulo-cuadricula">Lista de Criptomonedas</h1>
       <div className="container">
         {coins?.map((coin) => (
-          <Element
-            key={coin.id}
-            id={coin.id}
-            name={coin.name}
-            symbol={coin.symbol}
-            rank={coin.market_cap_rank}
-            priceUsd={coin.current_price}
-            change={Number(coin.price_change_percentage_24h).toFixed(3)}
-          />
+          <Element key={coin.id} coin={coin} />
         ))}
       </div>
     </>

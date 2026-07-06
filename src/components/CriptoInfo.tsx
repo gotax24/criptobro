@@ -78,7 +78,7 @@ const CriptoInfo = ({ coin }: CriptoInfoProps) => {
         </span>
       </p>
 
-      <p className="info-p">
+      <p className="p-info">
         Suministro máximo:{" "}
         <span className="number">
           {max_supply != null ? FormatNumber(max_supply) : "—"}

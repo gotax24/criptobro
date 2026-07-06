@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(12, 12, 12, 0.85);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   z-index: 1000;
 }
 
@@ -57,4 +57,10 @@
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
 }

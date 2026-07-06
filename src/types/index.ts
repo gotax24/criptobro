@@ -28,11 +28,6 @@ export interface Profile {
   updated_at: string;
 }
 
-export interface LoginCredential {
-  email: string;
-  password: string;
-}
-
 export interface Favorites {
   id: string;
   user_id: string;

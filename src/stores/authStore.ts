@@ -32,21 +32,40 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 }));
 
+const loadProfile = async (userId: string) => {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  if (error) {
+    console.error("Error al cargar el perfil:", error.message);
+    return;
+  }
+
+  useAuthStore.getState().setProfile(data as Profile);
+};
+
+const finishLoading = () => useAuthStore.setState({ loading: false });
+
 supabase.auth.onAuthStateChange((event, session) => {
   useAuthStore.getState().setSession(session);
 
-  if (event === "INITIAL_SESSION" || event === "SIGNED_OUT") {
-    if (session?.user) {
-      supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single()
-        .then(({ data }) => {
-          useAuthStore.getState().setProfile(data as Profile);
-        });
-    }
+  const userId = session?.user?.id;
 
-    useAuthStore.setState({ loading: false });
+  if (!userId) {
+    finishLoading();
+    return;
+  }
+
+  if (
+    event === "INITIAL_SESSION" ||
+    event === "SIGNED_IN" ||
+    event === "USER_UPDATED"
+  ) {
+    loadProfile(userId).finally(finishLoading);
+  } else {
+    finishLoading();
   }
 });

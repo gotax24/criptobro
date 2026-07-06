@@ -1,26 +1,33 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useAuthStore } from "../stores/authStore";
 import "../css/menu.css";
 
 const Menu = () => {
-  const usuario = useContext(UserContext);
-  const navigation = useNavigate();
+  const profile = useAuthStore((s) => s.profile);
+  const signOut = useAuthStore((s) => s.signOut);
+
+  const navigate = useNavigate();
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const cerrarSesion = () => {
-    localStorage.removeItem("tokenCriptoBro");
-    navigation("/login");
+  const signOutSession = async () => {
+    await signOut();
+    setMenuOpen(false);
+    navigate("/login");
   };
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [menuOpen]);
-  
 
   return (
     <header className="main-menu">
@@ -29,13 +36,18 @@ const Menu = () => {
         <h1 className="tittle-menu">{VITE_NAME}</h1>
       </div>
 
-      <div className="hamburger-menu" onClick={toggleMenu}>
-        <div className={`hamburger-icon ${menuOpen ? "open" : ""}`}>
+      <button
+        className={`hamburger-menu ${menuOpen ? "open" : ""}`}
+        onClick={toggleMenu}
+        aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={menuOpen}
+      >
+        <div className="hamburger-icon">
           <span></span>
           <span></span>
           <span></span>
         </div>
-      </div>
+      </button>
 
       <nav className={`nav-menu ${menuOpen ? "active" : ""}`}>
         <ul>
@@ -50,25 +62,23 @@ const Menu = () => {
             </NavLink>
           </li>
           <li className="item-nav">
-            <NavLink to="/Perfil" onClick={() => setMenuOpen(false)}>
-              Perfil de {usuario.first_name}
+            <NavLink to="/perfil" onClick={() => setMenuOpen(false)}>
+              Perfil de {profile?.full_name ?? "Usuario"}
             </NavLink>
           </li>
           <li className="item-nav">
-            <a
-              onClick={() => {
-                cerrarSesion();
-                setMenuOpen(false);
-              }}
-              href="#!"
+            <button
+              type="button"
+              className="logout-button"
+              onClick={signOutSession}
             >
               Cerrar sesión
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
     </header>
   );
 };
- 
+
 export default Menu;
