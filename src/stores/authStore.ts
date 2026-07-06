@@ -7,10 +7,12 @@ interface AuthState {
   session: Session | null;
   user: User | null;
   profile: Profile | null;
+  profileError: string | null;
   loading: boolean;
 
   setSession: (session: Session | null) => void;
   setProfile: (profile: Profile | null) => void;
+  setProfileError: (error: string | null) => void;
   signOut: () => Promise<void>;
 }
 
@@ -18,17 +20,20 @@ export const useAuthStore = create<AuthState>((set) => ({
   session: null,
   user: null,
   profile: null,
+  profileError: null,
   loading: true,
 
   setSession: (session) => {
     set({ session, user: session?.user ?? null });
   },
 
-  setProfile: (profile) => set({ profile }),
+  setProfile: (profile) => set({ profile, profileError: null }),
+
+  setProfileError: (profileError) => set({ profileError }),
 
   signOut: async () => {
     await supabase.auth.signOut();
-    set({ session: null, user: null, profile: null });
+    set({ session: null, user: null, profile: null, profileError: null });
   },
 }));
 
@@ -40,7 +45,9 @@ const loadProfile = async (userId: string) => {
     .maybeSingle();
 
   if (error) {
-    console.error("Error al cargar el perfil:", error.message);
+    // Guardamos el error en el store en vez de solo console.error.
+    // Así los componentes pueden decidir si mostrarlo en la UI.
+    useAuthStore.getState().setProfileError(error.message);
     return;
   }
 

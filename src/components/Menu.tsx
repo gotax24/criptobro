@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../stores/authStore";
 import "../css/menu.css";
+import ThemeToggle from "./ThemeToggle";
 
 const Menu = () => {
   const profile = useAuthStore((s) => s.profile);
@@ -70,6 +71,9 @@ const Menu = () => {
             <NavLink to="/perfil" onClick={() => setMenuOpen(false)}>
               Perfil de {profile?.full_name ?? "Usuario"}
             </NavLink>
+          </li>
+          <li className="item-nav theme-toggle-item">
+            <ThemeToggle />
           </li>
           <li className="item-nav">
             <button
