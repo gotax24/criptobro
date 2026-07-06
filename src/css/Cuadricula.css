@@ -95,6 +95,23 @@
   cursor: wait;
 }
 
+.favorite-error {
+  position: absolute;
+  top: calc(var(--space-3) + 1.75rem);
+  right: var(--space-3);
+  max-width: 180px;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
 /* === Stagger animation — cada card entra con delay distinto === */
 .container > .containerMain:nth-child(1) { animation-delay: 0.05s; }
 .container > .containerMain:nth-child(2) { animation-delay: 0.10s; }

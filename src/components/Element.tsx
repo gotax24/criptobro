@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Coin } from "../types";
 import RedAndGreen from "../helpers/RedAndGreen";
@@ -28,45 +28,67 @@ const Element = memo(({ coin }: ElementProps) => {
 
   const session = useAuthStore((s) => s.session);
   const { data: favorites } = useFavorites();
+  const [mutationError, setMutationError] = useState<string | null>(null);
   const { mutate: addFavorite, isPending: adding } = useAddFavorite();
   const { mutate: removeFavorite, isPending: removing } = useRemoveFavorite();
 
   const favorite = favorites?.find((f) => f.coin_id === id);
-  const isFavorite = Boolean(favorite);
+  const isFavorite = !!favorite;
   const isAuthenticated = Boolean(session);
   const isBusy = adding || removing;
 
-  const handleToggleFavorite = () => {
-    if (isBusy || !isAuthenticated) return;
+  const clearError = () => setMutationError(null);
+
+  const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stopPropagation evita que el click navegue al Link padre.
+    // Sin esto, hacer click en la estrella navegaría a /criptomonedas/:id.
+    e.preventDefault();
+    e.stopPropagation();
+
+    clearError();
 
     if (isFavorite && favorite) {
-      removeFavorite(favorite.id);
-    } else {
-      addFavorite({
-        coin_id: id,
-        coin_name: name,
-        coin_symbol: symbol,
+      removeFavorite(favorite.id, {
+        onError: (err) => setMutationError(err.message),
       });
+    } else {
+      addFavorite(
+        {
+          coin_id: id,
+          coin_name: name,
+          coin_symbol: symbol,
+        },
+        {
+          onError: (err) => setMutationError(err.message),
+        }
+      );
     }
   };
 
   return (
     <div className="containerMain">
       {isAuthenticated && (
-        <button
-          type="button"
-          className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
-          onClick={handleToggleFavorite}
-          disabled={isBusy}
-          aria-pressed={isFavorite}
-          aria-label={
-            isFavorite
-              ? `Quitar ${name} de favoritos`
-              : `Agregar ${name} a favoritos`
-          }
-        >
-          {isFavorite ? "★" : "☆"}
-        </button>
+        <>
+          <button
+            type="button"
+            className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
+            onClick={toggleFavorite}
+            disabled={isBusy}
+            aria-pressed={isFavorite}
+            aria-label={
+              isFavorite
+                ? `Quitar ${name} de favoritos`
+                : `Agregar ${name} a favoritos`
+            }
+          >
+            {isFavorite ? "★" : "☆"}
+          </button>
+          {mutationError && (
+            <span className="favorite-error" role="alert">
+              {mutationError}
+            </span>
+          )}
+        </>
       )}
 
       <Link to={`/criptomonedas/${id}`} className="link-elemento">

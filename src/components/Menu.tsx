@@ -62,6 +62,11 @@ const Menu = () => {
             </NavLink>
           </li>
           <li className="item-nav">
+            <NavLink to="/favoritos" onClick={() => setMenuOpen(false)}>
+              Favoritos
+            </NavLink>
+          </li>
+          <li className="item-nav">
             <NavLink to="/perfil" onClick={() => setMenuOpen(false)}>
               Perfil de {profile?.full_name ?? "Usuario"}
             </NavLink>

@@ -10,4 +10,7 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    allowedHosts: ["layers-hip-significantly-myth.trycloudflare.com"],
+  },
 });

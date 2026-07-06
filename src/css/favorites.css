@@ -1,0 +1,231 @@
+/* === Favorites — Precision Finance === */
+/* Lista de criptomonedas favoritas con tarjetas limpias y acción de quitar */
+
+/* === Contenedor principal === */
+.container-favoritos {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  animation: fadeIn var(--transition-slow) ease both;
+}
+
+/* === Título de página === */
+.titulo-favoritos {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-6);
+}
+
+/* === Estado vacío === */
+.empty-message {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.link-ver-criptos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: #ffffff;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-fast);
+}
+
+.link-ver-criptos:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.link-ver-criptos:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === Lista de favoritos === */
+.lista-favoritos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 0;
+  margin: 0;
+}
+
+/* === Item de favorito === */
+.item-favorito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+  animation: fadeIn var(--transition-slow) ease both;
+}
+
+.item-favorito:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* === Stagger animation === */
+.lista-favoritos > .item-favorito:nth-child(1) { animation-delay: 0.05s; }
+.lista-favoritos > .item-favorito:nth-child(2) { animation-delay: 0.10s; }
+.lista-favoritos > .item-favorito:nth-child(3) { animation-delay: 0.15s; }
+.lista-favoritos > .item-favorito:nth-child(4) { animation-delay: 0.20s; }
+.lista-favoritos > .item-favorito:nth-child(5) { animation-delay: 0.25s; }
+.lista-favoritos > .item-favorito:nth-child(n+6) { animation-delay: 0.30s; }
+
+/* === Link a detalle === */
+.link-favorito {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition-base);
+}
+
+.link-favorito:hover {
+  opacity: 0.8;
+}
+
+.link-favorito:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* === Nombre del favorito === */
+.favorito-nombre {
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* === Símbolo del favorito === */
+.favorito-simbolo {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--text-muted);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* === Botón quitar === */
+.btn-quitar-favorito {
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.btn-quitar-favorito:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.btn-quitar-favorito:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-quitar-favorito:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* === Error === */
+.favoritos-error {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  animation: fadeIn var(--transition-slow) ease both;
+}
+
+.favoritos-error-message {
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .container-favoritos,
+  .favoritos-error {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .titulo-favoritos {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .item-favorito {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .btn-quitar-favorito {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container-favoritos,
+  .favoritos-error,
+  .item-favorito {
+    animation: none;
+  }
+}
