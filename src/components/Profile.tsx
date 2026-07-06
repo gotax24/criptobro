@@ -17,7 +17,7 @@ const Profile = () => {
     <div className="container-perfil">
       <img
         className="img-perfil"
-        src={avatarUrl ?? "/logo.svg"}
+        src={avatarUrl ?? "/profile.svg"}
         alt="foto de perfil del usuario"
       />
       <h1 className="name-perfil">{fullName}</h1>

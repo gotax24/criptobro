@@ -37,14 +37,14 @@ const loadProfile = async (userId: string) => {
     .from("profiles")
     .select("*")
     .eq("id", userId)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error("Error al cargar el perfil:", error.message);
     return;
   }
 
-  useAuthStore.getState().setProfile(data as Profile);
+  useAuthStore.getState().setProfile(data as Profile | null);
 };
 
 const finishLoading = () => useAuthStore.setState({ loading: false });
