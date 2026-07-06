@@ -4,7 +4,7 @@
 
 ## Características
 
-- **Inicio de Sesión Seguro**: Los usuarios pueden iniciar sesión de forma segura para personalizar su experiencia.
+- **Inicio de Sesión Seguro**: Autenticación con OAuth (Google, Facebook, GitHub) y email/contraseña via Supabase.
 - **Lista de Criptomonedas**: Muestra una lista de las 100 criptomonedas más populares, junto con detalles básicos.
 - **Detalles de Criptomoneda**: Información detallada de cada criptomoneda, incluyendo:
   - Precio actual
@@ -12,20 +12,28 @@
   - Volumen de operaciones en las últimas 24 horas
   - Suministro disponible y total
   - Histórico de precios diario
-- **Tabla de Precios Históricos**: Visualización de los precios históricos en un formato de grafica mas llamativo para ver.
+- **Gráfica de Precios Históricos**: Visualización de los precios históricos con Chart.js.
+- **Favoritos**: Los usuarios autenticados pueden guardar criptomonedas como favoritas.
+- **Modo Oscuro/Claro**: Tema con persistencia en localStorage y detección de preferencias del sistema.
 - **Diseño Responsivo y Minimalista**: Interfaz simple y atractiva, adaptada para dispositivos móviles y de escritorio.
 - **Página de Error 404**: Página de error personalizada cuando se navega a una URL incorrecta.
 - **Pie de Página con Créditos y Redes Sociales**: Con enlaces a GitHub, LinkedIn y contacto por correo.
 
 ## Tecnologías Utilizadas
 
-- **React**: Biblioteca principal para la construcción de la interfaz de usuario.
-- **React Router**: Para la navegación y gestión de rutas dentro de la aplicación.
-- **Axios**: Manejo de solicitudes HTTP para obtener datos de la API.
-- **JavaScript (ES6+)**: Lógica de la aplicación.
-- **CSS3**: Estilos y diseño minimalista y responsivo.
-- **Vite**: Herramienta de construcción rápida y eficiente.
-- **API de Criptomonedas**: Fuente de datos en tiempo real y precios históricos.
+| Capa | Tecnología |
+| --- | --- |
+| Framework | React 19 + Vite 8 + TypeScript 6 |
+| Routing | React Router 7 |
+| Estado servidor | TanStack Query |
+| Estado global auth | Zustand |
+| Estado UI tema | React Context |
+| HTTP | Axios (CoinGecko) + @supabase/supabase-js (Auth + DB) |
+| API criptos | CoinGecko Demo API |
+| Auth / Backend | Supabase (OAuth + email/password + Postgres) |
+| Charts | Chart.js + react-chartjs-2 |
+| Estilos | CSS plano + variables CSS para temas |
+| Linter | ESLint 9 + React Compiler |
 
 ## Instalación y Configuración
 
@@ -36,35 +44,50 @@
    cd criptoBro
    ```
 
-2. **Instala las dependencias**:
+2. **Instala las dependencias** (usar **pnpm**, no yarn/npm):
 
    ```bash
-   yarn install
+   pnpm install
    ```
 
 3. **Configura las variables de entorno**:
-   Crea un archivo `.env` en la raíz del proyecto y define el nombre de la página:
+   Crea un archivo `.env` en la raíz del proyecto:
 
    ```env
-   VITE_NAME_PAGE="CriptoBro"
+   VITE_NAME_PAGE=CriptoBro
+   VITE_COINGECKO_API_URL=https://api.coingecko.com/api/v3
+   VITE_COINGECKO_API_KEY=tu_api_key_de_coingecko
+   VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+   VITE_SUPABASE_PUBLISHABLE_KEY=tu_publishable_key
    ```
 
 4. **Inicia el servidor de desarrollo**:
 
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 5. **Compila para producción**:
    ```bash
-   yarn build
+   pnpm build
    ```
+
+## Comandos
+
+| Comando | Descripción |
+| --- | --- |
+| `pnpm dev` | Servidor de desarrollo (Vite) |
+| `pnpm build` | Typecheck + build de producción |
+| `pnpm lint` | ESLint con React Compiler |
+| `pnpm preview` | Preview del build de producción |
 
 ## Uso
 
-- **Inicio de Sesión**: Ingresa con un correo y contraseña válidos.
+- **Inicio de Sesión**: Ingresa con OAuth (Google/Facebook/GitHub) o email/contraseña.
 - **Explora Criptomonedas**: Navega a la lista de criptomonedas para ver las 100 principales.
 - **Detalles**: Haz clic en cualquier criptomoneda para ver información detallada y su historial de precios.
+- **Favoritos**: Guarda tus criptomonedas favoritas (requiere sesión).
+- **Tema**: Cambia entre modo oscuro y claro desde el menú.
 - **Navegación**: Usa el menú superior para moverte entre las diferentes secciones de la aplicación.
 
 ## Contribución

@@ -2,8 +2,8 @@
 
 ## Stack
 
-- React 19 + Vite 8 + TypeScript 5.9 (with `noEmit`, typecheck as pre-build step)
-- React Router 7, Axios, Chart.js (react-chartjs-2)
+- React 19 + Vite 8 + TypeScript 6.0 (with `noEmit`, typecheck as pre-build step)
+- React Router 7, Axios, Chart.js (react-chartjs-2), dayjs
 - **Zustand** (global state for auth), **TanStack Query** (server state / API queries), **React Context** (UI theme only)
 - **@supabase/supabase-js** (Auth with OAuth Google/Facebook/GitHub + email/password, Postgres for `profiles` and `favorites` tables)
 - pnpm (lockfile: `pnpm-lock.yaml`). **Do NOT use yarn/npm** — `README.md` is outdated.
@@ -49,25 +49,8 @@ This is a **complete JSX → TSX refactor** of an existing project that did not 
 
 No exceptions. Prioritize pedagogy over speed.
 
-## Known Issues (all will be fixed during refactor)
+## Architecture
 
-- `src/components/Login.tsx` — `useState<string | null>` then spread `{...user, email}` causes a TS error; bypasses `authStore` (writes `localStorage` directly so zustand `token` stays `null` after login)
-- `src/components/CriptoPage.tsx` — `setState` called inside `useEffect` (react-hooks/set-state-in-effect); reads `localStorage` during render; two `useData` calls (will be replaced by TanStack Query)
-- `src/hooks/useData.ts` — params `(url, whatSign)` lack types; `useState()`/`useState(null)` inferred wrong; `setState` inside `useEffect`
-- `src/context/UserContext.tsx` — `Math.random` called during render (purity violation); `createContext()` with no type; provider is never mounted
-- `src/components/Menu.tsx` — `useContext(UserContext)` returns `undefined` (crash on `usuario.first_name`); hamburger is `<div onClick>`; logout is `<a href="#!">`; `to="/Perfil"` case mismatch
-- `src/components/Profile.tsx` — same `useContext` crash
-- `src/components/LayoutCrypto.tsx` — `export default Cuadricula` but function is `LayoutCrypto`
-- `src/api/coinDetail.ts` — typo `/coins/makets`
-- `index.html` — references `/src/main.jsx` (file is `main.tsx`); `lang="en"` but content is Spanish; Google Fonts via render-blocking `@import`
-- `src/Home.tsx` — imports `./home.css` (Linux case-sensitive fails; file is `Home.css`)
-- `src/components/Footer.tsx` / `404.tsx` — imports from `../asset/` (singular); directory is `../assets/`
-- `src/stores/authStore.ts` — typo `"tokenCriptroBro"` in `getItem` (set/remove use correct spelling → token never restored on reload)
-- `src/api/auth.ts` (renamed to fix typo from `auth,ts`) — points to `reqres.in` (will be replaced by Supabase)
-
-## Architecture Quirks
-
-- Currently being refactored from `.jsx` → `.tsx`. All new code is in TypeScript.
 - Entry point: `index.html` → `src/main.tsx` → `src/components/App.tsx`
 - **Zustand stores** reside in `src/stores/`; `authStore` manages Supabase session (subscribes to `supabase.auth.onAuthStateChange` — does NOT poll `localStorage`).
 - **TanStack Query hooks** reside in `src/api/`; `coin.ts` / `coinDetail.ts` / `coinHistory.ts` wrap the CoinGecko API, `favorites.ts` wraps Supabase, `auth.ts` wraps Supabase Auth.
@@ -82,3 +65,17 @@ No exceptions. Prioritize pedagogy over speed.
 
 - `.gitignore` excludes `.env` and `dist`
 - `.npmrc` enforces `ignore-scripts=true`, `engine-strict=true`, `save-exact=true`, and `prefer-offline=true`
+- `vite.config.js` and `eslint.config.js` (both `.js`, not `.ts`)
+- `tsconfig.json` with `strict: true`, `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`
+
+## CLI Tools (via mise)
+
+| Tool | Command | Description |
+| --- | --- | --- |
+| Node.js | `node` | Runtime JS/TS (v24.x) |
+| pnpm | `pnpm` | Package manager |
+| Supabase CLI | `supabase` | Gestionar proyecto Supabase (migraciones, edge functions, etc.) |
+| Vercel CLI | `vercel` | Desplegar en Vercel |
+| Railway CLI | `railway` | Desplegar en Railway |
+| GitHub CLI | `gh` | Interactuar con GitHub (PRs, issues, releases) |
+| Socket CLI | `socket` | Análisis de seguridad de dependencias |
