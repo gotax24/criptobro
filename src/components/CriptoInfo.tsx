@@ -1,53 +1,91 @@
 import FormatNumber from "../helpers/FormatNumber";
 import CambioEmoji from "../helpers/ChangeEmoji";
 import RedAndGreen from "../helpers/RedAndGreen";
+import type { Coin } from "../types";
 
-const CriptoInfo = ({ criptos }) => {
+interface CriptoInfoProps {
+  coin: Coin;
+}
+
+const CriptoInfo = ({ coin }: CriptoInfoProps) => {
+  const {
+    name,
+    symbol,
+    current_price,
+    price_change_percentage_24h,
+    market_cap_rank,
+    market_cap,
+    total_volume,
+    high_24h,
+    low_24h,
+    circulating_supply,
+    total_supply,
+    max_supply,
+  } = coin;
+
   return (
     <div className="info">
-      <h1 className="name-info">{`${criptos.name} #${criptos.rank}`}</h1>
-      <h2 className="codigo-info">Código: {criptos.symbol}</h2>
+      <h1 className="name-info">
+        {name} #{market_cap_rank}
+      </h1>
+      <h2 className="codigo-info">Código: {symbol}</h2>
 
       <p className="p-info">
         Precio en tiempo real:{" "}
-        <span className="number">{FormatNumber(Number(criptos.priceUsd))}</span>
+        <span className="number">{FormatNumber(current_price)}</span>
       </p>
+
       <p className="p-info">
         Cambio de las últimas 24H:{" "}
-        <span className={RedAndGreen(criptos.changePercent24Hr)}>
-          {Number(criptos.changePercent24Hr).toFixed(3)}%
+        <span className={RedAndGreen(price_change_percentage_24h ?? 0)}>
+          {price_change_percentage_24h?.toFixed(3) ?? "—"}%
         </span>
-        {CambioEmoji(criptos.changePercent24Hr)}
+        {CambioEmoji(price_change_percentage_24h ?? 0)}
       </p>
+
       <p className="p-info">
-        Precio promedio ponderado por volumen en las últimas 24H:{" "}
-        <span className="number">{Number(criptos.vwap24Hr).toFixed(3)}$</span>
-      </p>
-      <p className="p-info">
-        Volumen de operaciones en las últimas 24H:{" "}
+        Máximo 24H:{" "}
         <span className="number">
-          {FormatNumber(Number(criptos.volumeUsd24Hr))}
+          {high_24h != null ? FormatNumber(high_24h) : "—"}
         </span>
       </p>
+
       <p className="p-info">
-        Oferta por precio:
+        Mínimo 24H:{" "}
         <span className="number">
-          {FormatNumber(Number(criptos.marketCapUsd))}
+          {low_24h != null ? FormatNumber(low_24h) : "—"}
         </span>
       </p>
+
       <p className="p-info">
-        Suministro disponible para el comercio:{" "}
-        <span className="number">{FormatNumber(Number(criptos.supply))}</span>
+        Market Cap: <span className="number">{FormatNumber(market_cap)}</span>
       </p>
+
+      <p className="p-info">
+        Volumen 24H:{" "}
+        <span className="number">{FormatNumber(total_volume)}</span>
+      </p>
+
+      <p className="p-info">
+        Suministro circulante:{" "}
+        <span className="number">{FormatNumber(circulating_supply)}</span>
+      </p>
+
+      <p className="p-info">
+        Suministro total:{" "}
+        <span className="number">
+          {total_supply != null ? FormatNumber(total_supply) : "—"}
+        </span>
+      </p>
+
       <p className="info-p">
-        Cantidad total de activos emitidos:{" "}
+        Suministro máximo:{" "}
         <span className="number">
-          {FormatNumber(Number(criptos.maxSupply))}
+          {max_supply != null ? FormatNumber(max_supply) : "—"}
         </span>
       </p>
     </div>
   );
 };
-
 
 export default CriptoInfo;

@@ -8,6 +8,7 @@ export interface Coin {
   market_cap_rank: number;
   high_24h: number | null;
   low_24h: number | null;
+  total_volume: number;
   price_change_percentage_24h: number | null;
   circulating_supply: number;
   total_supply: number | null;
@@ -37,6 +38,6 @@ export interface Favorites {
   user_id: string;
   coin_id: string;
   coin_name: string;
-  coin_symbol:string;
-  created_at: string
+  coin_symbol: string;
+  created_at: string;
 }

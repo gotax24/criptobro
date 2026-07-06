@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCoinDetail } from "../api/coinDetail";
 import { useCoinHistory } from "../api/coinHistory";
 import CriptoInfo from "./CriptoInfo";
-import CriptoChart from "./CriptoChart";
+import CriptoChart from "./CriptoGraph";
 import Loading from "./Loading";
 import "../css/CriptoPage.css";
 
@@ -59,7 +59,7 @@ const CriptoPage = () => {
 
       <div className="info-y-grafica">
         <div className="info-cripto">
-          {coin && <CriptoInfo criptos={coin} />}
+          {coin && <CriptoInfo coin={coin} />}
         </div>
         <div className="grafica-cripto">
           {history && <CriptoChart history={history} />}
