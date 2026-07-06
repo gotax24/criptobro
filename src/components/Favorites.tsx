@@ -1,3 +1,7 @@
+// components/Favorites.tsx
+// Página de favoritos del usuario.
+// Lista las criptomonedas guardadas en Supabase y permite eliminarlas.
+
 import { Link } from "react-router-dom";
 import { useFavorites, useRemoveFavorite } from "../api/favorites";
 import Loading from "./Loading";

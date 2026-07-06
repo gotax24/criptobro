@@ -1,3 +1,7 @@
+// components/Login.tsx
+// Página de autenticación. Permite iniciar sesión o registrarse con email/password
+// y también ofrece login mediante OAuth (Google, Facebook, GitHub).
+
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import {
@@ -9,12 +13,15 @@ import { useAuthStore } from "../stores/authStore";
 import "../css/login.css";
 import Loading from "./Loading";
 
+// Unión de literales para restringir los dos modos posibles del formulario.
 type AuthMode = "login" | "register";
 
 const Login = () => {
+  // Observamos el estado global de sesión y carga.
   const session = useAuthStore((s) => s.session);
   const loading = useAuthStore((s) => s.loading);
 
+  // Mutaciones de TanStack Query para email/password.
   const {
     mutate: signIn,
     isPending: signingIn,
@@ -27,21 +34,26 @@ const Login = () => {
     error: signUpError,
   } = useSignUpWithEmail();
 
+  // Estado local del formulario.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<AuthMode>("login");
   const [oauthError, setOauthError] = useState<string | null>(null);
 
+  // Mientras Supabase decide si hay sesión, mostramos el spinner.
   if (loading) return <Loading />;
 
+  // Si ya hay sesión, redirigimos al inicio. Navigate es un componente, no un hook.
   if (session) return <Navigate to="/" />;
 
+  // Deriva el estado de carga y el error según el modo actual.
   const isPending = mode === "login" ? signingIn : signingUp;
   const authError = mode === "login" ? signInError : signUpError;
   const displayError = authError?.message || oauthError;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Prevenimos el envío nativo del formulario para manejarlo con React.
 
     if (mode === "register") {
       signUp({ email, password });
@@ -53,9 +65,11 @@ const Login = () => {
   const handleOAuth = async (provider: "google" | "facebook" | "github") => {
     try {
       setOauthError(null);
+      // Limpiamos errores previos antes de intentar un nuevo login.
       await signInWithOAuth(provider);
     } catch (err) {
       setOauthError(err instanceof Error ? err.message : "Error con OAuth");
+      // Si el error no es una instancia de Error, mostramos un mensaje genérico.
     }
   };
 
@@ -81,6 +95,7 @@ const Login = () => {
             <input
               id="login-email"
               autoComplete="email"
+              // autoComplete ayuda al navegador a autocompletar el campo.
               className="input-login"
               type="email"
               name="email"
@@ -100,6 +115,7 @@ const Login = () => {
               autoComplete={
                 mode === "login" ? "current-password" : "new-password"
               }
+              // Diferenciamos el autocompletado según sea login o registro.
               className="input-login"
               type="password"
               name="login-password"
@@ -107,6 +123,7 @@ const Login = () => {
               required
               value={password}
               minLength={6}
+              // Supabase requiere mínimo 6 caracteres para la contraseña.
               onChange={(e) => setPassword(e.target.value)}
               disabled={isPending}
             />

@@ -1,3 +1,7 @@
+// components/404.tsx
+// Página de error para rutas no definidas.
+// Muestra un mensaje amigable y un enlace para volver al inicio.
+
 import { Link } from "react-router-dom";
 import personaPerdida from "../assets/404.svg";
 import "../css/404.css";

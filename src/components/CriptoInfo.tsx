@@ -1,3 +1,7 @@
+// components/CriptoInfo.tsx
+// Componente de presentación que muestra los datos detallados de una criptomoneda.
+// No tiene estado ni efectos; solo recibe un objeto Coin y lo renderiza.
+
 import FormatNumber from "../helpers/FormatNumber";
 import CambioEmoji from "../helpers/ChangeEmoji";
 import RedAndGreen from "../helpers/RedAndGreen";
@@ -8,6 +12,7 @@ interface CriptoInfoProps {
 }
 
 const CriptoInfo = ({ coin }: CriptoInfoProps) => {
+  // Desestructuración de las propiedades que vamos a mostrar.
   const {
     name,
     symbol,

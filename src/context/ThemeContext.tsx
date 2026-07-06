@@ -1,13 +1,25 @@
+// context/ThemeContext.tsx
+// Proveedor del tema visual (oscuro/claro) mediante React Context.
+// Context es adecuado aquí porque el tema es estado global que cambia raramente
+// y se lee en muchos componentes. Auth y datos del servidor usan Zustand/TanStack Query.
+
 import { createContext, useState, useEffect } from "react";
+// createContext crea el contexto. useState guarda el tema actual.
+// useEffect sincroniza el tema con <html> y localStorage.
+
 import type { ReactNode } from "react";
+// ReactNode permite aceptar cualquier contenido renderizable como children.
 
 // Theme solo puede ser "dark" o "light". Al tiparlo como unión de literales
 // TypeScript evita que accidentalmente asignemos "blu" o cualquier otro valor.
 type Theme = "dark" | "light";
 
+// Interfaz del valor que proveerá el contexto.
 export interface ThemeContextValue {
   theme: Theme;
+  // Tema actual.
   toggleTheme: () => void;
+  // Función para alternar entre dark y light.
 }
 
 // createContext recibe el tipo del valor que va a proveer.
@@ -30,6 +42,8 @@ function getInitialTheme(): Theme {
     return "light";
   }
 
+  // Si no hay nada guardado y el sistema prefiere oscuro (o no podemos saberlo),
+  // usamos dark como tema por defecto de la app.
   return "dark";
 }
 
@@ -43,10 +57,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     // getAttribute solo lee; no sirve para cambiar el atributo.
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    // El array de dependencias [theme] hace que este efecto se ejecute
+    // cada vez que el tema cambia, no en cada render.
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    // Usamos la forma funcional de setState porque la nueva depende del valor anterior.
   };
 
   return (
@@ -54,6 +71,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </ThemeContext.Provider>
   );
+  // Cualquier descendiente puede consumir { theme, toggleTheme } con useTheme().
 };
 
 // Exportamos el contexto para que el hook useTheme pueda consumirlo

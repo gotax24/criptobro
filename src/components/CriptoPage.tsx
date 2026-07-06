@@ -1,4 +1,11 @@
+// components/CriptoPage.tsx
+// Página de detalle de una criptomoneda.
+// Combina la información general (CriptoInfo) con la gráfica histórica (CriptoGraph)
+// y permite cambiar el rango temporal de la gráfica.
+
 import { useParams } from "react-router-dom";
+// useParams lee los parámetros dinámicos de la URL, en este caso :id.
+
 import { useState } from "react";
 import { useCoinDetail } from "../api/coinDetail";
 import { useCoinHistory } from "../api/coinHistory";
@@ -7,6 +14,8 @@ import CriptoGraph from "./CriptoGraph";
 import Loading from "./Loading";
 import "../css/CriptoPage.css";
 
+// Opciones de rango temporal para la gráfica.
+// as const convierte el array en una tupla inmutable y los valores en literales.
 const DAYS_OPTIONS = [
   { value: "1", label: "1 Dia" },
   { value: "7", label: "7 Dias" },
@@ -15,6 +24,8 @@ const DAYS_OPTIONS = [
 ] as const;
 
 const CriptoPage = () => {
+  // Extraemos el id de la URL. Tipamos con { id: string } para que TypeScript
+  // sepa qué parámetros esperar.
   const { id } = useParams<{ id: string }>();
   const [days, setDays] = useState<string>("1");
 
@@ -26,6 +37,7 @@ const CriptoPage = () => {
 
   const { data: history, isLoading: loadingHistory } = useCoinHistory(id, days);
 
+  // Mostramos spinner mientras carga cualquiera de las dos queries.
   if (loadingCoin || loadingHistory) return <Loading />;
 
   if (errorCoin) {

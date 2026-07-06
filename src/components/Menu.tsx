@@ -1,10 +1,21 @@
+// components/Menu.tsx
+// Barra de navegación superior con menú hamburguesa, links de navegación,
+// toggle de tema y botón de cierre de sesión.
+
 import { NavLink, useNavigate } from "react-router-dom";
+// NavLink es como Link pero añade una clase activa a la ruta actual.
+// useNavigate permite redirigir programáticamente después del logout.
+
 import { useState, useEffect } from "react";
+// useState controla si el menú móvil está abierto.
+// useEffect bloquea/desbloquea el scroll del body cuando el menú está abierto.
+
 import { useAuthStore } from "../stores/authStore";
 import "../css/menu.css";
 import ThemeToggle from "./ThemeToggle";
 
 const Menu = () => {
+  // Seleccionamos solo los slices que necesitamos para minimizar re-renders.
   const profile = useAuthStore((s) => s.profile);
   const signOut = useAuthStore((s) => s.signOut);
 
@@ -12,20 +23,26 @@ const Menu = () => {
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Cierra sesión, colapsa el menú móvil y redirige al login.
   const signOutSession = async () => {
     await signOut();
     setMenuOpen(false);
     navigate("/login");
   };
 
+  // Alterna el estado del menú móvil.
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
 
+  // Efecto secundario: cuando el menú móvil está abierto, bloqueamos el scroll
+  // del body para evitar que el usuario haga scroll por detrás del overlay.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
 
     return () => {
+      // Cleanup: si el componente se desmonta con el menú abierto,
+      // restablecemos el scroll para no dejarlo bloqueado.
       document.body.style.overflow = "auto";
     };
   }, [menuOpen]);
@@ -42,6 +59,8 @@ const Menu = () => {
         onClick={toggleMenu}
         aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
         aria-expanded={menuOpen}
+        // type="button" es obligatorio para que no envíe un formulario si el
+        // botón está dentro de uno. Además mejora la accesibilidad.
       >
         <div className="hamburger-icon">
           <span></span>

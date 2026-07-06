@@ -1,4 +1,12 @@
+// components/Element.tsx
+// Tarjeta individual de criptomoneda usada en la cuadrícula.
+// Muestra precio, cambio 24h, ranking y un botón de favoritos.
+// Está envuelta en memo para evitar re-renders innecesarios cuando
+// otras tarjetas cambian.
+
 import { memo, useState } from "react";
+// memo compara props superficialmente y evita renderizar si no cambian.
+
 import { Link } from "react-router-dom";
 import type { Coin } from "../types";
 import RedAndGreen from "../helpers/RedAndGreen";
@@ -16,6 +24,7 @@ interface ElementProps {
 }
 
 const Element = memo(({ coin }: ElementProps) => {
+  // Extraemos solo las propiedades que necesitamos del objeto Coin.
   const {
     id,
     name,
@@ -32,6 +41,7 @@ const Element = memo(({ coin }: ElementProps) => {
   const { mutate: addFavorite, isPending: adding } = useAddFavorite();
   const { mutate: removeFavorite, isPending: removing } = useRemoveFavorite();
 
+  // Buscamos si esta moneda ya está en favoritos del usuario.
   const favorite = favorites?.find((f) => f.coin_id === id);
   const isFavorite = !!favorite;
   const isAuthenticated = Boolean(session);
@@ -112,5 +122,6 @@ const Element = memo(({ coin }: ElementProps) => {
 });
 
 Element.displayName = "Element";
+// displayName facilita la depuración en React DevTools y mensajes de error.
 
 export default Element;
