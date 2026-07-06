@@ -311,9 +311,6 @@
 .btn-google .oauth-icon {
   color: #ea4335;
 }
-.btn-facebook .oauth-icon {
-  color: #1877f2;
-}
 .btn-github .oauth-icon {
   color: var(--text);
 }

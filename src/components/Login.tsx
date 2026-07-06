@@ -1,6 +1,6 @@
 // components/Login.tsx
 // Página de autenticación. Permite iniciar sesión o registrarse con email/password
-// y también ofrece login mediante OAuth (Google, Facebook, GitHub).
+// y también ofrece login mediante OAuth (Google, GitHub).
 
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
@@ -62,7 +62,7 @@ const Login = () => {
     }
   };
 
-  const handleOAuth = async (provider: "google" | "facebook" | "github") => {
+  const handleOAuth = async (provider: "google" | "github") => {
     try {
       setOauthError(null);
       // Limpiamos errores previos antes de intentar un nuevo login.
@@ -180,16 +180,6 @@ const Login = () => {
           >
             <span className="oauth-icon" aria-hidden="true">G</span>
             Google
-          </button>
-
-          <button
-            type="button"
-            className="btn-oauth btn-facebook"
-            onClick={() => handleOAuth("facebook")}
-            aria-label="Continuar con Facebook"
-          >
-            <span className="oauth-icon" aria-hidden="true">f</span>
-            Facebook
           </button>
 
           <button

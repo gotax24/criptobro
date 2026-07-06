@@ -51,7 +51,7 @@ export const useSignUpWithEmail = () => {
 // No usa useMutation porque supabase.auth.signInWithOAuth redirige a la URL
 // del proveedor, interrumpiendo el flujo de la app.
 export const signInWithOAuth = async (
-  provider: "google" | "facebook" | "github",
+  provider: "google" | "github",
 ) => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider,
