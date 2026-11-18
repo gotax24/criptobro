@@ -166,6 +166,51 @@
   text-align: left;
 }
 
+/* === Botón de favoritos en el detalle === */
+.favorito-detalle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+}
+
+.favorito-detalle .error {
+  margin: 0;
+}
+
+.btn-favorito-detalle {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    color var(--transition-base),
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.btn-favorito-detalle:hover:not(:disabled),
+.btn-favorito-detalle.is-favorite {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-favorito-detalle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-favorito-detalle:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .container-main {

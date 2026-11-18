@@ -45,12 +45,13 @@ export const useSignUpWithEmail = () => {
 // Función asíncrona para iniciar sesión con proveedores OAuth.
 // No usa useMutation porque supabase.auth.signInWithOAuth redirige a la URL
 // del proveedor, interrumpiendo el flujo de la app.
-export const signInWithOAuth = async (provider) => {
+// redirectPath es la página a la que volver después del login (ej. "/criptomonedas").
+export const signInWithOAuth = async (provider, redirectPath = "/") => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: window.location.origin,
-      // Coincide con la URL permitida en el dashboard de Supabase.
+      redirectTo: window.location.origin + redirectPath,
+      // Supabase solo redirige a URLs de su lista "Redirect URLs" (con el comodín /**).
     },
   });
 

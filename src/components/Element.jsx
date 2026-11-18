@@ -4,22 +4,17 @@
 // Está envuelta en memo para evitar re-renders innecesarios cuando
 // otras tarjetas cambian.
 
-import { memo, useState } from "react";
+import { memo } from "react";
 // memo compara props superficialmente y evita renderizar si no cambian.
 
 import { Link } from "react-router-dom";
 import RedAndGreen from "../helpers/RedAndGreen";
 import CambioEmoji from "../helpers/ChangeEmoji";
 import FormatNumber from "../helpers/FormatNumber";
-import { useAuthStore } from "../stores/authStore";
-import {
-  useAddFavorite,
-  useFavorites,
-  useRemoveFavorite,
-} from "../api/favorites";
+import { useFavoriteToggle } from "../hooks/useFavoriteToggle";
 
 const Element = memo(({ coin }) => {
-  // Extraemos solo las propiedades que necesitamos del objeto Coin.
+  // Extraemos solo las propiedades que necesitamos del objeto de la criptomoneda.
   const {
     id,
     name,
@@ -30,19 +25,9 @@ const Element = memo(({ coin }) => {
     market_cap_rank,
   } = coin;
 
-  const session = useAuthStore((s) => s.session);
-  const { data: favorites } = useFavorites();
-  const [mutationError, setMutationError] = useState(null);
-  const { mutate: addFavorite, isPending: adding } = useAddFavorite();
-  const { mutate: removeFavorite, isPending: removing } = useRemoveFavorite();
-
-  // Buscamos si esta moneda ya está en favoritos del usuario.
-  const favorite = favorites?.find((f) => f.coin_id === id);
-  const isFavorite = !!favorite;
-  const isAuthenticated = Boolean(session);
-  const isBusy = adding || removing;
-
-  const clearError = () => setMutationError(null);
+  // La lógica de favoritos vive en el hook: si no hay sesión, toggle() lleva a /login.
+  const { isAuthenticated, isFavorite, disabled, error, toggle } =
+    useFavoriteToggle(coin);
 
   const toggleFavorite = (e) => {
     // stopPropagation evita que el click navegue al Link padre.
@@ -50,50 +35,34 @@ const Element = memo(({ coin }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    clearError();
-
-    if (isFavorite && favorite) {
-      removeFavorite(favorite.id, {
-        onError: (err) => setMutationError(err.message),
-      });
-    } else {
-      addFavorite(
-        {
-          coin_id: id,
-          coin_name: name,
-          coin_symbol: symbol,
-        },
-        {
-          onError: (err) => setMutationError(err.message),
-        }
-      );
-    }
+    toggle();
   };
 
   return (
     <div className="containerMain">
-      {isAuthenticated && (
-        <>
-          <button
-            type="button"
-            className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
-            onClick={toggleFavorite}
-            disabled={isBusy}
-            aria-pressed={isFavorite}
-            aria-label={
-              isFavorite
-                ? `Quitar ${name} de favoritos`
-                : `Agregar ${name} a favoritos`
-            }
-          >
-            {isFavorite ? "★" : "☆"}
-          </button>
-          {mutationError && (
-            <span className="favorite-error" role="alert">
-              {mutationError}
-            </span>
-          )}
-        </>
+      {/* La estrella se muestra siempre; sin sesión, el click solo lleva a /login. */}
+      <button
+        type="button"
+        className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
+        onClick={toggleFavorite}
+        disabled={disabled}
+        // aria-pressed solo tiene sentido cuando el botón alterna el favorito;
+        // para un invitado es un enlace a /login, así que no lo marcamos.
+        aria-pressed={isAuthenticated ? isFavorite : undefined}
+        aria-label={
+          !isAuthenticated
+            ? `Inicia sesión para guardar ${name} en favoritos`
+            : isFavorite
+              ? `Quitar ${name} de favoritos`
+              : `Agregar ${name} a favoritos`
+        }
+      >
+        {isFavorite ? "★" : "☆"}
+      </button>
+      {error && (
+        <span className="favorite-error" role="alert">
+          {error}
+        </span>
       )}
 
       <Link to={`/criptomonedas/${id}`} className="link-elemento">

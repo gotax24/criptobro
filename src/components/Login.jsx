@@ -1,9 +1,9 @@
 // components/Login.jsx
-// Página de autenticación. Permite iniciar sesión o registrarse con email/password
+// Página de autenticación (opcional). Permite iniciar sesión o registrarse con email/password
 // y también ofrece login mediante OAuth (Google, GitHub).
 
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import {
   useSignInWithEmail,
   useSignUpWithEmail,
@@ -19,6 +19,12 @@ const Login = () => {
   // Observamos el estado global de sesión y carga.
   const session = useAuthStore((s) => s.session);
   const loading = useAuthStore((s) => s.loading);
+
+  // La página que nos envía aquí guarda en location.state la ruta de origen (from)
+  // y, si aplica, un mensaje que explica por qué pedimos sesión.
+  const location = useLocation();
+  const from = location.state?.from ?? "/";
+  const infoMessage = location.state?.message ?? null;
 
   // Mutaciones de TanStack Query para email/password.
   const {
@@ -42,8 +48,8 @@ const Login = () => {
   // Mientras Supabase decide si hay sesión, mostramos el spinner.
   if (loading) return <Loading />;
 
-  // Si ya hay sesión, redirigimos al inicio. Navigate es un componente, no un hook.
-  if (session) return <Navigate to="/" />;
+  // Si ya hay sesión, volvemos a la página de origen. Navigate es un componente, no un hook.
+  if (session) return <Navigate to={from} replace />;
 
   // Deriva el estado de carga y el error según el modo actual.
   const isPending = mode === "login" ? signingIn : signingUp;
@@ -65,7 +71,7 @@ const Login = () => {
     try {
       setOauthError(null);
       // Limpiamos errores previos antes de intentar un nuevo login.
-      await signInWithOAuth(provider);
+      await signInWithOAuth(provider, from);
     } catch (err) {
       setOauthError(err instanceof Error ? err.message : "Error con OAuth");
       // Si el error no es una instancia de Error, mostramos un mensaje genérico.
@@ -80,6 +86,12 @@ const Login = () => {
       </div>
       <form className="form-login" onSubmit={handleSubmit}>
         <h2>{mode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
+
+        {infoMessage && (
+          <p className="info-login" role="status">
+            {infoMessage}
+          </p>
+        )}
 
           {displayError && (
             <p className="error" role="alert">
@@ -192,6 +204,9 @@ const Login = () => {
           </button>
         </div>
       </div>
+      <Link to="/criptomonedas" className="link-explorar">
+        ← Explorar criptos sin iniciar sesión
+      </Link>
     </div>
   );
 };

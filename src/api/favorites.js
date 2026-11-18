@@ -12,11 +12,12 @@ import { useAuthStore } from "../stores/authStore";
 
 // Hook de lectura: devuelve los favoritos del usuario autenticado.
 export const useFavorites = () => {
-  const session = useAuthStore((s) => s.session);
-  // Solo consultamos Supabase si hay sesión activa.
+  const userId = useAuthStore((s) => s.user?.id);
+  // Solo consultamos Supabase si hay un usuario. La clave de la query incluye su id:
+  // así, al cambiar de cuenta, nunca se muestran los favoritos de la sesión anterior.
 
   return useQuery({
-    queryKey: ["favorites"],
+    queryKey: ["favorites", userId],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("favorites")
@@ -29,8 +30,8 @@ export const useFavorites = () => {
 
       return data;
     },
-    enabled: !!session,
-    // Si no hay sesión, la query no se ejecuta y data queda undefined.
+    enabled: !!userId,
+    // Sin usuario (visitante invitado) la query no se ejecuta y data queda undefined.
   });
 };
 

@@ -1,11 +1,12 @@
 // App.jsx
 // Componente raíz que define las rutas de la aplicación.
-// Separa las rutas públicas (login, 404) de las protegidas, que requieren
-// una sesión activa de Supabase.
+// La navegación es pública: cualquiera puede ver el inicio, la lista y el detalle de las criptos.
+// Solo favoritos y perfil requieren sesión; esas rutas se envuelven con <Protected>.
 
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 // Routes renderiza la primera Route cuyo path coincida.
 // Navigate permite redirigir programáticamente desde JSX.
+// useLocation nos dice la ruta actual para recordarla al enviar al usuario a /login.
 
 import { useAuthStore } from "./stores/authStore";
 // Zustand store que guarda la sesión, usuario, perfil y estado de carga de Supabase.
@@ -23,43 +24,59 @@ import Favorites from "./components/Favorites";
 import Home from "./Home";
 
 // Protected es un wrapper que decide si mostrar sus hijos o redirigir al login.
-// Recibe children para poder envolver componentes directamente en JSX.
+// Solo lo usamos en las rutas que de verdad necesitan sesión (favoritos y perfil).
 const Protected = ({ children }) => {
   // Seleccionamos solo las porciones que necesitamos del store.
   // Esto evita re-renderizados innecesarios cuando cambian otras propiedades.
   const session = useAuthStore((s) => s.session);
   const loading = useAuthStore((s) => s.loading);
+  const location = useLocation();
 
   // Mientras Supabase restaura la sesión de forma asíncrona (localStorage/cookie),
   // mostramos un spinner. Si no esperamos, siempre redirigiría a /login al recargar.
   if (loading) return <Loading />; // espera a que Supabase decida
 
   // Si ya tenemos sesión, renderizamos el contenido protegido.
-  // Si no, redirigimos a /login en lugar de renderizar nada.
-  return session ? <>{children}</> : <Navigate to="/login" />;
+  // Si no, redirigimos a /login y guardamos la ruta actual en state.from
+  // para volver a ella después de iniciar sesión.
+  return session ? (
+    <>{children}</>
+  ) : (
+    <Navigate to="/login" state={{ from: location.pathname }} replace />
+  );
 };
 
 // App no recibe props. Solo define el mapa de rutas.
 const App = () => (
   <Routes>
-    {/* Ruta pública: login. No usa Protected porque es a donde redirige. */}
+    {/* Ruta de login. Es opcional: también la usamos para pedir sesión al guardar un favorito. */}
     <Route path="/login" element={<Login />} />
 
-    {/* Ruta padre protegida. Cualquier ruta anidada hereda la protección. */}
-    <Route
-      element={
-        <Protected>
-          <AppLayout />
-        </Protected>
-      }
-    >
+    {/* Ruta padre pública: cualquier visitante puede navegar aquí sin iniciar sesión. */}
+    <Route element={<AppLayout />}>
       {/* index=false implícito; estas son rutas hijas con su propio path. */}
       <Route path="/" element={<Home />} />
-      <Route path="/perfil" element={<Profile />} />
       <Route path="/criptomonedas" element={<LayoutCrypto />} />
       {/* :id es un parámetro dinámico. useParams lo leerá dentro de CriptoPage. */}
       <Route path="/criptomonedas/:id" element={<CriptoPage />} />
-      <Route path="/favoritos" element={<Favorites />} />
+
+      {/* Rutas que requieren sesión: cada una se envuelve con Protected. */}
+      <Route
+        path="/favoritos"
+        element={
+          <Protected>
+            <Favorites />
+          </Protected>
+        }
+      />
+      <Route
+        path="/perfil"
+        element={
+          <Protected>
+            <Profile />
+          </Protected>
+        }
+      />
     </Route>
 
     {/* El asterisco captura cualquier URL no definida y muestra la página 404. */}

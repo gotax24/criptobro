@@ -1,6 +1,7 @@
 // components/Menu.jsx
 // Barra de navegación superior con menú hamburguesa, links de navegación,
-// toggle de tema y botón de cierre de sesión.
+// toggle de tema y acceso a la sesión. Con sesión muestra favoritos, perfil y
+// cerrar sesión; si el visitante es invitado, muestra el enlace para iniciar sesión.
 
 import { NavLink, useNavigate } from "react-router-dom";
 // NavLink es como Link pero añade una clase activa a la ruta actual.
@@ -16,18 +17,22 @@ import ThemeToggle from "./ThemeToggle";
 
 const Menu = () => {
   // Seleccionamos solo los slices que necesitamos para minimizar re-renders.
+  const session = useAuthStore((s) => s.session);
   const profile = useAuthStore((s) => s.profile);
+  const loading = useAuthStore((s) => s.loading);
   const signOut = useAuthStore((s) => s.signOut);
 
   const navigate = useNavigate();
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Cierra sesión, colapsa el menú móvil y redirige al login.
+  // Cierra sesión, colapsa el menú móvil y vuelve al inicio.
   const signOutSession = async () => {
-    await signOut();
     setMenuOpen(false);
-    navigate("/login");
+    navigate("/");
+    // Navegamos antes de cerrar sesión: así ya no estamos en una ruta protegida
+    // cuando el store quede sin sesión, y no nos redirige a /login.
+    await signOut();
   };
 
   // Alterna el estado del menú móvil.
@@ -81,28 +86,46 @@ const Menu = () => {
               Lista de criptos
             </NavLink>
           </li>
-          <li className="item-nav">
-            <NavLink to="/favoritos" onClick={() => setMenuOpen(false)}>
-              Favoritos
-            </NavLink>
-          </li>
-          <li className="item-nav">
-            <NavLink to="/perfil" onClick={() => setMenuOpen(false)}>
-              Perfil de {profile?.full_name ?? "Usuario"}
-            </NavLink>
-          </li>
+
+          {/* Estas opciones solo existen para usuarios con sesión. */}
+          {session && (
+            <>
+              <li className="item-nav">
+                <NavLink to="/favoritos" onClick={() => setMenuOpen(false)}>
+                  Favoritos
+                </NavLink>
+              </li>
+              <li className="item-nav">
+                <NavLink to="/perfil" onClick={() => setMenuOpen(false)}>
+                  Perfil de {profile?.full_name ?? "Usuario"}
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <li className="item-nav theme-toggle-item">
             <ThemeToggle />
           </li>
-          <li className="item-nav">
-            <button
-              type="button"
-              className="logout-button"
-              onClick={signOutSession}
-            >
-              Cerrar sesión
-            </button>
-          </li>
+
+          {/* Mientras Supabase restaura la sesión no mostramos ninguna de las dos opciones,
+              así el menú no cambia de forma visible al cargar la página. */}
+          {!loading && (
+            <li className="item-nav">
+              {session ? (
+                <button
+                  type="button"
+                  className="logout-button"
+                  onClick={signOutSession}
+                >
+                  Cerrar sesión
+                </button>
+              ) : (
+                <NavLink to="/login" onClick={() => setMenuOpen(false)}>
+                  Iniciar sesión
+                </NavLink>
+              )}
+            </li>
+          )}
         </ul>
       </nav>
     </header>
