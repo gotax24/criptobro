@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuthStore } from "../stores/authStore";
+import { useTheme } from "../hooks/useTheme";
 import ThemeToggle from "./ThemeToggle";
 import "../css/menu.css";
 
@@ -14,6 +15,8 @@ const Menu = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
+  const { theme } = useTheme();
+  const logoSrc = theme === "dark" ? "/logo-white.svg" : "/logo-black.svg";
   const [menuOpen, setMenuOpen] = useState(false);
 
   const signOutSession = async () => {
@@ -37,7 +40,7 @@ const Menu = () => {
   return (
     <header className="main-menu">
       <div className="logo-title-container">
-        <img className="logo-menu" src="/logo-black.svg" alt="logo de la pagina" />
+        <img className="logo-menu" src={logoSrc} alt="" />
         <h1 className="tittle-menu">{VITE_NAME}</h1>
       </div>
 

@@ -1,6 +1,7 @@
 import githubLogo from "../assets/github.svg";
 import emailLogo from "../assets/email.svg";
 import linkedinLogo from "../assets/linkedin.svg";
+import portafolioLogo from "../assets/portafolio.svg";
 import "../css/PieDePagina.css";
 
 const Footer = () => {
@@ -30,8 +31,17 @@ const Footer = () => {
         <a href="mailto:dev.ejbr@gmail.com" className="link-networks">
           <img src={emailLogo} className="img-footer" alt="logo de email" />
         </a>
-        <a href="https://www.gotax.dev/" target="_blank" rel="noopener noreferrer" className="link-networks">
-          <img src={""} className="img-footer" alt="logo de gotax.dev" />
+        <a
+          href="https://www.gotax.dev/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-networks"
+        >
+          <img
+            src={portafolioLogo}
+            className="img-footer"
+            alt="Portafolio de Ernesto Bracho"
+          />
         </a>
       </address>
       <div className="copyright">Creator: Ing. Ernesto Bracho {new Date().getFullYear()} ©</div>
