@@ -516,7 +516,7 @@ src/
     └── themeToggle.css        ← Toggle dark/light
 ```
 
-Cada archivo CSS importa solo lo que necesita de `App.css` (que se importa globalmente desde `main.tsx`).
+Cada archivo CSS importa solo lo que necesita de `App.css` (que se importa globalmente desde `main.jsx`).
 
 ---
 

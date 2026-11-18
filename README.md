@@ -4,7 +4,7 @@
 
 ## Características
 
-- **Inicio de Sesión Seguro**: Autenticación con OAuth (Google, Facebook, GitHub) y email/contraseña via Supabase.
+- **Inicio de Sesión Opcional**: Puedes explorar sin cuenta. Para guardar favoritos y ver tu perfil inicias sesión con OAuth (Google o GitHub) o con email/contraseña via Supabase.
 - **Lista de Criptomonedas**: Muestra una lista de las 100 criptomonedas más populares, junto con detalles básicos.
 - **Detalles de Criptomoneda**: Información detallada de cada criptomoneda, incluyendo:
   - Precio actual
@@ -23,7 +23,7 @@
 
 | Capa               | Tecnología                                            |
 | ------------------ | ----------------------------------------------------- |
-| Framework          | React 19 + Vite 8 + TypeScript 6                      |
+| Framework          | React 19 + Vite 8 + JavaScript (JSX)                  |
 | Routing            | React Router 7                                        |
 | Estado servidor    | TanStack Query                                        |
 | Estado global auth | Zustand                                               |
@@ -78,13 +78,13 @@
 | Comando        | Descripción                     |
 | -------------- | ------------------------------- |
 | `pnpm dev`     | Servidor de desarrollo (Vite)   |
-| `pnpm build`   | Typecheck + build de producción |
+| `pnpm build`   | Build de producción (Vite)      |
 | `pnpm lint`    | ESLint con React Compiler       |
 | `pnpm preview` | Preview del build de producción |
 
 ## Uso
 
-- **Inicio de Sesión**: Ingresa con OAuth (Google/Facebook/GitHub) o email/contraseña.
+- **Inicio de Sesión (opcional)**: Ingresa con OAuth (Google/GitHub) o email/contraseña. Solo te lo pediremos al guardar un favorito o al entrar a tu perfil.
 - **Explora Criptomonedas**: Navega a la lista de criptomonedas para ver las 100 principales.
 - **Detalles**: Haz clic en cualquier criptomoneda para ver información detallada y su historial de precios.
 - **Favoritos**: Guarda tus criptomonedas favoritas (requiere sesión).
