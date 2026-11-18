@@ -33,7 +33,11 @@ const CriptoPage = () => {
     error: errorCoin,
   } = useCoinDetail(id);
 
-  const { data: history, isLoading: loadingHistory } = useCoinHistory(id, days);
+  const {
+    data: history,
+    isLoading: loadingHistory,
+    error: errorHistory,
+  } = useCoinHistory(id, days);
 
   // Mostramos spinner mientras carga cualquiera de las dos queries.
   if (loadingCoin || loadingHistory) return <Loading />;
@@ -70,7 +74,13 @@ const CriptoPage = () => {
       <div className="info-y-grafica">
         <div className="info-cripto">{coin && <CriptoInfo coin={coin} />}</div>
         <div className="grafica-cripto">
-          {history && <CriptoGraph history={history} />}
+          {errorHistory ? (
+            <p className="error" role="alert">
+              No se pudo cargar el historial: {errorHistory.message}
+            </p>
+          ) : (
+            history && <CriptoGraph history={history} days={days} />
+          )}
         </div>
       </div>
     </div>

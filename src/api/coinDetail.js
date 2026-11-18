@@ -15,9 +15,11 @@ const fetchCoin = async (id) => {
     // devuelve un array, aunque sea de un solo elemento.
   });
 
+  if (!data || data.length === 0) {
+    throw new Error(`No se encontró la criptomoneda "${id}".`);
+  }
+
   return data[0];
-  // Tomamos el primer elemento porque la API devuelve un array.
-  // Si el id no existe, data[0] será undefined y la app debería manejarlo.
 };
 
 // id puede ser undefined mientras useParams aún no resuelve la ruta.

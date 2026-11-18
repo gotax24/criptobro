@@ -42,18 +42,35 @@ export const useSignUpWithEmail = () => {
   });
 };
 
+// Valida que la ruta de retorno sea una ruta interna segura de la app.
+// Previene Open Redirects (ej. "//sitio-externo.com") y bucles hacia "/login".
+const getSafeRedirectPath = (rawPath) => {
+  if (
+    typeof rawPath === "string" &&
+    rawPath.startsWith("/") &&
+    !rawPath.startsWith("//") &&
+    !rawPath.startsWith("/login")
+  ) {
+    return rawPath;
+  }
+  return "/";
+};
+
 // Función asíncrona para iniciar sesión con proveedores OAuth.
 // No usa useMutation porque supabase.auth.signInWithOAuth redirige a la URL
 // del proveedor, interrumpiendo el flujo de la app.
 // redirectPath es la página a la que volver después del login (ej. "/criptomonedas").
 export const signInWithOAuth = async (provider, redirectPath = "/") => {
+  const safePath = getSafeRedirectPath(redirectPath);
   const { error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: window.location.origin + redirectPath,
+      redirectTo: window.location.origin + safePath,
       // Supabase solo redirige a URLs de su lista "Redirect URLs" (con el comodín /**).
     },
   });
 
   if (error) throw error;
 };
+
+export { getSafeRedirectPath };

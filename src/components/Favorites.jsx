@@ -9,7 +9,13 @@ import "../css/favorites.css";
 
 const Favorites = () => {
   const { data: favorites, isLoading, error } = useFavorites();
-  const { mutate: removeFavorite, isPending: removing } = useRemoveFavorite();
+  const {
+    mutate: removeFavorite,
+    isPending: removing,
+    variables: removingId,
+  } = useRemoveFavorite();
+  // removingId guarda el argumento (fav.id) de la mutación en curso,
+  // para deshabilitar y mostrar "Quitando..." únicamente en esa fila.
 
   if (isLoading) return <Loading />;
 
@@ -55,10 +61,10 @@ const Favorites = () => {
               type="button"
               className="btn-quitar-favorito"
               onClick={() => removeFavorite(fav.id)}
-              disabled={removing}
+              disabled={removing && removingId === fav.id}
               aria-label={`Quitar ${fav.coin_name} de favoritos`}
             >
-              {removing ? "Quitando..." : "Quitar"}
+              {removing && removingId === fav.id ? "Quitando..." : "Quitar"}
             </button>
           </li>
         ))}

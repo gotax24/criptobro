@@ -8,6 +8,7 @@ import {
   useSignInWithEmail,
   useSignUpWithEmail,
   signInWithOAuth,
+  getSafeRedirectPath,
 } from "../api/auth";
 import { useAuthStore } from "../stores/authStore";
 import "../css/login.css";
@@ -22,8 +23,9 @@ const Login = () => {
 
   // La página que nos envía aquí guarda en location.state la ruta de origen (from)
   // y, si aplica, un mensaje que explica por qué pedimos sesión.
+  // getSafeRedirectPath garantiza que solo redirijamos a rutas internas válidas.
   const location = useLocation();
-  const from = location.state?.from ?? "/";
+  const from = getSafeRedirectPath(location.state?.from);
   const infoMessage = location.state?.message ?? null;
 
   // Mutaciones de TanStack Query para email/password.
@@ -44,6 +46,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("login");
   const [oauthError, setOauthError] = useState(null);
+  const [registerSuccessMessage, setRegisterSuccessMessage] = useState(null);
 
   // Mientras Supabase decide si hay sesión, mostramos el spinner.
   if (loading) return <Loading />;
@@ -59,9 +62,23 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Prevenimos el envío nativo del formulario para manejarlo con React.
+    setRegisterSuccessMessage(null);
 
     if (mode === "register") {
-      signUp({ email, password });
+      signUp(
+        { email, password },
+        {
+          onSuccess: (data) => {
+            // Si Supabase requiere confirmación de correo, data.session será null.
+            // Avisamos al usuario para que revise su bandeja de entrada.
+            if (!data.session) {
+              setRegisterSuccessMessage(
+                "Cuenta creada. Revisa tu correo electrónico para confirmar tu cuenta antes de iniciar sesión.",
+              );
+            }
+          },
+        },
+      );
     } else {
       signIn({ email, password });
     }
@@ -90,6 +107,12 @@ const Login = () => {
         {infoMessage && (
           <p className="info-login" role="status">
             {infoMessage}
+          </p>
+        )}
+
+        {registerSuccessMessage && (
+          <p className="info-login" role="status">
+            {registerSuccessMessage}
           </p>
         )}
 

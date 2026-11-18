@@ -11,6 +11,9 @@ import { useState, useEffect } from "react";
 // useState controla si el menú móvil está abierto.
 // useEffect bloquea/desbloquea el scroll del body cuando el menú está abierto.
 
+import { useQueryClient } from "@tanstack/react-query";
+// useQueryClient permite limpiar la caché de favoritos al cerrar sesión.
+
 import { useAuthStore } from "../stores/authStore";
 import "../css/menu.css";
 import ThemeToggle from "./ThemeToggle";
@@ -23,16 +26,18 @@ const Menu = () => {
   const signOut = useAuthStore((s) => s.signOut);
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE;
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Cierra sesión, colapsa el menú móvil y vuelve al inicio.
+  // Cierra sesión, limpia la caché de favoritos, colapsa el menú móvil y vuelve al inicio.
   const signOutSession = async () => {
     setMenuOpen(false);
     navigate("/");
     // Navegamos antes de cerrar sesión: así ya no estamos en una ruta protegida
     // cuando el store quede sin sesión, y no nos redirige a /login.
     await signOut();
+    queryClient.removeQueries({ queryKey: ["favorites"] });
   };
 
   // Alterna el estado del menú móvil.

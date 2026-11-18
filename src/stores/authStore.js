@@ -64,6 +64,12 @@ const loadProfile = async (userId) => {
   // maybeSingle devuelve un objeto o null. A diferencia de single(), no lanza
   // error si no hay filas, lo cual es útil cuando el perfil aún no existe.
 
+  // Si el usuario cerró sesión o cambió de cuenta mientras la petición estaba en vuelo,
+  // descartamos el resultado para evitar sobrescribir el estado con datos obsoletos.
+  if (useAuthStore.getState().user?.id !== userId) {
+    return;
+  }
+
   if (error) {
     // Guardamos el error en el store en vez de solo console.error.
     // Así los componentes pueden decidir si mostrarlo en la UI.
@@ -84,9 +90,10 @@ supabase.auth.onAuthStateChange((event, session) => {
   useAuthStore.getState().setSession(session);
 
   const userId = session?.user?.id;
-  // Si no hay usuario (cierre de sesión o sesión inválida), solo terminamos la carga.
+  // Si no hay usuario (cierre de sesión o sesión inválida), limpiamos el perfil y terminamos la carga.
 
   if (!userId) {
+    useAuthStore.getState().setProfile(null);
     finishLoading();
     return;
   }
