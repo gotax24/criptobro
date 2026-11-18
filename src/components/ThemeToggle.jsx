@@ -1,12 +1,7 @@
-// components/ThemeToggle.jsx
-// Interruptor (switch) animado que alterna entre modo oscuro y modo claro.
-// Usa iconos SVG de sol y luna con pista deslizante, evitando emojis de UI.
-
 import { useTheme } from "../hooks/useTheme";
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
-  // theme indica el tema actual ("dark" | "light"); toggleTheme lo alterna.
   const isDark = theme === "dark";
 
   return (
@@ -16,7 +11,6 @@ const ThemeToggle = () => {
       className={`theme-switch ${isDark ? "is-dark" : "is-light"}`}
       onClick={toggleTheme}
       aria-checked={isDark}
-      // aria-checked junto a role="switch" comunica a lectores de pantalla el estado del interruptor.
       aria-label={
         isDark ? "Modo oscuro activo. Cambiar a modo claro" : "Modo claro activo. Cambiar a modo oscuro"
       }

@@ -1,7 +1,3 @@
-// components/Favorites.jsx
-// Página de favoritos del usuario.
-// Lista las criptomonedas guardadas en Supabase y permite eliminarlas.
-
 import { Link } from "react-router-dom";
 import { useFavorites, useRemoveFavorite } from "../api/favorites";
 import Loading from "./Loading";
@@ -14,8 +10,6 @@ const Favorites = () => {
     isPending: removing,
     variables: removingId,
   } = useRemoveFavorite();
-  // removingId guarda el argumento (fav.id) de la mutación en curso,
-  // para deshabilitar y mostrar "Quitando..." únicamente en esa fila.
 
   if (isLoading) return <Loading />;
 

@@ -1,6 +1,3 @@
-/* === Crypto Grid — Precision Finance === */
-/* Grid de tarjetas con stagger animation, hover lift, mono en precios */
-
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -70,7 +67,9 @@
   line-height: 1;
   cursor: pointer;
   color: var(--text-muted);
-  transition: color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
   padding: var(--space-1);
   z-index: 1;
 }
@@ -113,12 +112,24 @@
 }
 
 /* === Stagger animation — cada card entra con delay distinto === */
-.container > .containerMain:nth-child(1) { animation-delay: 0.05s; }
-.container > .containerMain:nth-child(2) { animation-delay: 0.10s; }
-.container > .containerMain:nth-child(3) { animation-delay: 0.15s; }
-.container > .containerMain:nth-child(4) { animation-delay: 0.20s; }
-.container > .containerMain:nth-child(5) { animation-delay: 0.25s; }
-.container > .containerMain:nth-child(n+6) { animation-delay: 0.30s; }
+.container > .containerMain:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.container > .containerMain:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.container > .containerMain:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.container > .containerMain:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.container > .containerMain:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.container > .containerMain:nth-child(n + 6) {
+  animation-delay: 0.3s;
+}
 
 /* === Coin image === */
 .containerMain img {
@@ -154,7 +165,9 @@
   font-family: var(--font-mono);
   font-weight: var(--fw-semibold);
   color: var(--text);
-  font-feature-settings: "tnum" 1, "zero" 1;
+  font-feature-settings:
+    "tnum" 1,
+    "zero" 1;
 }
 
 .precio::after {

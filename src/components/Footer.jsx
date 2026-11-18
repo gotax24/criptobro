@@ -1,7 +1,3 @@
-// components/Footer.jsx
-// Pie de página fijo con enlaces a redes sociales y copyright.
-// Usa <address> para los contactos, que es el elemento semántico adecuado.
-
 import githubLogo from "../assets/github.svg";
 import emailLogo from "../assets/email.svg";
 import linkedinLogo from "../assets/linkedin.svg";
@@ -14,10 +10,7 @@ const Footer = () => {
         <a
           href="https://github.com/gotax24?tab=repositories"
           target="_blank"
-          // target="_blank" abre el enlace en una nueva pestaña.
           rel="noopener noreferrer"
-          // rel="noopener noreferrer" es obligatorio con target="_blank" por seguridad:
-          // evita que la nueva página acceda a window.opener.
           className="link-networks"
         >
           <img src={githubLogo} className="img-footer" alt="logo de github" />
@@ -37,8 +30,11 @@ const Footer = () => {
         <a href="mailto:dev.ejbr@gmail.com" className="link-networks">
           <img src={emailLogo} className="img-footer" alt="logo de email" />
         </a>
+        <a href="https://www.gotax.dev/" target="_blank" rel="noopener noreferrer" className="link-networks">
+          <img src={""} className="img-footer" alt="logo de gotax.dev" />
+        </a>
       </address>
-      <div className="copyright">Creator: Ing. Ernesto Bracho 2024 ©</div>
+      <div className="copyright">Creator: Ing. Ernesto Bracho {new Date().getFullYear()} ©</div>
     </footer>
   );
 };

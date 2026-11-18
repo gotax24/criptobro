@@ -1,14 +1,9 @@
-// components/CriptoInfo.jsx
-// Muestra los datos detallados de una criptomoneda y su botón de favoritos.
-// Recibe la criptomoneda por props; el botón usa el hook useFavoriteToggle.
-
 import FormatNumber from "../helpers/FormatNumber";
 import CambioEmoji from "../helpers/ChangeEmoji";
 import RedAndGreen from "../helpers/RedAndGreen";
 import { useFavoriteToggle } from "../hooks/useFavoriteToggle";
 
 const CriptoInfo = ({ coin }) => {
-  // Desestructuración de las propiedades que vamos a mostrar.
   const {
     name,
     symbol,
@@ -24,7 +19,6 @@ const CriptoInfo = ({ coin }) => {
     max_supply,
   } = coin;
 
-  // Igual que en la tarjeta: sin sesión, el botón lleva a /login y vuelve aquí después.
   const { isFavorite, disabled, error, toggle } = useFavoriteToggle(coin);
 
   return (

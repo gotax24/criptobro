@@ -1,6 +1,3 @@
-/* === CriptoPage — Precision Finance === */
-/* Layout info + gráfica. Filtro simple de días. Mono para datos. */
-
 .container-main {
   display: flex;
   flex-direction: column;
@@ -141,7 +138,9 @@
   font-size: var(--fs-base);
   font-weight: var(--fw-semibold);
   color: var(--text);
-  font-feature-settings: "tnum" 1, "zero" 1;
+  font-feature-settings:
+    "tnum" 1,
+    "zero" 1;
 }
 
 /* === Color condicional para cambio % en info === */

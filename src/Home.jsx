@@ -1,28 +1,11 @@
-// Home.jsx
-// Página de inicio pública. Muestra un mensaje de bienvenida, una breve
-// explicación sobre criptomonedas y un enlace a la lista de criptomonedas.
-
 import { Link } from "react-router-dom";
-// Link es el componente de navegación de React Router. Renderiza un <a>
-// real en el DOM, pero intercepta el click para hacer SPA navigation
-// sin recargar la página.
-
 import "./Home.css";
-// Estilos específicos de la página de inicio. Nota: en Linux el sistema de
-// archivos distingue mayúsculas/minúsculas, por eso el import coincide
-// exactamente con el nombre del archivo Home.css.
 
 const Home = () => {
-  // Leemos el nombre de la app desde variables de entorno de Vite.
-  // import.meta.env expone solo las variables que empiezan con VITE_.
-  // El operador ?? (nullish coalescing) proporciona un valor por defecto
-  // si la variable es undefined o null.
   const VITE_NAME = import.meta.env.VITE_NAME_PAGE ?? "CriptoBro";
 
   return (
-    // section es más semántico que div para agrupar contenido temático.
     <section className="home-content">
-      {/* Mostramos el nombre de la app dinámicamente. */}
       <h1 className="title-home">Hola Bienvenido a {VITE_NAME}</h1>
       <h2 className="sub-title">¿Qué son las criptomonedas?</h2>
       <p className="p-home">
@@ -36,7 +19,6 @@ const Home = () => {
         de criptomonedas son Bitcoin y Ethereum.
       </p>
       <h3 className="h3-home">Conoce las 100 criptos más usadas</h3>
-      {/* Link to="/criptomonedas" navega a la ruta definida en App.tsx. */}
       <Link className="link-home" to="/criptomonedas">
         Ver Cripto monedas
       </Link>

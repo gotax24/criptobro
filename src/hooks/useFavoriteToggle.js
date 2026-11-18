@@ -1,14 +1,5 @@
-// hooks/useFavoriteToggle.js
-// Lógica del botón de favoritos que comparten la tarjeta (Element) y el detalle (CriptoInfo).
-// Guardar favoritos requiere sesión: si el visitante es invitado no intentamos nada en Supabase;
-// lo enviamos a /login y recordamos la página actual para devolverlo después.
-
 import { useState } from "react";
-// useState guarda el mensaje de error de la última acción.
-
 import { useLocation, useNavigate } from "react-router-dom";
-// useNavigate cambia de ruta desde código; useLocation indica en qué página está el usuario.
-
 import { useAuthStore } from "../stores/authStore";
 import {
   useAddFavorite,
@@ -16,13 +7,11 @@ import {
   useRemoveFavorite,
 } from "../api/favorites";
 
-// coin es el objeto de la criptomoneda (usa id, name y symbol).
 export const useFavoriteToggle = (coin) => {
   const navigate = useNavigate();
   const location = useLocation();
   const session = useAuthStore((s) => s.session);
   const loading = useAuthStore((s) => s.loading);
-  // loading es true mientras Supabase restaura la sesión: aún no sabemos si hay usuario.
 
   const { data: favorites, isPending: loadingFavorites } = useFavorites();
   const { mutate: addFavorite, isPending: adding } = useAddFavorite();
@@ -32,8 +21,7 @@ export const useFavoriteToggle = (coin) => {
   const isAuthenticated = Boolean(session);
   const favorite = favorites?.find((f) => f.coin_id === coin.id);
   const isFavorite = Boolean(favorite);
-  // Bloqueamos el botón mientras se cargan los favoritos o hay una mutación en curso,
-  // así no insertamos duplicados ni alternamos dos veces seguidas.
+
   const disabled =
     loading || adding || removing || (isAuthenticated && loadingFavorites);
 

@@ -1,6 +1,3 @@
-/* === Favorites — Precision Finance === */
-/* Lista de criptomonedas favoritas con tarjetas limpias y acción de quitar */
-
 /* === Contenedor principal === */
 .container-favoritos {
   width: 100%;
@@ -93,12 +90,24 @@
 }
 
 /* === Stagger animation === */
-.lista-favoritos > .item-favorito:nth-child(1) { animation-delay: 0.05s; }
-.lista-favoritos > .item-favorito:nth-child(2) { animation-delay: 0.10s; }
-.lista-favoritos > .item-favorito:nth-child(3) { animation-delay: 0.15s; }
-.lista-favoritos > .item-favorito:nth-child(4) { animation-delay: 0.20s; }
-.lista-favoritos > .item-favorito:nth-child(5) { animation-delay: 0.25s; }
-.lista-favoritos > .item-favorito:nth-child(n+6) { animation-delay: 0.30s; }
+.lista-favoritos > .item-favorito:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.lista-favoritos > .item-favorito:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.lista-favoritos > .item-favorito:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.lista-favoritos > .item-favorito:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.lista-favoritos > .item-favorito:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.lista-favoritos > .item-favorito:nth-child(n + 6) {
+  animation-delay: 0.3s;
+}
 
 /* === Link a detalle === */
 .link-favorito {
